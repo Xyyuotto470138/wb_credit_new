@@ -1,0 +1,188 @@
+# SYNTHETIC DEMO DATA, not a real record
+schema_version: 1
+case_id: demo-new-001
+documents:
+- id: cas
+  file: deal_folder/cas.pdf
+  catalogue_id: 1
+  tranche: 1
+  entity: Keppel REIT
+  date: '2026-11-10'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: e325a96b53a23f33ce7ff73c6e4b16d07a0ec025d92d45e0033a3f855705fbb1
+  bytes: 8174
+  revision: 1
+- id: term-sheet
+  file: deal_folder/term_sheet.pdf
+  catalogue_id: 2
+  tranche: 1
+  entity: Keppel REIT
+  date: '2026-11-10'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 4d6a7536b1d201aca8ea9c242bc41feda7ab0c0a7fb67bdf0d9d2d257ad265c7
+  bytes: 10959
+  revision: 1
+- id: valuation-report
+  file: deal_folder/valuation_report.pdf
+  catalogue_id: 9
+  tranche: 1
+  entity: Keppel REIT
+  date: '2026-10-31'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 469df26422b3e1cf3703ac7d7b38f87379ee39c7ff5e02012bc7f98f646a08ef
+  bytes: 5610
+  revision: 1
+- id: insurance-report
+  file: deal_folder/insurance_report.pdf
+  catalogue_id: 13
+  tranche: 1
+  entity: Keppel REIT
+  date: '2026-10-31'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 0ea6777a1c6f0c42ccab659d3f9f87b054ce9ec3887467089aa96b85fda8262f
+  bytes: 4620
+  revision: 1
+- id: pricing-report
+  file: deal_folder/pricing_report.pdf
+  catalogue_id: 11
+  tranche: 1
+  entity: Keppel REIT
+  date: '2026-11-10'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 18b27f1e27effd59671bdfd5180fafb5149ff9936b1ae93eb54daaacc5a03631
+  bytes: 4272
+  revision: 1
+- id: industry-code-mapping
+  file: deal_folder/industry_code_mapping.pdf
+  catalogue_id: 19
+  tranche: 1
+  entity: Keppel REIT
+  date: '2026-11-10'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: c898163cf366d9865b561645e92939ee9a64844130982394c84c3327a0f9f95f
+  bytes: 3117
+  revision: 1
+- id: rm-support
+  file: deal_folder/rm_support.eml
+  catalogue_id: 12
+  tranche: 1
+  entity: Keppel REIT
+  date: '2026-11-10'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 2fbbfd6f5141972c1acc6fd2dc26f2c401d6406afcfeb3bc46e58123c42d108f
+  bytes: 1111
+  revision: 1
+- id: rent-roll
+  file: deal_folder/rent_roll.xlsx
+  catalogue_id: 15
+  tranche: 1
+  entity: Keppel REIT
+  date: '2026-10-31'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: b1a1457cc1cf1f0dc5f22cc0aab264bfe8c9148a5406e67748a3d01ef3a74f72
+  bytes: 6643
+  revision: 1
+- id: lease-profile
+  file: deal_folder/lease_profile.xlsx
+  catalogue_id: 16
+  tranche: 1
+  entity: Keppel REIT
+  date: '2026-10-31'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 6d01b7a88b43b033f111b736c1d695f573ba479b9dfa84a1e48aedf58b9b14f8
+  bytes: 5671
+  revision: 1
+- id: financial-projections
+  file: deal_folder/financial_projections.xlsx
+  catalogue_id: 14
+  tranche: 1
+  entity: Keppel REIT
+  date: '2026-10-31'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: bf81f3586efa4685ba214d95ebeed2b41350d7ae9af252aa732931b9c67b15b2
+  bytes: 9595
+  revision: 1
+- id: internal-rating-worksheet
+  file: deal_folder/internal_rating_worksheet.xlsx
+  catalogue_id: 10
+  tranche: 1
+  entity: Keppel REIT
+  date: '2026-10-31'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: b121917514091b527c7dbc47c159a4ab8dbe2cdc310dd270dec451403f1e65ca
+  bytes: 5445
+  revision: 1
+- id: cas-rev2
+  file: late_update/cas_rev2.pdf
+  catalogue_id: 1
+  tranche: 2
+  entity: Keppel REIT
+  date: '2026-11-13'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 2bfd05d078e6132ef28a52e33b58af8dfe87858002262f4b7d0e2945970ef7d9
+  bytes: 11369
+  revision: 2
+  supersedes: cas
+- id: term-sheet-rev2
+  file: late_update/term_sheet_rev2.pdf
+  catalogue_id: 2
+  tranche: 2
+  entity: Keppel REIT
+  date: '2026-11-13'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 80d0a55edb54f7b998d4783f858d583bd11f9bd94992fec78133647c5c2b9e13
+  bytes: 11447
+  revision: 2
+  supersedes: term-sheet
+- id: valuation-report-nov2026
+  file: late_update/valuation_report_nov2026.pdf
+  catalogue_id: 9
+  tranche: 2
+  entity: Keppel REIT
+  date: '2026-11-12'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 07271128b8f8109beafbc772fdd84f9e709cc5aa4f0272045e7e89a8677757e7
+  bytes: 6786
+  revision: 2
+  supersedes: valuation-report
+- id: financial-projections-rev2
+  file: late_update/financial_projections_rev2.xlsx
+  catalogue_id: 14
+  tranche: 2
+  entity: Keppel REIT
+  date: '2026-11-13'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 480c2d6bcd97e87aae4c1665dabfe8d89892eb5ffe5a02a26ff642d12fef0019
+  bytes: 9621
+  revision: 2
+  supersedes: financial-projections

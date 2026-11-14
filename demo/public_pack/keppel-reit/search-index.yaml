@@ -1,0 +1,119 @@
+# Curated mappings; physical PDF pages, verified against the saved pack.
+# These do not alter the source manifest or imply CA confirmation.
+documents:
+  kreit-ar2025:
+    catalogue_id: 4
+    scope: annual-report
+    catalogue_support:
+    - id: 6
+      coverage: full
+      pages:
+      - 113
+      - 114
+      - 115
+      - 116
+      - 117
+      - 118
+      - 119
+      - 120
+      - 121
+      - 122
+      - 123
+      - 124
+      - 125
+      - 126
+      - 127
+      - 128
+      - 129
+      - 130
+      - 131
+      - 132
+      - 133
+      - 134
+      - 135
+      - 136
+      - 137
+      - 138
+      - 139
+      - 140
+      - 141
+      - 142
+      - 143
+      - 144
+      - 145
+      - 146
+      - 147
+      - 148
+      - 149
+      - 150
+      - 151
+      - 152
+      - 153
+      - 154
+      - 155
+      - 156
+      - 157
+      - 158
+      - 159
+      - 160
+      - 161
+      - 162
+      - 163
+      - 164
+      - 165
+      - 166
+      - 167
+      - 168
+      - 169
+      - 170
+      - 171
+      - 172
+      - 173
+      - 174
+      - 175
+      - 176
+      - 177
+      - 178
+      - 179
+      - 180
+    - id: 20
+      coverage: full
+      pages:
+      - 11
+      - 144
+      - 145
+      - 217
+      - 218
+    - id: 9
+      coverage: partial
+      pages:
+      - 44
+      - 64
+      - 123
+      - 124
+      - 173
+    - id: 16
+      coverage: partial
+      pages:
+      - 42
+      - 43
+      - 47
+  kreit-fs1h2026:
+    catalogue_id: 6
+    scope: interim-financial-statements:1H2026
+  kreit-pres1h2026:
+    suggestion_id: public_news
+    scope: source:kreit-pres1h2026
+  # kreit-3q2026 (business update slides) is kept in the pack but not imported: the borrower name is not in the text of
+  # its first three pages (image slides), which the public-evidence import check requires. The 3Q media release is imported.
+  kreit-mrel3q2026:
+    suggestion_id: public_news
+    scope: source:kreit-mrel3q2026
+  kreit-sp-withdrawal2015:
+    suggestion_id: external_rating
+    scope: external-rating:S&P:withdrawn-2015
+    coverage: partial
+  kreit-moodys-withdrawal2016:
+    suggestion_id: external_rating
+    scope: external-rating:Moodys:withdrawn-2016
+    coverage: partial

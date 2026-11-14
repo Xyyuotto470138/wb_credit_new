@@ -1,0 +1,67 @@
+# SYNTHETIC DEMO DATA, not a real record
+schema_version: 1
+units: SGD_million_unless_stated
+rounding: Decimal ROUND_HALF_UP to 6 decimal places for ratios
+# Reviewed controls, deliberately not emitted by the pack builder.
+exposure:
+  existing: '55'
+  outstanding: '46'
+  proposed: '75'
+  increase: '20'
+  undrawn_existing: '9'
+  existing_utilisation_pct: '83.636364'
+  tl_increase: '15'
+  rcf_increase: '5'
+  source: tranche_2/limits_utilisation.xlsx!Exposure!B6:E8
+ltv:
+  drawn_initial_pct: '37.5'
+  proposed_initial_pct: '53.571429'
+  proposed_revised_pct: '57.692308'
+  initial_headroom_pp: '1.428571'
+  revised_headroom_pp: '-2.692308'
+  revised_max_loan: '57.2'
+  proposed_paydown_to_limit: '2.8'
+  drawn_revised_pct: '40.384615'
+  source: tranche_2/valuation_v1.pdf p1; late_update/valuation_v2.pdf p1; tranche_2/limits_utilisation.xlsx Exposure rows 6-7
+covenants:
+  leverage_headroom_pp: '0.9'
+  icr_headroom_x: '0.6'
+  drawn_ltv_headroom_pp: '17.5'
+  source: tranche_2/covenant_monitoring.xlsx!Tests!B6:E8
+conduct:
+  period_start: '2025-11-01'
+  period_end: '2026-10-31'
+  average_basis: arithmetic mean of 12 month-end balances; not daily average
+  TL-01:
+    peak: '42'
+    mean_month_end: '42'
+    mean_utilisation_pct: '93.333333'
+    excess_count: 0
+    excess_days: 0
+    max_excess: '0'
+    past_due_count: 1
+    max_dpd: 3
+    max_past_due: '0.12'
+  RCF-01:
+    peak: '10.5'
+    mean_month_end: '4.583333'
+    mean_utilisation_pct: '45.833333'
+    excess_count: 1
+    excess_days: 2
+    max_excess: '0.5'
+    past_due_count: 0
+    max_dpd: 0
+    max_past_due: '0'
+  source: tranche_3/account_conduct.xlsx Monthly rows 6-29 and Events rows 6-7
+property:
+  annual_rent_sgd: '3480000'
+  occupied_sqm: 9632
+  nla_sqm: 19187
+  occupancy_pct: '50.200657'
+  annual_npi: '1.68'
+  cash_for_debt_service: '0.78'
+  source: tranche_2/rent_roll.xlsx Leases rows 6-9; tranche_2/projections.xlsx Forecast rows 6-8
+projections:
+  '2027': {interest: '3.03', principal: '15', debt_service: '18.03', dscr: '0.043261'}
+  '2028': {interest: '2.4', principal: '0', debt_service: '2.4', dscr: '0.325000'}
+  '2029': {interest: '2.4', principal: '60', debt_service: '62.4', dscr: '0.012500'}

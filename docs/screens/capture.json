@@ -1,0 +1,225 @@
+{
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "deviceScaleFactor": 2,
+  "browser": "157.0.8103.39",
+  "capturedAt": "2026-11-11T03:16:42.381Z",
+  "errors": [],
+  "blockedExternalOrigins": [],
+  "shots": [
+    {
+      "filename": "01_empty_dashboard.png",
+      "caption": "Empty synthetic case: no inputs or saved sections; workflow remains Draft."
+    },
+    {
+      "filename": "02_empty_progress.png",
+      "caption": "Empty draft progress, tranche coverage and document intake."
+    },
+    {
+      "filename": "03_intake_options.png",
+      "caption": "Upload classification hints and configured tranche-folder scan."
+    },
+    {
+      "filename": "04_public_source.png",
+      "caption": "Saved public PDF in the source dialog, with URL, retrieval date and explicit review action."
+    },
+    {
+      "filename": "05_tranche1_overview.png",
+      "caption": "Tranche 1 plus reviewed saved public evidence: provided, public and missing inputs."
+    },
+    {
+      "filename": "06_tranche1_expected.png",
+      "caption": "Expected-input table distinguishes full inputs from partial public context."
+    },
+    {
+      "filename": "07_tranche1_requests.png",
+      "caption": "Tranche 1 open requests grouped by RM, client and internal team."
+    },
+    {
+      "filename": "08_request_export.png",
+      "caption": "Request-list export action with the first request expanded; the download sends nothing."
+    },
+    {
+      "filename": "09_generation_offers.png",
+      "caption": "Validated saved mock spread generated; industry-mapping offer remains unavailable."
+    },
+    {
+      "filename": "10_tranche1_drafts.png",
+      "caption": "Seven saved partial/full sections after tranche 1; saved drafts are separate from readiness."
+    },
+    {
+      "filename": "11_section_editor.png",
+      "caption": "Section editor shows named gaps, sourced wording and original-page citation links."
+    },
+    {
+      "filename": "12_cited_pdf.png",
+      "caption": "A section citation opens its original PDF page with public provenance."
+    },
+    {
+      "filename": "13_tranche2_overview.png",
+      "caption": "Tranche 2 adds property and renewal support; earlier affected drafts become Stale."
+    },
+    {
+      "filename": "14_tranche2_drafts.png",
+      "caption": "Eleven saved sections after tranche 2; rating, conduct and conclusion remain outstanding."
+    },
+    {
+      "filename": "15_chat_proposal.png",
+      "caption": "Section chat proposes a cited revision for review before it changes the saved draft."
+    },
+    {
+      "filename": "16_chat_rejected.png",
+      "caption": "Rejected proposal stays in chat history; saved wording is unchanged."
+    },
+    {
+      "filename": "17_chat_accepted.png",
+      "caption": "Accepted revision records the analyst and creates a new version with CA-input provenance."
+    },
+    {
+      "filename": "18_accepted_note.png",
+      "caption": "The saved section includes the accepted synthetic CA note and its source link."
+    },
+    {
+      "filename": "19_ca_input_source.png",
+      "caption": "CA-input source panel records the note, actor and time without implying a document page."
+    },
+    {
+      "filename": "20_version_history.png",
+      "caption": "Read-only historical section version preserves its wording, model, template and sources."
+    },
+    {
+      "filename": "21_tranche3_overview.png",
+      "caption": "Tranche 3 supplies conduct and internal rating; missing-file count differs from mandatory gaps."
+    },
+    {
+      "filename": "22_tranche3_complete.png",
+      "caption": "All fourteen sections saved; the industry-mapping gap remains visible and no approval is implied."
+    },
+    {
+      "filename": "23_all_sections.png",
+      "caption": "All fourteen built ES sections remain navigable with their readiness and gap counts."
+    },
+    {
+      "filename": "24_section_01.png",
+      "caption": "Section 1: Request / Purpose; saved sourced draft for CA review."
+    },
+    {
+      "filename": "25_section_02.png",
+      "caption": "Section 2: Summary of current client group exposure; saved sourced draft for CA review."
+    },
+    {
+      "filename": "26_exposure_values.png",
+      "caption": "Exposure figures are read-only Python computations with synthetic source citations."
+    },
+    {
+      "filename": "27_workbook_source.png",
+      "caption": "Normalized workbook source panel with original-file download and synthetic provenance."
+    },
+    {
+      "filename": "28_section_03.png",
+      "caption": "Section 3: Key updates; saved sourced draft for CA review."
+    },
+    {
+      "filename": "29_section_04.png",
+      "caption": "Section 4: Business background; saved sourced draft for CA review."
+    },
+    {
+      "filename": "30_section_05.png",
+      "caption": "Section 5: Shareholding structure; saved sourced draft for CA review."
+    },
+    {
+      "filename": "31_section_06.png",
+      "caption": "Section 6: Key management and stakeholder; saved sourced draft for CA review."
+    },
+    {
+      "filename": "32_section_07.png",
+      "caption": "Section 7: Facility structure; saved sourced draft for CA review."
+    },
+    {
+      "filename": "33_section_08.png",
+      "caption": "Section 8: Security support; saved sourced draft for CA review."
+    },
+    {
+      "filename": "34_section_09.png",
+      "caption": "Section 9: Source of repayment; saved sourced draft for CA review."
+    },
+    {
+      "filename": "35_section_10.png",
+      "caption": "Section 10: Financial highlights and analytics; saved sourced draft for CA review."
+    },
+    {
+      "filename": "36_numeric_chat.png",
+      "caption": "Section 10 numeric chat requires explicit sourced operands for Python recomputation."
+    },
+    {
+      "filename": "37_section_11.png",
+      "caption": "Section 11: Key credit risks and mitigates; saved sourced draft for CA review."
+    },
+    {
+      "filename": "38_section_12.png",
+      "caption": "Section 12: Credit rating; saved sourced draft for CA review."
+    },
+    {
+      "filename": "39_section_13.png",
+      "caption": "Section 13: Conduct of Account; saved sourced draft for CA review."
+    },
+    {
+      "filename": "40_section_14.png",
+      "caption": "Section 14: Recommendation: conclusion; saved sourced draft for CA review."
+    },
+    {
+      "filename": "41_confirmed_section.png",
+      "caption": "CA confirmation records review while keeping named gaps open."
+    },
+    {
+      "filename": "42_draft_export.png",
+      "caption": "Draft Word export preview pins the template, saved section versions and visible gaps."
+    },
+    {
+      "filename": "43_export_history.png",
+      "caption": "Saved draft bundle offers Word, source manifest and request-list downloads."
+    },
+    {
+      "filename": "44_model_picker.png",
+      "caption": "Case-level model picker exposes offline mock choices and keeps all live routes disabled."
+    },
+    {
+      "filename": "45_model_routes.png",
+      "caption": "Configured model route list labels disabled providers and unconfirmed deployment details."
+    },
+    {
+      "filename": "46_model_compare.png",
+      "caption": "Side-by-side offline model comparison uses the same evidence and identical Python tables."
+    },
+    {
+      "filename": "47_compare_wording.png",
+      "caption": "Comparison wording retains each mock model’s citations and gaps; previews do not save a draft."
+    },
+    {
+      "filename": "48_late_valuation_stale.png",
+      "caption": "Revised valuation makes sections 8, 9, 11 and 14 Stale while retaining saved versions."
+    },
+    {
+      "filename": "49_stale_editor.png",
+      "caption": "Stale editor explains the choice to keep wording for review or explicitly redraft."
+    },
+    {
+      "filename": "50_redraft_choice.png",
+      "caption": "Explicit redraft action preserves historical wording and confirmation; reconfirmation is disabled while Stale."
+    },
+    {
+      "filename": "51_revised_security.png",
+      "caption": "Explicit redraft uses the revised synthetic SGD 104m valuation and retains source provenance."
+    },
+    {
+      "filename": "52_refreshed_chain.png",
+      "caption": "After ordered redrafts, the affected chain is current; previous versions and exports remain."
+    },
+    {
+      "filename": "53_document_register.png",
+      "caption": "Document register retains public/synthetic provenance and all twenty-three stored versions."
+    }
+  ]
+}

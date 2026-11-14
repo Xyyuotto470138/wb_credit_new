@@ -1,0 +1,111 @@
+roles:
+- CA
+- Credit Head
+- Credit Approver
+- template admin
+initial_state: Draft
+states:
+- Draft
+- Submitted to Credit Head
+- Supported
+- With Credit Approver
+- Returned to CA
+- Question to CA
+- Approved
+- Approved with conditions
+- Declined
+final_states:
+- Approved
+- Approved with conditions
+- Declined
+locked_states:
+- Submitted to Credit Head
+- Supported
+- With Credit Approver
+- Question to CA
+- Approved
+- Approved with conditions
+- Declined
+transitions:
+- action: submit
+  role: CA
+  from_states:
+  - Draft
+  - Returned to CA
+  to_state: Submitted to Credit Head
+  requirements:
+  - submission_checks
+  enabled: true
+- action: support
+  role: Credit Head
+  from_states:
+  - Submitted to Credit Head
+  to_state: Supported
+  requirements: []
+  enabled: true
+- action: handoff
+  role: Credit Head
+  from_states:
+  - Supported
+  to_state: With Credit Approver
+  requirements: []
+  enabled: true
+- action: return
+  role: Credit Head
+  from_states:
+  - Submitted to Credit Head
+  to_state: Returned to CA
+  requirements:
+  - named_sections
+  - comment
+  enabled: true
+- action: return
+  role: Credit Approver
+  from_states:
+  - With Credit Approver
+  to_state: Returned to CA
+  requirements:
+  - named_sections
+  - comment
+  enabled: true
+- action: approve
+  role: Credit Approver
+  from_states:
+  - With Credit Approver
+  to_state: Approved
+  requirements: []
+  enabled: true
+- action: approve_with_conditions
+  role: Credit Approver
+  from_states:
+  - With Credit Approver
+  to_state: Approved with conditions
+  requirements:
+  - conditions
+  enabled: true
+- action: question
+  role: Credit Approver
+  from_states:
+  - With Credit Approver
+  to_state: Question to CA
+  requirements:
+  - question
+  enabled: true
+- action: decline
+  role: Credit Approver
+  from_states:
+  - With Credit Approver
+  to_state: Declined
+  requirements: []
+  enabled: true
+- action: answer_resubmit
+  role: CA
+  from_states:
+  - Question to CA
+  to_state: With Credit Approver
+  requirements:
+  - answer
+  - submission_checks
+  enabled: true
+credit_admin_support_enabled: false
+question_edit_scope: answer only

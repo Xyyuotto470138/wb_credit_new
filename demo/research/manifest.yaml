@@ -1,0 +1,184 @@
+schema_version: 1
+task: '0002'
+as_of: '2026-11-10'
+scope: Shortlist comparison only; do not load into ESR-REIT case.
+documents:
+- id: fct-ar2025
+  file: fct-annual-report-2025.pdf
+  catalogue_type:
+    id: 4
+    name: Annual reports
+  title: Frasers Centrepoint Trust Annual Report 2025
+  url: https://fct.frasersproperty.com/newsroom/20251223_072539_J69U_PRKHJYNC42NYLKEL.1.pdf
+  publisher: Frasers Centrepoint Asset Management Ltd.
+  date: '2025-12-23'
+  retrieved_at: '2026-11-10'
+  pages: 222
+  sha256: 96f2e95f248251726ff8acacdb74d7d2e5126f755a9e6f5a218f798fa3e41710
+  bytes: 6150884
+  media_type: application/pdf
+  entity: Frasers Centrepoint Trust
+  kind: shortlist_evidence
+  origin: public
+  synthetic: false
+  ca_confirmed: false
+  evidence:
+  - topic: identity_and_sponsor
+    pdf_pages:
+    - 4
+    printed_pages:
+    - '2'
+    check_terms:
+    - Frasers Property
+    - Singapore Exchange
+  - topic: leverage_and_icr
+    pdf_pages:
+    - 38
+    - 39
+    printed_pages:
+    - '36'
+    - '37'
+    check_terms:
+    - Baa2
+    - 39.6%
+    - '3.46'
+  - topic: lease_expiry
+    pdf_pages:
+    - 27
+    printed_pages:
+    - '25'
+    check_terms:
+    - Lease expiry profile
+  - topic: occupancy
+    pdf_pages:
+    - 29
+    printed_pages:
+    - '27'
+    check_terms:
+    - 98.1%
+  - topic: singapore_property_valuation
+    pdf_pages:
+    - 74
+    printed_pages:
+    - '72'
+    check_terms:
+    - CAUSEWAY
+    - 1,354.0
+  period_end: '2025-09-30'
+- id: fct-moodys2020
+  file: fct-rating-20200907.pdf
+  catalogue_type:
+    id: 10
+    name: Credit rating report (external)
+  title: Moody's affirms Frasers Centrepoint's Baa2 rating on ARF acquisition; changes
+    outlook to stable from negative
+  url: https://fct.frasersproperty.com/newsroom/20200908_182944_J69U_WGU8PUCN944XHKLB.1.pdf
+  publisher: Moody's Investors Service; distributed by FCT
+  date: '2020-09-07'
+  retrieved_at: '2026-11-10'
+  pages: 6
+  sha256: eb51914a54499220d58fb5a5525652ec6abbbfeeed08db6770df73680fecf1d5
+  bytes: 124881
+  media_type: application/pdf
+  entity: Frasers Centrepoint Trust
+  kind: shortlist_evidence
+  origin: public
+  synthetic: false
+  ca_confirmed: false
+  evidence:
+  - topic: historical_rating_action
+    pdf_pages:
+    - 1
+    printed_pages:
+    - unprinted
+    check_terms:
+    - Baa2
+    - 07 Sep 2020
+- id: oue-ar2025
+  file: oue-reit/annual-report-2025.pdf
+  catalogue_type:
+    id: 4
+    name: Annual reports
+  title: OUE REIT Annual Report 2025
+  url: https://links.sgx.com/FileOpen/OUE_REIT_Annual_Report_2025.ashx?App=Announcement&FileID=880688
+  publisher: OUE REIT Management Pte. Ltd.
+  date: '2026-03-27'
+  retrieved_at: '2026-11-10'
+  pages: 182
+  sha256: f607d0595c19e638ba41d117aa859936ac581adc31909dc2afaee7b39758f970
+  bytes: 5952226
+  media_type: application/pdf
+  entity: OUE REIT
+  kind: shortlist_evidence
+  origin: public
+  synthetic: false
+  ca_confirmed: false
+  evidence:
+  - topic: identity_and_sponsor
+    pdf_pages:
+    - 4
+    printed_pages:
+    - '2'
+    check_terms:
+    - OUE Limited
+    - Singapore Exchange
+  - topic: leverage_and_icr
+    pdf_pages:
+    - 41
+    printed_pages:
+    - '39'
+    check_terms:
+    - '38.5'
+    - '2.4'
+    - BBB-
+  - topic: lease_expiry
+    pdf_pages:
+    - 34
+    printed_pages:
+    - '32'
+    check_terms:
+    - Portfolio Lease Expiry Profile
+  - topic: occupancy
+    pdf_pages:
+    - 36
+    printed_pages:
+    - '34'
+    check_terms:
+    - 95.4%
+  - topic: singapore_property_valuation
+    pdf_pages:
+    - 46
+    printed_pages:
+    - '44'
+    check_terms:
+    - OUE Downtown Office
+    - Valuation
+  period_end: '2025-12-31'
+- id: oue-rating2023
+  file: oue-reit/issuer-rating-announcement-20231030.pdf
+  catalogue_type:
+    id: 10
+    name: Credit rating report (external)
+  title: S&P assigns BBB- rating to OUE C-REIT
+  url: https://investor.ouereit.com/newsroom/20231030_181205_TS0U_2OI2YOWG2M8NNICP.1.pdf
+  publisher: OUE Commercial REIT Management Pte. Ltd.
+  date: '2023-10-30'
+  retrieved_at: '2026-11-10'
+  pages: 2
+  sha256: 382a5b713f686e265e6e3f512f1d2497cd5742a940584f8409106757a1da0073
+  bytes: 391331
+  media_type: application/pdf
+  entity: OUE REIT
+  kind: shortlist_evidence
+  origin: public
+  synthetic: false
+  ca_confirmed: false
+  evidence:
+  - topic: issuer_rating_action_announcement
+    pdf_pages:
+    - 1
+    printed_pages:
+    - unprinted
+    check_terms:
+    - BBB-
+    - 30 October 2023

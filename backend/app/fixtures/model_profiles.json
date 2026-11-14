@@ -1,0 +1,11 @@
+{
+  "label": "SYNTHETIC DEMO DATA — offline mock response profiles",
+  "version": "b26-mock-profiles-v1",
+  "profiles": {
+    "reviewed": {"order": "original", "extra_claims": []},
+    "reverse_with_rejection": {
+      "order": "reverse",
+      "extra_claims": [{"id": "unsupported-b26-fixture", "text": "UNSUPPORTED OFFLINE TEST CLAIM — reject this row."}]
+    }
+  }
+}

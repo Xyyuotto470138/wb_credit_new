@@ -1,0 +1,1446 @@
+# Keppel REIT / Ocean Financial Centre: key public facts. Every fact cites file, physical PDF page and quoted line.
+# Not CA confirmed. Built by runtime/keppel_research/build_pack.py; quotes are machine-checked against the page text.
+schema_version: 1
+borrower: Keppel REIT
+financing_object: Ocean Financial Centre, 10 Collyer Quay, Singapore 049315
+as_of: '2026-11-12'
+page_convention: pdf_page is the one-based physical PDF page; printed_page is the label printed on the page. Some
+  annual report PDF pages are two-page spreads.
+quote_convention: Each quote is text from the cited page with whitespace collapsed; build-time check confirms it
+  appears on that page (NFKC, case-folded). Footnote markers that the PDF text layer glues to words or numbers are
+  kept as extracted (for example "Interest1", "2,301,1201" is quoted without its trailing marker).
+currency_note: SGD unless a unit says otherwise. "$" in Keppel REIT documents means Singapore dollars.
+ca_confirmation_required: true
+sections:
+  ocean_financial_centre:
+  - id: address
+    value: 10 Collyer Quay, Singapore 049315
+    unit: text
+    source_file: annual-report-2025.pdf
+    pdf_page: 44
+    printed_page: '47'
+    quotes:
+    - 10 Collyer Quay, Singapore 049315
+  - id: description
+    value: 43-storey Grade A office tower, approximately 871,000 sf of office space; retail component Ocean Colours
+    unit: text
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 47
+    printed_page: '50'
+    quotes:
+    - Ocean Financial Centre is an iconic 43-storey Grade A office tower that offers approximately 871,000 sf of
+      premium office space
+  - id: ownership_interest_keppel_reit
+    value: 79.9
+    unit: percent (approximate)
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 44
+    printed_page: '47'
+    quotes:
+    - Ownership Interest1 79.9%
+  - id: holding_entity
+    value: Ocean Properties LLP (OPLLP), a Singapore limited liability partnership ~79.9% held directly by the Trust
+    unit: text
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 145
+    printed_page: '150'
+    quotes:
+    - OPLLP owns Ocean Financial Centre.
+    supporting:
+    - source_file: annual-report-2025.pdf
+      pdf_page: 144
+      quote: Ocean Properties LLP
+      printed_page: '149'
+  - id: other_owners
+    value: Allianz Real Estate 20.0%; Avan Investments Pte Ltd (AIPL) approximately 0.1%
+    unit: text
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 145
+    printed_page: '150'
+    quotes:
+    - On 11 December 2018, the Trust divested a 20.0% equity interest in OPLLP to a third party, Allianz Real Estate
+    - AIPL continues to hold a remaining equity interest of approximately 0.1% in OPLLP
+  - id: ownership_structure_call_options
+    value: Keppel REIT holds its OPLLP interests for 99 years from 14 Dec 2011; vendors (SPIPL, AIPL) hold S$1.00
+      call options exercisable after that period; SPIPL has a right of first refusal and, on certain specified events,
+      a right to carve out a leasehold title
+    unit: text
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 145
+    printed_page: '150'
+    quotes:
+    - the Trust granted a call option under an option deed to SPIPL for the right to acquire the approximate 87.5%
+      equity interest in OPLLP for $1.00 at the expiry of the 99-year period after the acquisition date
+    - the Trust shall not dispose of its legal or beneficial interest in OPLLP to any person unless SPIPL’s right
+      of first refusal has lapsed
+    note: 'Material for a lender: read the full footnote on this page before describing title or security.'
+  - id: acquisition_history
+    value: 87.5% acquired 14 Dec 2011; 12.4% acquired 25 Jun 2012; 20.0% divested 11 Dec 2018
+    unit: text
+    source_file: annual-report-2025.pdf
+    pdf_page: 44
+    printed_page: '47'
+    quotes:
+    - 87.5% interest of the building was acquired on 14 December 2011 and 12.4% interest of the building was acquired
+      on 25 June 2012.
+  - id: tenure
+    value: Leasehold interest of 99 years expiring 13 December 2110
+    unit: text
+    source_file: annual-report-2025.pdf
+    pdf_page: 44
+    printed_page: '47'
+    quotes:
+    - Leasehold interest of 99 years expiring 13 December 2110
+  - id: remaining_lease_term
+    value: 85.0
+    unit: years
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 122
+    printed_page: '127'
+    quotes:
+    - 99 years 85.0 years
+  - id: completion_year
+    not_found: true
+    checked: All seven PDFs in this pack (full-text search); also the Keppel REIT information memorandum dated 27
+      June 2025 (not saved in pack)
+    note: Not stated in the saved primary documents. Secondary web sources (EdgeProp; CTBUH Skyscraper Center) give
+      2011; a 2010 PropertyGuru report on topping-out expected completion in 2Q 2011. Not verified against a primary
+      source, so not recorded as a fact.
+  - id: nla_attributable
+    value: 695996
+    unit: sq ft (64,660 sq m), Keppel REIT 79.9% share
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 44
+    printed_page: '47'
+    quotes:
+    - Attributable NLA 695,996 sf 64,660 sm
+  - id: nla_attributable_latest
+    value: 697194
+    unit: sq ft, Keppel REIT 79.9% share
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 29
+    printed_page: '29'
+    quotes:
+    - Attributable NLA 697,194 sf
+  - id: nla_100_percent
+    value: approximately 871,000
+    unit: sq ft of office space (100% basis, approximate, as described)
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 47
+    printed_page: '50'
+    quotes:
+    - offers approximately 871,000 sf of premium office space
+    note: The annual report does not print an exact 100% NLA. 695,996 sf / 0.799 = about 871,084 sf, consistent
+      with the description. Whether 871,000 sf includes the Ocean Colours retail space is not stated.
+  - id: committed_occupancy
+    value: 96.0
+    unit: percent
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 44
+    printed_page: '47'
+    quotes:
+    - Committed Occupancy 96.0%
+  - id: committed_occupancy_1h2026
+    value: 96.5
+    unit: percent
+    as_of: '2026-06-30'
+    source_file: results-presentation-1h2026.pdf
+    pdf_page: 16
+    printed_page: '16'
+    quotes:
+    - Ocean Financial Centre 79.9% 96.5%
+  - id: committed_occupancy_latest
+    value: 95.2
+    unit: percent
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 16
+    printed_page: '16'
+    quotes:
+    - Ocean Financial Centre 79.9% 95.2%
+  - id: valuation_attributable
+    value: 2301.1
+    unit: SGD million (Keppel REIT 79.9% interest); S$3,254 psf
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 44
+    printed_page: '47'
+    quotes:
+    - S$2,301.1 million S$3,254 psf
+  - id: valuation_100_percent
+    value: 2880.0
+    unit: SGD million (100% interest, carrying value)
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 124
+    printed_page: '129'
+    quotes:
+    - 'The carrying value based on 100.0% interest in Ocean Financial Centre is $2,880,000,000 (2024: $2,714,000,000)'
+  - id: valuer
+    value: CBRE Pte. Ltd.
+    unit: text
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 123
+    printed_page: '128'
+    quotes:
+    - CBRE Pte. Ltd. 31 December 2025 2,301,120
+  - id: valuation_basis
+    value: Capitalisation approach, discounted cash flow analysis and direct comparison method (stated for the portfolio
+      as a whole, not per property)
+    unit: text
+    source_file: annual-report-2025.pdf
+    pdf_page: 123
+    printed_page: '128'
+    quotes:
+    - determined based on the capitalisation approach, discounted cash flow analysis and direct comparison method
+  - id: valuation_prior_year_attributable
+    value: 2168.486
+    unit: SGD million (79.9% interest); valuer CBRE Pte. Ltd.
+    as_of: '2024-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 124
+    printed_page: '129'
+    quotes:
+    - CBRE Pte. Ltd. 31 December 2024 2,168,486
+  - id: capitalisation_rate
+    value: 3.4
+    unit: percent
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 44
+    printed_page: '47'
+    quotes:
+    - Capitalisation Rate 3.40%
+  - id: purchase_price
+    value: 1838.6
+    unit: SGD million (79.9% of historical purchase price)
+    source_file: annual-report-2025.pdf
+    pdf_page: 44
+    printed_page: '47'
+    quotes:
+    - S$1,838.6 million3
+  - id: property_income_fy2025_100_percent
+    value: 116412
+    unit: 'SGD thousand (FY2025; FY2024: 118,622)'
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 177
+    printed_page: '182'
+    quotes:
+    - Ocean Financial Centre 116,412 118,622
+  - id: npi_fy2025_100_percent
+    value: 94698
+    unit: 'SGD thousand (FY2025; FY2024: 94,093)'
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 177
+    printed_page: '182'
+    quotes:
+    - Ocean Financial Centre 94,698 94,093
+  - id: npi_fy2025_attributable
+    value: 75.7
+    unit: SGD million
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 44
+    printed_page: '47'
+    quotes:
+    - FY 2025 Attributable NPI S$75.7 million
+  - id: property_income_1h2026_100_percent
+    value: 62509
+    unit: 'SGD thousand (1H2026; 1H2025: 56,217)'
+    as_of: '2026-06-30'
+    source_file: financial-statements-1h2026.pdf
+    pdf_page: 23
+    printed_page: '23'
+    quotes:
+    - Ocean Financial Centre 62,509 56,217
+  - id: npi_1h2026_100_percent
+    value: 51073
+    unit: 'SGD thousand (1H2026; 1H2025: 46,024)'
+    as_of: '2026-06-30'
+    source_file: financial-statements-1h2026.pdf
+    pdf_page: 23
+    printed_page: '23'
+    quotes:
+    - Ocean Financial Centre 51,073 46,024
+  - id: number_of_tenants
+    value: 81
+    unit: count
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 44
+    printed_page: '47'
+    quotes:
+    - Number of Tenants4 81
+  - id: top_five_tenants
+    value:
+    - tenant: The Executive Centre
+      pct: 10.9
+    - tenant: BNP Paribas
+      pct: 8.8
+    - tenant: Drew & Napier
+      pct: 8.0
+    - tenant: ANZ
+      pct: 4.9
+    - tenant: Trafigura
+      pct: 4.6
+    unit: percent of total committed monthly gross rent of the building
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 47
+    printed_page: '50'
+    quotes:
+    - The Executive Centre 10.9 BNP Paribas 8.8 Drew & Napier 8.0 ANZ 4.9 Trafigura 4.6
+  - id: lease_expiry_profile
+    value:
+      '2026': 20.5
+      '2027': 34.2
+      '2028': 16.8
+      '2029': 4.4
+      '2030': 19.0
+      2031_and_beyond: 5.1
+    unit: percent of committed monthly gross rent
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 47
+    printed_page: '50'
+    quotes:
+    - 20.5 34.2 16.8 4.4 19.0 5.1
+    read_from_chart: true
+    note: Bar chart; year-to-value order confirmed by viewing the rendered page.
+  - id: wale_building
+    not_found: true
+    checked: Annual report 2025 property pages (pdf 44, 47); 1H2026 and 3Q2026 presentations
+    note: No WALE is published for Ocean Financial Centre alone. Only the lease expiry profile above, portfolio
+      WALE and a Singapore portfolio WALE (2.8 years by gross rent at 30 Sep 2026, 3Q2026 presentation pdf page
+      18) are disclosed.
+  - id: green_certifications
+    value: BCA Green Mark Platinum Super Low Energy (SLE); WELL Health-Safety Rating (International WELL Building
+      Institute)
+    unit: text
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 47
+    printed_page: '50'
+    quotes:
+    - Green Mark Platinum Super Low Energy (SLE) certification
+    - first commercial building in Singapore to be certified with the WELL Health-Safety Rating
+  - id: carpark_lots
+    value: 224
+    unit: count
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 44
+    printed_page: '47'
+    quotes:
+    - Number of Carpark Lots6 224
+  - id: property_manager
+    value: Keppel Real Estate Services Pte. Ltd.
+    unit: text
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 11
+    printed_page: 12-13 (spread)
+    quotes:
+    - Keppel Real Estate Services Pte. Ltd. (for Ocean Financial Centre and Keppel Bay Tower)
+  - id: encumbrance_status
+    not_found: true
+    checked: Annual report 2025 notes 3 and 14 (pdf 143, 155, 156)
+    note: The report says investment properties of S$1,036,351,000 are secured for credit facilities and that S$468,851,000
+      of bank loans are secured over "certain investment properties", without naming them. Whether Ocean Financial
+      Centre is encumbered is not disclosed.
+  keppel_reit_group:
+  - id: manager
+    value: Keppel REIT Management Limited
+    unit: text
+    source_file: annual-report-2025.pdf
+    pdf_page: 5
+    printed_page: '3'
+    quotes:
+    - Keppel REIT is managed by Keppel REIT Management Limited and sponsored by Keppel
+  - id: trustee
+    value: HSBC Institutional Trust Services (Singapore) Limited
+    unit: text
+    source_file: annual-report-2025.pdf
+    pdf_page: 11
+    printed_page: 12-13 (spread)
+    quotes:
+    - HSBC Institutional Trust Services (Singapore) Limited (The Trustee)
+  - id: sponsor
+    value: Keppel (Keppel Ltd.)
+    unit: text
+    source_file: annual-report-2025.pdf
+    pdf_page: 5
+    printed_page: '3'
+    quotes:
+    - sponsored by Keppel, a global asset manager and operator
+  - id: listing_date
+    value: '2006-04-28'
+    unit: date (listed by way of introduction on SGX)
+    source_file: annual-report-2025.pdf
+    pdf_page: 5
+    printed_page: '3'
+    quotes:
+    - Listed by way of introduction on 28 April 2006
+  - id: sponsor_unitholding
+    value: 37.48
+    unit: percent of issued Units (direct and deemed), Keppel Ltd.
+    as_of: '2026-02-27'
+    source_file: annual-report-2025.pdf
+    pdf_page: 218
+    printed_page: '223'
+    quotes:
+    - Keppel Ltd. 1,857,370,556 (Direct and Deemed)2 37.48
+  - id: substantial_unitholders
+    value:
+    - name: Temasek Holdings (Private) Limited
+      units: 1908707034
+      interest: deemed
+      pct: 38.52
+    - name: Keppel Ltd.
+      units: 1857370556
+      interest: direct and deemed
+      pct: 37.48
+    - name: Keppel Management Ltd.
+      units: 1382235181
+      interest: deemed
+      pct: 27.9
+    - name: Keppel Real Estate (Singapore) Pte. Ltd.
+      units: 1382235181
+      interest: deemed
+      pct: 27.9
+    - name: Keppel REIT Investment Pte. Ltd.
+      units: 1382235181
+      interest: direct
+      pct: 27.9
+    - name: Keppel Capital Holdings Pte. Ltd.
+      units: 475135129
+      interest: deemed
+      pct: 9.59
+    unit: percent of issued Units; interests overlap and must not be summed
+    as_of: '2026-02-27'
+    source_file: annual-report-2025.pdf
+    pdf_page: 218
+    printed_page: '223'
+    quotes:
+    - Temasek Holdings (Private) Limited 1,908,707,034 (Deemed)1 38.52
+    - Keppel REIT Investment Pte. Ltd. 1,382,235,181 (Direct) 27.90
+    - Keppel Capital Holdings Pte. Ltd. 475,135,129 (Deemed)5 9.59
+  - id: public_float
+    value: 61.41
+    unit: percent of issued Units (approximate)
+    as_of: '2026-02-27'
+    source_file: annual-report-2025.pdf
+    pdf_page: 218
+    printed_page: '223'
+    quotes:
+    - approximately 61.41% of the issued Units in Keppel REIT are held by the public
+  - id: units_in_issue
+    value: 4955086896
+    unit: Units (after the January 2026 preferential offering; 4,013,867 thousand at 31 Dec 2025)
+    as_of: '2026-02-27'
+    source_file: annual-report-2025.pdf
+    pdf_page: 217
+    printed_page: '222'
+    quotes:
+    - 4,955,086,896 Units
+  - id: board_chair
+    value: Tan Swee Yiow, Chairman and Non-Executive Director of the Manager
+    unit: text
+    source_file: annual-report-2025.pdf
+    pdf_page: 13
+    printed_page: '16'
+    quotes:
+    - TAN SWEE YIOW, 65 Chairman and Non-Executive Director
+  - id: chief_executive_officer
+    value: Chua Hsien Yang, Chief Executive Officer of the Manager
+    unit: text
+    source_file: annual-report-2025.pdf
+    pdf_page: 15
+    printed_page: '18'
+    quotes:
+    - CHUA HSIEN YANG, 48 Chief Executive Officer
+    supporting:
+    - source_file: media-release-3q2026.pdf
+      pdf_page: 3
+      quote: Mr Chua Hsien Yang, Chief Executive Officer of the Manager
+      note: still CEO at 28 Oct 2026
+      printed_page: '3'
+  - id: chief_financial_officer
+    value: Sebastian Song, Chief Financial Officer of the Manager
+    unit: text
+    source_file: annual-report-2025.pdf
+    pdf_page: 15
+    printed_page: '18'
+    quotes:
+    - SEBASTIAN SONG, 45 Chief Financial Officer
+  - id: lead_independent_director
+    value: Ian Roderick Mackie
+    unit: text
+    source_file: annual-report-2025.pdf
+    pdf_page: 13
+    printed_page: '16'
+    quotes:
+    - IAN RODERICK MACKIE, 70 Lead Independent Director
+  - id: portfolio_value
+    value: 11.7
+    unit: SGD billion (approximate, based on Keppel REIT interests)
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 40
+    printed_page: '43'
+    quotes:
+    - Valuation $11.7 billion $9.5 billion
+    supporting:
+    - source_file: annual-report-2025.pdf
+      pdf_page: 64
+      quote: Total 11,657.0 9,531.7
+      note: SGD million; FY2025 and FY2024
+      printed_page: '67'
+  - id: portfolio_value_latest
+    value: '13 Assets | AUM: $11.7b'
+    unit: SGD billion
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 16
+    printed_page: '16'
+    quotes:
+    - '13 Assets | AUM: $11.7b'
+  - id: number_of_assets_and_countries
+    value: 14 assets in 4 countries (Singapore, Australia, South Korea, Japan) at 31 Dec 2025
+    unit: count
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 62
+    printed_page: '65'
+    quotes:
+    - These comprised interests in 14 assets strategically located in Singapore; key Australian cities of Sydney,
+      Melbourne and Perth; Seoul, South Korea; as well as Tokyo, Japan.
+  - id: number_of_assets_latest
+    value: 13 assets in 3 countries (Singapore, Australia, South Korea) at 30 Sep 2026, after KR Ginza II (Tokyo)
+      was divested on 17 Aug 2026; T Tower (Seoul) sale announced, completion expected 4Q 2026
+    unit: count
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 34
+    printed_page: '34'
+    quotes:
+    - 13 assets in Singapore, Australia and Seoul
+    supporting:
+    - source_file: media-release-3q2026.pdf
+      pdf_page: 3
+      quote: The divestment of KR Ginza II in Tokyo was completed on 17 August 2026.
+      printed_page: '3'
+  - id: portfolio_split_by_value
+    value:
+      Singapore: 79.8
+      Australia: 17.2
+      South Korea: 2.3
+      Japan: 0.7
+    unit: percent of portfolio value
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 41
+    printed_page: '44'
+    quotes:
+    - 79.8 17.2 2.3 0.7 100.0
+  - id: portfolio_committed_occupancy
+    value: 96.7
+    unit: 'percent (31 Dec 2024: 97.9)'
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 40
+    printed_page: '43'
+    quotes:
+    - Committed occupancy 96.7% 97.9%
+  - id: portfolio_committed_occupancy_latest
+    value: 96.0
+    unit: percent
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 18
+    printed_page: '18'
+    quotes:
+    - 96.0% Portfolio committed occupancy
+  - id: portfolio_wale
+    value: 4.4
+    unit: 'years, by attributable committed gross rent (31 Dec 2024: 4.7)'
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 40
+    printed_page: '43'
+    quotes:
+    - Weighted average lease expiry3 4.4 years 4.7 years
+  - id: portfolio_wale_latest
+    value: 4.5
+    unit: years, by attributable committed gross rent
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 18
+    printed_page: '18'
+    quotes:
+    - 4.5 years Portfolio WALE
+  - id: top_10_tenants_wale
+    value: 8.1
+    unit: years, by attributable committed gross rent
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 42
+    printed_page: '45'
+    quotes:
+    - 8.1 years for its top 10 tenants
+  - id: top_10_tenants
+    value:
+    - rank: 1
+      tenant: DBS Bank
+      property: MBFC
+      pct_gross_rent: 8.6
+      pct_nla: 6.7
+    - rank: 2
+      tenant: Minister for Finance - State of Victoria
+      property: VPC and 8EX
+      pct_gross_rent: 4.7
+      pct_nla: 7.3
+    - rank: 3
+      tenant: Minister for Works - Government of Western Australia
+      property: DMJC
+      pct_gross_rent: 2.8
+      pct_nla: 3.1
+    - rank: 4
+      tenant: The Executive Centre
+      property: MBFC, ORQ and OFC
+      pct_gross_rent: 2.3
+      pct_nla: 1.7
+    - rank: 5
+      tenant: Keppel
+      property: KBT
+      pct_gross_rent: 2.2
+      pct_nla: 2.9
+    - rank: 6
+      tenant: Ernst & Young
+      property: ORQ and 8EX
+      pct_gross_rent: 2.1
+      pct_nla: 2.4
+    - rank: 7
+      tenant: TikTok
+      property: ORQ
+      pct_gross_rent: 1.9
+      pct_nla: 1.7
+    - rank: 8
+      tenant: Deutsche Bank
+      property: ORQ
+      pct_gross_rent: 1.8
+      pct_nla: 1.4
+    - rank: 9
+      tenant: Standard Chartered Bank
+      property: MBFC
+      pct_gross_rent: 1.6
+      pct_nla: 1.4
+    - rank: 10
+      tenant: Australian Taxation Office
+      property: 255GS
+      pct_gross_rent: 1.5
+      pct_nla: 1.3
+    unit: percent of total committed monthly gross rent and of committed NLA, attributable basis; total 29.5% /
+      29.9%
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 43
+    printed_page: '46'
+    quotes:
+    - DBS Bank 8.6% 6.7%
+    - The Executive Centre 2.3% 1.7%
+    - Australian Taxation Office 1.5% 1.3%
+    - 29.5% 29.9%
+  - id: top_10_tenants_share_latest
+    value: 29.3
+    unit: percent of attributable committed gross rent; 710 tenants
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 20
+    printed_page: '20'
+    quotes:
+    - 29.3% of attributable committed gross rent
+  - id: lease_expiry_profile
+    value:
+      '2026': 15.7
+      '2027': 18.9
+      '2028': 16.5
+      '2029': 11.3
+      '2030': 17.5
+      2031_and_beyond: remainder (20.1 by subtraction, not printed in this sentence)
+    unit: percent of total attributable gross rent, expiring leases
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 43
+    printed_page: '46'
+    quotes:
+    - Approximately 15.7% of leases based on the total attributable gross rent are due for renewal in 2026, 18.9%
+      in 2027, 16.5% in 2028, 11.3% in 2029 and 17.5% in 2030.
+  - id: lease_expiry_profile_latest
+    value:
+      '2026': 4.0
+      '2027': 14.5
+      '2028': 12.9
+      '2029': 18.6
+      '2030': 8.6
+      2031_and_beyond: 37.4
+    unit: percent of attributable committed NLA, expiring leases (the gross-rent series on the same slide is a split
+      chart)
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 19
+    printed_page: '19'
+    quotes:
+    - Expiring leases 4.0% 14.5% 12.9% 18.6% 8.6% 37.4%
+  - id: number_of_tenants
+    value: 694
+    unit: 'count (31 Dec 2024: 489)'
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 40
+    printed_page: '43'
+    quotes:
+    - 694 489
+  - id: recent_events_2026
+    value:
+    - Preferential offering completed 19 Jan 2026; equity bridge loans repaid 20 Jan 2026
+    - KR Ginza II (Tokyo) divestment completed 17 Aug 2026
+    - T Tower (Seoul) sale announced 23 Sep 2026, completion expected 4Q 2026
+    - Proposed acquisition of 51.0% of Keppel South Central announced 20 Oct 2026, completion expected 2Q 2027
+    unit: text
+    as_of: '2026-10-28'
+    source_file: media-release-3q2026.pdf
+    pdf_page: 3
+    printed_page: '3'
+    quotes:
+    - The proposed acquisition of a 51.0% interest in Keppel South Central announced on 20 October 2026
+    - The divestment of T Tower in Seoul was announced on 23
+    supporting:
+    - source_file: annual-report-2025.pdf
+      pdf_page: 10
+      quote: The Preferential Offering was successfully completed on 19 January 2026, and the EBL were repaid on
+        20 January 2026.
+      printed_page: 10-11 (spread)
+  financials:
+  - id: property_income
+    value:
+      FY2025: 274478
+      FY2024: 261580
+    unit: SGD thousand
+    source_file: annual-report-2025.pdf
+    pdf_page: 119
+    printed_page: '124'
+    quotes:
+    - Property income 20 274,478 261,580
+  - id: net_property_income
+    value:
+      FY2025: 215905
+      FY2024: 201913
+    unit: SGD thousand
+    source_file: annual-report-2025.pdf
+    pdf_page: 119
+    printed_page: '124'
+    quotes:
+    - Net property income 215,905 201,913
+  - id: share_of_results_of_associates_and_joint_ventures
+    value:
+      FY2025: 124634
+      FY2024: 110003
+    unit: SGD thousand
+    source_file: annual-report-2025.pdf
+    pdf_page: 119
+    printed_page: '124'
+    quotes:
+    - Share of results of associates and joint ventures 5 124,634 110,003
+    note: MBFC, One Raffles Quay, 8 Chifley Square and David Malcolm Justice Centre are equity-accounted and are
+      not in property income.
+  - id: distributable_income
+    value:
+      FY2025: 212406
+      FY2024: 214547
+    unit: SGD thousand (distribution to Unitholders; includes S$20 million a year Anniversary Distribution out of
+      capital gains)
+    source_file: annual-report-2025.pdf
+    pdf_page: 8
+    printed_page: '7'
+    quotes:
+    - Distribution to Unitholders 2025 105,549 50 106,857 50 212,406 2024 106,914 50 107,633 50 214,547
+  - id: dpu
+    value:
+      FY2025: 5.23
+      FY2024: 5.6
+    unit: Singapore cents per Unit
+    source_file: annual-report-2025.pdf
+    pdf_page: 4
+    printed_page: '2'
+    quotes:
+    - Distribution per Unit of 5.23 cents.
+    supporting:
+    - source_file: annual-report-2025.pdf
+      pdf_page: 7
+      quote: Comprised 2.80 cents for each of 1H 2024 and 2H 2024.
+      printed_page: '6'
+  - id: investment_properties
+    value:
+      '2025-12-31': 5573016
+      '2024-12-31': 5167453
+    unit: SGD thousand (directly held properties at 100% carrying value; excludes properties held by associates
+      and joint ventures)
+    source_file: annual-report-2025.pdf
+    pdf_page: 118
+    printed_page: '123'
+    quotes:
+    - Investment properties 3 5,573,016 5,167,453
+  - id: investments_in_associates_and_joint_ventures
+    value:
+      '2025-12-31': 4220248
+      '2024-12-31': 3121136
+    unit: SGD thousand
+    source_file: annual-report-2025.pdf
+    pdf_page: 118
+    printed_page: '123'
+    quotes:
+    - Investments in associates and joint ventures 5 4,220,248 3,121,136
+  - id: total_assets
+    value:
+      '2025-12-31': 9978947
+      '2024-12-31': 8457643
+    unit: SGD thousand
+    source_file: annual-report-2025.pdf
+    pdf_page: 118
+    printed_page: '123'
+    quotes:
+    - Total assets 9,978,947 8,457,643
+  - id: total_borrowings_balance_sheet
+    value:
+      '2025-12-31': 3756674
+      '2024-12-31': 2657829
+    unit: SGD thousand (carrying amount, Group; excludes borrowings at associates and joint ventures)
+    source_file: annual-report-2025.pdf
+    pdf_page: 155
+    printed_page: '160'
+    quotes:
+    - Total borrowings 3,756,674 2,657,829
+  - id: total_gross_borrowings_group
+    value:
+      '2025-12-31': 3761.7
+      '2024-12-31': 2661.3
+    unit: SGD million (excluding borrowings at associates and joint ventures)
+    source_file: annual-report-2025.pdf
+    pdf_page: 65
+    printed_page: '68'
+    quotes:
+    - of Keppel REIT increased to $3,761.7 million
+    - $2,661.3 million as at 31 December 2024
+  - id: total_gross_borrowings_incl_share_of_associates_jvs
+    value:
+      '2025-12-31': 5667960
+      '2024-12-31': 3973210
+    unit: SGD thousand (basis used for aggregate leverage)
+    source_file: annual-report-2025.pdf
+    pdf_page: 7
+    printed_page: '6'
+    quotes:
+    - Total borrowings (gross)4 5,667,960 3,973,210
+  - id: equity_bridge_loans_at_31dec2025
+    value: 890067
+    unit: SGD thousand, in current borrowings; repaid in full on 20 Jan 2026
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 156
+    printed_page: '161'
+    quotes:
+    - Included in the current portion of borrowings are equity bridge loans amounting to $890,067,000
+  - id: unitholders_funds
+    value:
+      '2025-12-31': 5123699
+      '2024-12-31': 4891057
+    unit: SGD thousand
+    source_file: annual-report-2025.pdf
+    pdf_page: 118
+    printed_page: '123'
+    quotes:
+    - Unitholders’ funds 5,123,699 4,891,057
+  - id: perpetual_securities
+    value:
+      '2025-12-31': 402809
+      '2024-12-31': 302023
+    unit: SGD thousand
+    source_file: annual-report-2025.pdf
+    pdf_page: 118
+    printed_page: '123'
+    quotes:
+    - Perpetual securities 17 402,809 302,023
+  - id: non_controlling_interests
+    value:
+      '2025-12-31': 480323
+      '2024-12-31': 448135
+    unit: SGD thousand
+    source_file: annual-report-2025.pdf
+    pdf_page: 118
+    printed_page: '123'
+    quotes:
+    - Non-controlling interests 18 480,323 448,135
+  - id: nav_per_unit
+    value:
+      '2025-12-31': 1.28
+      '2024-12-31': 1.27
+    unit: SGD per Unit (Group)
+    source_file: annual-report-2025.pdf
+    pdf_page: 118
+    printed_page: '123'
+    quotes:
+    - Net asset value per Unit ($) 1.28 1.27
+  - id: aggregate_leverage
+    value:
+      '2025-12-31': 47.9
+      '2024-12-31': 41.2
+    unit: percent; gross borrowings (including share of associates and JVs) over value of deposited property
+    source_file: annual-report-2025.pdf
+    pdf_page: 66
+    printed_page: '69'
+    quotes:
+    - Aggregate leverage1 47.9% 41.2%
+    note: 47.9% reflects equity bridge loans for the MBFC Tower 3 acquisition; the report states 40.4% pro forma
+      had the preferential offering proceeds been received on 31 Dec 2025. Keep actual and pro forma separate.
+    supporting:
+    - source_file: annual-report-2025.pdf
+      pdf_page: 65
+      quote: aggregate leverage and WATM would have been 40.4% and 2.8 years respectively
+      printed_page: '68'
+  - id: interest_coverage_ratio
+    value:
+      FY2025: 2.6
+      FY2024: 2.5
+    unit: times; MAS CIS Code definition, trailing 12 months, interest includes borrowing-related fees and distributions
+      on hybrid securities (not labelled "adjusted" in the report)
+    source_file: annual-report-2025.pdf
+    pdf_page: 66
+    printed_page: '69'
+    quotes:
+    - Interest coverage ratio2 2.6 times 2.5 times
+    - Defined as trailing 12 months earnings before interest, tax, depreciation and amortisation (excluding effects
+      of any fair value changes of derivatives and investment properties, and foreign exchange translation), over
+      trailing 12 months interest expense, borrowing-related fees and distributions on hybrid securities.
+  - id: weighted_average_cost_of_debt
+    value:
+      FY2025: 3.41
+      FY2024: 3.4
+    unit: percent per annum; includes amortisation of upfront debt arrangement expenses
+    source_file: annual-report-2025.pdf
+    pdf_page: 66
+    printed_page: '69'
+    quotes:
+    - Weighted average cost of debt3 3.41% p.a. 3.40% p.a.
+  - id: weighted_average_debt_term_to_maturity
+    value:
+      '2025-12-31': 2.4
+      '2024-12-31': 2.5
+    unit: years (2.8 years pro forma at 31 Dec 2025)
+    source_file: annual-report-2025.pdf
+    pdf_page: 66
+    printed_page: '69'
+    quotes:
+    - Weighted average term to maturity 2.4 years 2.5 years
+  - id: fixed_rate_borrowings
+    value:
+      2025-12-31_actual: 53
+      2025-12-31_excluding_equity_bridge_loans: 62
+    unit: percent of total borrowings including share of associates and JVs
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 65
+    printed_page: '68'
+    quotes:
+    - the interest rates of 62% of Keppel REIT’s total borrowings4 as at 31 December 2025 were fixed
+    - Including the equity bridge loans which were on floating-rate, the percentage would be 53%.
+  - id: fixed_rate_borrowings_fy2024
+    not_found: true
+    checked: Annual report 2025 key highlights, financial review and notes
+    note: The FY2025 annual report does not restate the 31 Dec 2024 percentage. The FY2024 annual report is not
+      in this pack.
+  - id: assets_unencumbered
+    value:
+      '2025-12-31': 66
+      '2024-12-31': 68
+    unit: percent of assets
+    source_file: annual-report-2025.pdf
+    pdf_page: 66
+    printed_page: '69'
+    quotes:
+    - Percentage of assets unencumbered 66% 68%
+  - id: debt_maturity_profile
+    value:
+      '2026': 23
+      '2027': 15
+      '2028': 19
+      '2029': 24
+      '2030': 19
+    unit: percent of borrowings (2026 includes the equity bridge loans repaid in Jan 2026)
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 65
+    printed_page: '68'
+    quotes:
+    - 23 15 19 24 19 2026 2027 2028 2029 2030
+    read_from_chart: true
+    note: Bar chart; year-to-value order confirmed by viewing the rendered page.
+  - id: debt_maturity_profile_latest
+    value:
+      '2026': 4
+      '2027': 17
+      '2028': 20
+      '2029': 27
+      '2030': 22
+      '2031': 6
+      '2032': 0
+      '2033': 4
+    unit: percent of borrowings
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 14
+    printed_page: '14'
+    quotes:
+    - Debt Maturity Profile (As at 30 Sep 2026)
+    read_from_chart: true
+    note: Percentages are chart labels read from the rendered slide; the text layer does not keep them in year order.
+      The slide states all 2026 refinancing is completed.
+  - id: undrawn_facilities
+    value:
+      '2025-12-31': 924835
+      '2024-12-31': 925178
+    unit: SGD thousand
+    source_file: annual-report-2025.pdf
+    pdf_page: 156
+    printed_page: '161'
+    quotes:
+    - 'the Group had unutilised facilities of $924,835,000 (2024: $925,178,000)'
+  - id: financial_covenants
+    value: Borrowing agreements carry financial covenants including aggregate leverage and interest coverage ratio;
+      the Group and Trust state they complied throughout FY2025. Covenant levels are not disclosed.
+    unit: text
+    source_file: annual-report-2025.pdf
+    pdf_page: 156
+    printed_page: '161'
+    quotes:
+    - The Group and Trust have complied with all financial covenants throughout the reporting period.
+  - id: income_by_geography_property_income
+    value:
+      FY2025:
+        Singapore: 151966
+        Australia: 103461
+        South Korea: 16078
+        Japan: 2973
+      FY2024:
+        Singapore: 153221
+        Australia: 89069
+        South Korea: 16467
+        Japan: 2823
+    unit: SGD thousand, directly held properties only
+    source_file: annual-report-2025.pdf
+    pdf_page: 179
+    printed_page: '184'
+    quotes:
+    - Singapore 151,966 153,221
+    - Australia 103,461 89,069
+    - South Korea 16,078 16,467
+    - Japan 2,973 2,823
+  - id: income_by_geography_attributable_npi
+    value:
+      FY2025:
+        Singapore: 262041
+        Australia: 105157
+        South Korea: 12130
+        Japan: 2036
+        Total: 381364
+      FY2024:
+        Singapore: 254588
+        Australia: 99200
+        South Korea: 12583
+        Japan: 2045
+        Total: 368416
+    unit: SGD thousand, net property income attributable to Unitholders including associates, JVs and rental support
+    source_file: annual-report-2025.pdf
+    pdf_page: 179
+    printed_page: '184'
+    quotes:
+    - Singapore 262,041 254,588
+    - Australia 105,157 99,200
+    - South Korea 12,130 12,583
+    - Japan 2,036 2,045
+    - 381,364 368,416
+  - id: interest_rate_sensitivity
+    value: 'A 25 bp rise or fall in interest rates lowers or raises profit before tax by S$4.1 million (S$4,097,000;
+      FY2024: S$1,096,000); applies to unhedged floating-rate borrowings'
+    unit: SGD
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 66
+    printed_page: '69'
+    quotes:
+    - a 25 basis-point increase or decrease in interest rates will cause a corresponding decrease or increase of
+      $4.1 million in Keppel REIT’s profit before tax
+    supporting:
+    - source_file: annual-report-2025.pdf
+      pdf_page: 167
+      quote: 'the Group’s profit before tax would have been $4,097,000 (2024: $1,096,000) lower/higher'
+      printed_page: '172'
+  - id: icr_sensitivity_1h2026
+    value:
+      base: 2.7
+      ebitda_down_10_percent: 2.5
+      rates_up_100bp: 2.0
+    unit: times
+    as_of: '2026-06-30'
+    source_file: financial-statements-1h2026.pdf
+    pdf_page: 27
+    printed_page: '27'
+    quotes:
+    - For the period ended 30 June 2026 2.7
+    - '2.5'
+    - 100 basis point increase in interest rates2 2.0
+  - id: fx_exposure_and_hedging
+    value: Income in AUD, KRW and JPY is hedged with forward contracts; foreign-currency borrowings act as net investment
+      hedges. A 5% move in AUD changes profit before tax by S$1.9 million; KRW and JPY not material. AUD borrowings
+      were about 41% of Australian property values.
+    unit: text
+    as_of: '2025-12-31'
+    source_file: annual-report-2025.pdf
+    pdf_page: 66
+    printed_page: '69'
+    quotes:
+    - Keppel REIT adopts a policy of hedging its AUD-, KRW- and JPY- denominated income to limit exposure to fluctuations
+      in foreign exchange rates
+    - Keppel REIT’s profit before tax will increase or decrease by $1.9 million if the AUD appreciates or depreciates
+      by 5% against the SGD respectively.
+    supporting:
+    - source_file: annual-report-2025.pdf
+      pdf_page: 65
+      quote: the proportion of AUD-denominated borrowings to property values in Australia was approximately 41%
+      printed_page: '68'
+    - source_file: annual-report-2025.pdf
+      pdf_page: 156
+      quote: 'amounted to $820,001,000 (2024: $665,652,000) that are denominated in Australian dollar and $54,126,000
+        (2024: $57,526,000) that are denominated in Japanese Yen'
+      printed_page: '161'
+  - id: fx_borrowings_mix_latest
+    value: AUD about 14%, KRW about 3%, JPY about 1% of total borrowings (including share of JV borrowings)
+    unit: percent
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 13
+    printed_page: '13'
+    quotes:
+    - AUD, KRW and JPY denominated loans formed ~14%, ~3% and ~1% of total borrowings(1) respectively
+  - id: interim_1h2026_property_income
+    value:
+      1H2026: 159339
+      1H2025: 136503
+    unit: SGD thousand
+    as_of: '2026-06-30'
+    source_file: financial-statements-1h2026.pdf
+    pdf_page: 3
+    printed_page: '3'
+    quotes:
+    - Property income 159,339 136,503
+  - id: interim_1h2026_net_property_income
+    value:
+      1H2026: 122462
+      1H2025: 108251
+    unit: SGD thousand
+    as_of: '2026-06-30'
+    source_file: financial-statements-1h2026.pdf
+    pdf_page: 3
+    printed_page: '3'
+    quotes:
+    - Net property income 122,462 108,251
+  - id: interim_1h2026_distributable_income
+    value:
+      1H2026: 129648
+      1H2025: 105549
+    unit: SGD thousand (includes S$10.0 million Anniversary Distribution)
+    as_of: '2026-06-30'
+    source_file: financial-statements-1h2026.pdf
+    pdf_page: 5
+    printed_page: '5'
+    quotes:
+    - Distribution to Unitholders 129,648 105,549
+  - id: interim_1h2026_dpu
+    value:
+      1H2026: 2.61
+      1H2025: 2.72
+    unit: Singapore cents per Unit
+    as_of: '2026-06-30'
+    source_file: financial-statements-1h2026.pdf
+    pdf_page: 5
+    printed_page: '5'
+    quotes:
+    - Distribution per Unit (cents) 2.61 2.72
+  - id: interim_1h2026_investment_properties
+    value: 5609037
+    unit: SGD thousand (plus S$83,356 thousand investment property held-for-sale)
+    as_of: '2026-06-30'
+    source_file: financial-statements-1h2026.pdf
+    pdf_page: 9
+    printed_page: '9'
+    quotes:
+    - Investment properties 5,609,037
+    - Investment property held-for-sale 83,356
+  - id: interim_1h2026_total_assets
+    value: 10197757
+    unit: SGD thousand
+    as_of: '2026-06-30'
+    source_file: financial-statements-1h2026.pdf
+    pdf_page: 9
+    printed_page: '9'
+    quotes:
+    - Total assets 10,197,757 9,978,947
+  - id: interim_1h2026_borrowings_balance_sheet
+    value:
+      current: 894484
+      non_current: 2024943
+      total_computed: 2919427
+    unit: SGD thousand; total is current plus non-current, added here and not printed as a single line
+    as_of: '2026-06-30'
+    source_file: financial-statements-1h2026.pdf
+    pdf_page: 9
+    printed_page: '9'
+    quotes:
+    - Borrowings 894,484 1,319,654
+    - Borrowings 2,024,943
+  - id: interim_1h2026_total_gross_borrowings
+    value: 2924.1
+    unit: SGD million (Group, excluding JV-level borrowings)
+    as_of: '2026-06-30'
+    source_file: financial-statements-1h2026.pdf
+    pdf_page: 27
+    printed_page: '27'
+    quotes:
+    - 2,924.1 3,761.7
+  - id: interim_1h2026_unitholders_funds
+    value: 6180371
+    unit: SGD thousand
+    as_of: '2026-06-30'
+    source_file: financial-statements-1h2026.pdf
+    pdf_page: 9
+    printed_page: '9'
+    quotes:
+    - Unitholders’ funds 6,180,371
+  - id: interim_1h2026_nav_per_unit
+    value: 1.24
+    unit: SGD per Unit (Group)
+    as_of: '2026-06-30'
+    source_file: financial-statements-1h2026.pdf
+    pdf_page: 9
+    printed_page: '9'
+    quotes:
+    - Net asset value per Unit ($) 1.24 1.28
+  - id: interim_1h2026_aggregate_leverage
+    value: 40.0
+    unit: percent
+    as_of: '2026-06-30'
+    source_file: financial-statements-1h2026.pdf
+    pdf_page: 27
+    printed_page: '27'
+    quotes:
+    - Aggregate leverage (%) 40.0 47.9
+  - id: interim_1h2026_interest_coverage_ratio
+    value: 2.7
+    unit: times (MAS CIS Code definition)
+    as_of: '2026-06-30'
+    source_file: financial-statements-1h2026.pdf
+    pdf_page: 27
+    printed_page: '27'
+    quotes:
+    - (times) 2.7 2.6
+  - id: interim_1h2026_weighted_average_cost_of_debt
+    value: 3.27
+    unit: percent per annum
+    as_of: '2026-06-30'
+    source_file: financial-statements-1h2026.pdf
+    pdf_page: 27
+    printed_page: '27'
+    quotes:
+    - Weighted average cost of debt per annum (%) 3.27 3.41
+  - id: interim_1h2026_fixed_rate_and_watm
+    value:
+      fixed_rate_pct: 62
+      watm_years: 2.5
+    unit: percent; years
+    as_of: '2026-06-30'
+    source_file: results-presentation-1h2026.pdf
+    pdf_page: 13
+    printed_page: '13'
+    quotes:
+    - Borrowings on Fixed Rates 62%
+    - Weighted Average Term to Maturity 2.5 years
+  - id: update_9m2026_property_income
+    value:
+      9M2026: 238.2
+      9M2025: 204.5
+    unit: SGD million
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 12
+    printed_page: '12'
+    quotes:
+    - Property Income(1) $238.2m $204.5m
+  - id: update_9m2026_net_property_income
+    value:
+      9M2026: 181.8
+      9M2025: 161.3
+    unit: SGD million
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 12
+    printed_page: '12'
+    quotes:
+    - Net Property Income (NPI) $181.8m $161.3m
+  - id: update_9m2026_distributable_income
+    value:
+      9M2026: 194.9
+      9M2025: 159.6
+    unit: SGD million, including Anniversary Distribution
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 12
+    printed_page: '12'
+    quotes:
+    - Distributable Income Including Anniversary Distribution $194.9m $159.6m
+  - id: update_3q2026_aggregate_leverage
+    value: 40.5
+    unit: percent
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 13
+    printed_page: '13'
+    quotes:
+    - Aggregate Leverage 40.5%
+  - id: update_3q2026_interest_coverage_ratio
+    value: 2.8
+    unit: times (MAS CIS Code)
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 13
+    printed_page: '13'
+    quotes:
+    - Interest Coverage Ratio(3) 2.8x
+  - id: update_3q2026_weighted_average_cost_of_debt
+    value: 3.32
+    unit: percent per annum, 9M 2026
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 13
+    printed_page: '13'
+    quotes:
+    - Weighted Average Cost of Debt (9M 2026) 3.32% p.a.
+  - id: update_3q2026_watm
+    value: 2.5
+    unit: years
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 13
+    printed_page: '13'
+    quotes:
+    - Weighted Average Term to Maturity 2.5 years
+  - id: update_3q2026_fixed_rate_borrowings
+    value: 64
+    unit: percent of total borrowings including share of JV borrowings
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 13
+    printed_page: '13'
+    quotes:
+    - Borrowings on Fixed Rates 64%
+  - id: update_3q2026_interest_rate_sensitivity
+    value: +/-25 bps = about 0.09 cents decrease/increase in DPU per annum
+    unit: Singapore cents per Unit
+    as_of: '2026-09-30'
+    source_file: business-update-presentation-3q2026.pdf
+    pdf_page: 13
+    printed_page: '13'
+    quotes:
+    - +/-25 bps = ~0.09 cents decrease/increase in DPU p.a.
+  - id: update_3q2026_balance_sheet
+    not_found: true
+    checked: 3Q2026 presentation and media release
+    note: The 3Q2026 release is a business update. It gives no balance sheet, total assets, borrowings amount, NAV
+      per Unit or DPU. Latest balance sheet figures are at 30 Jun 2026.
+  credit_rating:
+  - id: current_issuer_rating
+    not_found: true
+    checked: 'Annual report 2025 (full-text search for S&P, Standard & Poor, Moody, Fitch, BBB, Baa, credit rating:
+      only an unrelated Moody''s review of the Green Financing Framework and counterparty wording); 1H2026 financial
+      statements; 1H2026 and 3Q2026 presentations; 3Q2026 media release; information memorandum dated 27 June 2025
+      (searched, not saved); web search on 2026-11-12'
+    note: No current public issuer credit rating for Keppel REIT could be verified. Both historical agency ratings
+      were withdrawn at the Manager's request (see below). Do not state that Keppel REIT is rated.
+    agency: null
+    rating: null
+    outlook: null
+  - id: sp_rating_last_public
+    value: BBB long-term corporate credit rating (axA ASEAN regional scale), stable outlook, reaffirmed and then
+      WITHDRAWN at the Manager's request
+    unit: rating
+    as_of: '2015-09-10'
+    source_file: announcement-sp-rating-withdrawal-20150910.pdf
+    pdf_page: 1
+    printed_page: '1'
+    quotes:
+    - it has requested Standard & Poor’s Ratings Services (“S&P”) to withdraw the S&P’s corporate credit rating
+      on Keppel REIT
+    - S&P has reaffirmed the final “BBB” long-term corporate credit rating and “axA” long-term ASEAN regional scale
+      ratings on Keppel REIT, with a stable outlook
+    agency: Standard & Poor's Ratings Services
+    rating: BBB
+    outlook: Stable
+    status: withdrawn
+    date: '2015-09-10'
+    source: Keppel REIT Management Limited SGX announcement, 10 September 2015
+  - id: moodys_rating_last_public
+    value: Baa3, stable outlook at time of withdrawal; WITHDRAWN at the Manager's request (was Baa2 stable on 10
+      Sep 2015 per the earlier announcement)
+    unit: rating
+    as_of: '2016-09-30'
+    source_file: announcement-moodys-rating-withdrawal-20160930.pdf
+    pdf_page: 1
+    printed_page: '1'
+    quotes:
+    - it has requested Moody’s Investors Service (“Moody’s”) to withdraw Moody’s corporate credit rating on Keppel
+      REIT. The rating was Baa3 with a stable outlook at the time of withdrawal.
+    agency: Moody's Investors Service
+    rating: Baa3
+    outlook: Stable
+    status: withdrawn
+    date: '2016-09-30'
+    source: Keppel REIT Management Limited SGX announcement, 30 September 2016
+    supporting:
+    - source_file: announcement-sp-rating-withdrawal-20150910.pdf
+      pdf_page: 1
+      quote: rated “Baa2” with a stable outlook
+      printed_page: '1'
+  - id: secondary_source_discrepancy
+    value: A Phillip Securities (POEMS) bond note dated 26 Feb 2026 says Keppel REIT "is rated BBB (S&P)". This
+      conflicts with the issuer's own 2015 withdrawal announcement and is not supported by any 2025 or 2026 Keppel
+      REIT document. Treated as stale or unverified.
+    unit: text
+    source_file: announcement-sp-rating-withdrawal-20150910.pdf
+    pdf_page: 1
+    printed_page: '1'
+    quotes:
+    - to withdraw the S&P’s corporate credit rating on Keppel REIT
+    secondary_url: https://www.poems.com.sg/market-journal/keppel-reit-prime-cbd-franchise-and-leasing-momentum-support-a-stable-bbb-credit/
+    secondary_not_saved: true

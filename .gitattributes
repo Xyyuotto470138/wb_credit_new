@@ -1,0 +1,2 @@
+# Preserve RFC email CRLF bytes so source-manifest hashes survive checkout.
+*.eml -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

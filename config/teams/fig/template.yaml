@@ -1,0 +1,1728 @@
+team_id: fig
+version: fig-2026-11-12-v2
+default_template: templates/ES_Template_FIG_draft_v0.3.docx
+mapping:
+  heading_style: Heading 1
+  numbered_headings: true
+  recursive_tables: true
+  table_match: ordered normalized headers and row labels within section
+  placeholders: effective italic bracketed text across runs; FY periods; explicit date, checkbox and configured
+    table-cell anchors
+  missing_anchor: named mapping gap; never omit a section
+  layout_source: uploaded Word template only
+sections:
+- id: 1
+  name: Request / Purpose
+  description: Request / Purpose (the client's request for the deal)
+  main_inputs: CAS, term sheet, RM business support email, information memorandum
+  case_rule: Both
+  draft_mode: Extract and summarise
+  applicable_when: &id001
+    op: always
+  requires_ca_position: false
+  requires_supplied_internal_rating: false
+  unsecured_requires_ca_confirmation: false
+  mandatory_when:
+    op: always
+- id: 2
+  name: Summary of current client group exposure
+  description: Summary of current client group exposure (existing limits approved and taken)
+  main_inputs: CAS, prior ES; limits and utilisation extract if suggested
+  case_rule: Renewal or existing client; nil if new to bank
+  draft_mode: Computed table
+  applicable_when: *id001
+  requires_ca_position: false
+  requires_supplied_internal_rating: false
+  unsecured_requires_ca_confirmation: false
+  mandatory_when:
+    op: always
+- id: 3
+  name: Key updates
+  description: Key updates (latest developments that may affect the assessment; more important for renewals)
+  main_inputs: Prior ES, credit comments or prior approval conditions, covenant monitoring report, annual
+    reports, credit rating report, public news
+  case_rule: Key for renewal; optional if new
+  draft_mode: Synthesis
+  applicable_when: *id001
+  requires_ca_position: false
+  requires_supplied_internal_rating: false
+  unsecured_requires_ca_confirmation: false
+  mandatory_when:
+    op: eq
+    field: case_type
+    value: renewal
+- id: 4
+  name: Business background
+  description: Business background
+  main_inputs: Annual reports, information memorandum or fund report, prior ES, industry code mapping
+  case_rule: Both
+  draft_mode: Extract and summarise
+  applicable_when: *id001
+  requires_ca_position: false
+  requires_supplied_internal_rating: false
+  unsecured_requires_ca_confirmation: false
+  mandatory_when:
+    op: always
+- id: 5
+  name: Shareholding structure
+  description: Shareholding structure
+  main_inputs: Shareholding structure, annual reports
+  case_rule: Both
+  draft_mode: Extract, chart if available
+  applicable_when: *id001
+  requires_ca_position: false
+  requires_supplied_internal_rating: false
+  unsecured_requires_ca_confirmation: false
+  mandatory_when:
+    op: always
+- id: 6
+  name: Key management and stakeholder
+  description: Key management and stakeholder
+  main_inputs: Annual reports, information memorandum or fund report
+  case_rule: Both
+  draft_mode: Extract and summarise
+  applicable_when: *id001
+  requires_ca_position: false
+  requires_supplied_internal_rating: false
+  unsecured_requires_ca_confirmation: false
+  mandatory_when:
+    op: always
+- id: 7
+  name: Facility structure
+  description: Facility structure
+  main_inputs: Term sheet, CAS, pricing report, prior ES
+  case_rule: Both
+  draft_mode: Extract into table
+  applicable_when: *id001
+  requires_ca_position: false
+  requires_supplied_internal_rating: false
+  unsecured_requires_ca_confirmation: false
+  mandatory_when:
+    op: always
+- id: 8
+  name: Security support
+  description: Security support
+  main_inputs: Term sheet, valuation report, insurance report
+  case_rule: Both
+  draft_mode: Extract; "unsecured" needs CA confirmation
+  applicable_when: *id001
+  requires_ca_position: false
+  requires_supplied_internal_rating: false
+  unsecured_requires_ca_confirmation: true
+  mandatory_when:
+    op: always
+- id: 9
+  name: Source of repayment
+  description: Source of repayment
+  main_inputs: Sections 7 and 10, financial projections, rent roll, lease profile
+  case_rule: Both
+  draft_mode: Synthesis
+  applicable_when: *id001
+  requires_ca_position: false
+  requires_supplied_internal_rating: false
+  unsecured_requires_ca_confirmation: false
+  mandatory_when:
+    op: always
+- id: 10
+  name: Financial highlights and analytics
+  description: Financial highlights and analytics
+  main_inputs: Financial spread, financial statements, annual reports, financial projections, compliance
+    certificate
+  case_rule: Both
+  draft_mode: Computed figures with AI commentary
+  applicable_when: *id001
+  requires_ca_position: false
+  requires_supplied_internal_rating: false
+  unsecured_requires_ca_confirmation: false
+  mandatory_when:
+    op: always
+- id: 11
+  name: Key credit risks and mitigates
+  description: Key credit risks and mitigates
+  main_inputs: Sections 3 to 10, covenant monitoring report, credit bureau report
+  case_rule: Both
+  draft_mode: Synthesis, CA to edit
+  applicable_when: *id001
+  requires_ca_position: false
+  requires_supplied_internal_rating: false
+  unsecured_requires_ca_confirmation: false
+  mandatory_when:
+    op: always
+- id: 12
+  name: Credit rating
+  description: Credit rating
+  main_inputs: Credit rating report
+  case_rule: Both
+  draft_mode: Input only, never inferred
+  applicable_when: *id001
+  requires_ca_position: false
+  requires_supplied_internal_rating: true
+  unsecured_requires_ca_confirmation: false
+  mandatory_when:
+    op: always
+- id: 13
+  name: Conduct of Account
+  description: Conduct of Account (past repayment record of existing customers)
+  main_inputs: Account conduct report, covenant monitoring report, compliance certificate, credit bureau
+    report
+  case_rule: Existing clients only
+  draft_mode: Computed table plus summary
+  applicable_when:
+    op: eq
+    field: existing_client
+    value: true
+  requires_ca_position: false
+  requires_supplied_internal_rating: false
+  unsecured_requires_ca_confirmation: false
+  mandatory_when:
+    op: always
+- id: 14
+  name: 'Recommendation: conclusion'
+  description: 'Recommendation: conclusion'
+  main_inputs: All mandatory sections, credit comments or prior approval conditions, pricing report, RM
+    business support email, CA position
+  case_rule: Both
+  draft_mode: CA led; AI drafts wording only
+  applicable_when: *id001
+  requires_ca_position: true
+  requires_supplied_internal_rating: false
+  unsecured_requires_ca_confirmation: false
+  mandatory_when:
+    op: always
+table_anchors:
+- id: cover
+  section_id: 0
+  headers:
+  - 'Borrower(s) – CAS no.
+
+    (indicate if borrower is under streamlined review)'
+  - '(1) Borrower A – [CAS no.], [CRR/SL rating]
+
+    (2) Borrower B – [CAS no.], [CRR/SL rating]'
+  - '☐ GRM paper
+
+    ☐ FRM paper
+
+    ☐ Standalone
+
+    ☐ ESG Watchlist: [List of borrowers]
+
+    ☐ AML Greylist: [List of borrowers]'
+  row_labels:
+  - Obligor Group
+  - Country
+  repeat: none
+  source_policy: Supplied borrower/CAS/group/country and explicit watchlist flags; sample labels are not
+    facts.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 2
+  - - 1
+    - 2
+  kind: key_value
+- id: classification
+  section_id: 1
+  headers:
+  - Borrower/ Group
+  - Current Classification
+  - Date of classification (MMMYY)
+  - Proposed classification
+  row_labels:
+  - ''
+  - Identified Risk (Root cause for current classification)
+  - Borrower's Mitigation
+  - Account Strategy/Action Plan
+  - Timeline for Action Plan
+  repeat: none
+  source_policy: Supplied classification and CA-confirmed action/SM/DPD answers; preserve gaps.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 3
+  - - 1
+    - 3
+  - - 1
+    - 3
+  - - 1
+    - 3
+  kind: records
+- id: sm_dpd
+  section_id: 1
+  headers:
+  - Is Borrower an existing / to-be-downgraded to SM account and has current DPD > 45 calendar days?
+  - ☐ Yes
+  - ☐ No
+  row_labels:
+  - If Yes, is LOD to be issued?
+  repeat: none
+  source_policy: Supplied classification and CA-confirmed action/SM/DPD answers; preserve gaps.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  kind: checkboxes
+- id: exposure
+  section_id: 2
+  headers:
+  - Borrower
+  - Facility
+  - Existing limit
+  - Outstanding
+  - Proposed limit
+  - Change (+/-)
+  - Expiry date
+  - Secured / Unsecured
+  - Borrower/obligor limit cap (if any)
+  row_labels:
+  - '[Borrower A]'
+  - '[Borrower A]'
+  - '[Borrower B]'
+  - Total obligor group
+  repeat: rows
+  source_policy: Python exposure and totals; nil requires explicit new-to-bank input.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 2
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  kind: records
+- id: update_matrix
+  section_id: 3
+  headers:
+  - ''
+  - Business Background
+  - Key management & shareholder
+  - Facility Structure
+  - Security support
+  - Source of repayment
+  - Yes if 1. Existing borrower (no updates to all 5) 2. New borrower
+  row_labels:
+  - Borrower A
+  - Borrower B
+  repeat: rows
+  source_policy: CA-confirmed Y/N per borrower; never inferred from the absence of evidence.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  kind: records
+- id: prior_conditions
+  section_id: 3
+  headers:
+  - No.
+  - Prior approval condition / credit comment
+  - Status
+  - Evidence / comment
+  row_labels:
+  - '1'
+  - '2'
+  repeat: rows
+  source_policy: Cited updates and prior-condition evidence; never assume conditions met.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  kind: records
+- id: business
+  section_id: 4
+  headers:
+  - Borrower
+  - ''
+  row_labels:
+  - Date of incorporation / listing
+  - Listing exchange
+  - Industry code
+  - Principal activities
+  - Manager / sponsor
+  - Trustee
+  - Website
+  repeat: none
+  source_policy: Cited business/industry/property data; retain N/A section with reason.
+  cell_spans:
+  - - 1
+    - 1
+  - - 1
+    - 1
+  - - 1
+    - 1
+  - - 1
+    - 1
+  - - 1
+    - 1
+  - - 1
+    - 1
+  - - 1
+    - 1
+  - - 1
+    - 1
+  kind: key_value
+- id: portfolio
+  section_id: 4
+  headers:
+  - Property
+  - Location
+  - Sector
+  - Valuation (S$m)
+  - Valuation date
+  - Occupancy (%)
+  - WALE (years)
+  row_labels:
+  - '[Property 1]'
+  - '[Property 2]'
+  - Total portfolio
+  repeat: rows
+  source_policy: Cited business/industry/property data; retain N/A section with reason.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 3
+    - 1
+    - 1
+    - 1
+    - 1
+  kind: records
+- id: overview
+  section_id: 4
+  headers:
+  - Overview
+  row_labels:
+  - '[Brief description of the business model, key markets, competitive position and strategy.]'
+  repeat: none
+  source_policy: Cited business description.
+  cell_spans:
+  - - 1
+  - - 1
+  kind: records
+- id: peer_comparison
+  section_id: 4
+  headers:
+  - Industry/peer comparison
+  row_labels:
+  - '[Compare the borrower with its industry and peers on scale, leverage and performance.]'
+  repeat: none
+  source_policy: Cited peer and industry data only.
+  cell_spans:
+  - - 1
+  - - 1
+  kind: records
+- id: business_updates
+  section_id: 4
+  headers:
+  - Business updates & recent developments
+  row_labels:
+  - '[Business updates and recent developments since the last review.]'
+  repeat: none
+  source_policy: Cited updates since the last review.
+  cell_spans:
+  - - 1
+  - - 1
+  kind: records
+- id: key_tenants
+  section_id: 4
+  headers:
+  - Key tenant names
+  - Leased area
+  - '% of total net leasable area'
+  - '% of total rental income'
+  - Lease expiry date
+  row_labels:
+  - ''
+  repeat: rows
+  source_policy: Cited tenant records from the rent roll or lease profile.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  kind: records
+- id: concentration
+  section_id: 4
+  headers:
+  - Concentration risk (if any)
+  - Mitigation
+  row_labels:
+  - ''
+  repeat: rows
+  source_policy: Cited concentration data; mitigation is CA wording.
+  cell_spans:
+  - - 1
+    - 1
+  - - 1
+    - 1
+  kind: records
+- id: holders
+  section_id: 5
+  headers:
+  - Shareholder / unitholder
+  - Holding (%)
+  - Remarks
+  row_labels:
+  - '[Sponsor]'
+  - '[Substantial holder]'
+  - '[Public / others]'
+  - Total
+  repeat: rows
+  source_policy: Cited ownership and supplied chart; validate totals; sample 100.0 is not a fact.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  kind: records
+- id: structure_chart
+  section_id: 5
+  headers:
+  - '[Insert group structure chart showing the borrower, sponsor, manager, trustee and key subsidiaries.]'
+  row_labels: []
+  repeat: none
+  source_policy: Cited ownership and supplied chart; validate totals; sample 100.0 is not a fact.
+  cell_spans:
+  - - 1
+  kind: chart
+- id: management
+  section_id: 6
+  headers:
+  - Name
+  - Designation
+  - Experience / years in role
+  - Remarks
+  row_labels:
+  - ''
+  - ''
+  - ''
+  repeat: rows
+  source_policy: Cited management and stakeholder records; sample roles are not facts.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  kind: records
+- id: stakeholders
+  section_id: 6
+  headers:
+  - Stakeholder
+  - Role
+  - Relationship / comment
+  row_labels:
+  - '[Sponsor]'
+  - '[Manager]'
+  - '[Trustee]'
+  repeat: rows
+  source_policy: Cited management and stakeholder records; sample roles are not facts.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  kind: records
+- id: facilities
+  section_id: 7
+  headers:
+  - Key terms
+  - Facility 1
+  - Facility 2
+  row_labels:
+  - Borrower
+  - Facility type
+  - Currency and amount
+  - Purpose
+  - Tenor / final maturity
+  - Availability period
+  - Repayment
+  - Pricing (margin / fees)
+  - Security
+  - Financial covenants
+  - Other key terms and conditions
+  repeat: facility_columns
+  source_policy: Supplied facility terms; clone facility columns in B18; no truncation.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  kind: matrix
+- id: security
+  section_id: 8
+  headers:
+  - Security / support
+  - Description
+  - Value (S$m)
+  - Valuer and date
+  - Basis
+  - LTV (%)
+  - Remarks
+  row_labels:
+  - '[Legal mortgage over property]'
+  - '[Assignment of rental proceeds]'
+  - '[Corporate guarantee]'
+  repeat: rows
+  source_policy: Cited security/insurance; Python LTV; unsecured requires CA confirmation.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  kind: records
+- id: insurance
+  section_id: 8
+  headers:
+  - Insurer
+  - ''
+  row_labels:
+  - Sum insured
+  - Coverage
+  - Expiry date
+  - Bank's interest noted
+  repeat: none
+  source_policy: Cited security/insurance; Python LTV; unsecured requires CA confirmation.
+  cell_spans:
+  - - 1
+    - 1
+  - - 1
+    - 1
+  - - 1
+    - 1
+  - - 1
+    - 1
+  - - 1
+    - 1
+  kind: key_value
+- id: debt_service
+  section_id: 9
+  headers:
+  - Measure
+  - FY[  ]
+  - FY[  ]
+  - Projected FY[  ]
+  - Remarks
+  row_labels:
+  - Net property income / EBITDA (S$m)
+  - Interest expense (S$m)
+  - Interest coverage (x)
+  - Debt service coverage (x)
+  repeat: none
+  source_policy: Cited repayment sources and Python debt-service metrics; period/lease/tenant data with
+    gaps.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  kind: matrix
+- id: lease_profile
+  section_id: 9
+  headers:
+  - Year
+  - '% of gross rental income'
+  - '% of net lettable area'
+  row_labels:
+  - FY[  ]
+  - FY[  ]
+  - FY[  ]
+  - FY[  ] and beyond
+  repeat: rows
+  source_policy: Cited repayment sources and Python debt-service metrics; period/lease/tenant data with
+    gaps.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  kind: records
+- id: tenants
+  section_id: 9
+  headers:
+  - Tenant
+  - Trade sector
+  - '% of gross rental income'
+  - Lease expiry
+  row_labels:
+  - '[Tenant 1]'
+  - '[Tenant 2]'
+  - '[Tenant 3]'
+  repeat: rows
+  source_policy: Cited repayment sources and Python debt-service metrics; period/lease/tenant data with
+    gaps.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  kind: records
+- id: financials
+  section_id: 10
+  headers:
+  - SGD'000
+  - FY[  ]
+  - FY[  ]
+  - FY[  ]
+  - '[Interim]'
+  - Remarks
+  row_labels:
+  - Income
+  - Gross revenue
+  - Net property income
+  - Distributable income
+  - Distribution per unit (cents)
+  - Balance sheet
+  - Investment properties
+  - Total assets
+  - Total borrowings
+  - Unitholders' funds
+  - NAV per unit (S$)
+  - Capital management
+  - Aggregate leverage (%)
+  - Interest coverage (x)
+  - Average cost of debt (%)
+  - Weighted average debt maturity (years)
+  - Fixed rate debt (%)
+  - Portfolio
+  - Occupancy (%)
+  - WALE (years)
+  repeat: none
+  source_policy: Python sourced financials/headroom/sensitivity with period/definition checks; regulatory
+    labels are guidance, not computed results.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 6
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 6
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 6
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 6
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  kind: matrix
+- id: headroom
+  section_id: 10
+  headers:
+  - Measure
+  - Limit / covenant
+  - Actual
+  - Headroom
+  - Status
+  row_labels:
+  - Aggregate leverage (MAS limit)
+  - Interest coverage (MAS minimum)
+  - '[Facility covenant 1]'
+  - '[Facility covenant 2]'
+  repeat: covenant_rows
+  source_policy: Python sourced financials/headroom/sensitivity with period/definition checks; regulatory
+    labels are guidance, not computed results.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  kind: matrix
+- id: sensitivity
+  section_id: 10
+  headers:
+  - Scenario
+  - Interest coverage (x)
+  row_labels:
+  - As reported
+  - 10% decrease in EBITDA
+  - 100 bp increase in interest rates
+  repeat: none
+  source_policy: Python sourced financials/headroom/sensitivity with period/definition checks; regulatory
+    labels are guidance, not computed results.
+  cell_spans:
+  - - 1
+    - 1
+  - - 1
+    - 1
+  - - 1
+    - 1
+  - - 1
+    - 1
+  kind: matrix
+- id: major_changes
+  section_id: 10
+  headers:
+  - Line item
+  - FY[  ]
+  - FY[  ]
+  - Change (%)
+  - Reason for change
+  row_labels:
+  - Profit and loss
+  - '[Line item]'
+  - '[Line item]'
+  - Balance sheet
+  - '[Line item]'
+  - '[Line item]'
+  repeat: none
+  source_policy: CA or Python sourced values only; guidance rows and sample labels are not facts.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 5
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 5
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  kind: matrix
+- id: segmental
+  section_id: 10
+  headers:
+  - Segment
+  - FY[  ]
+  - FY[  ]
+  - Change (%)
+  - '% of total'
+  - Remarks
+  row_labels:
+  - '[Segment 1]'
+  - '[Segment 2]'
+  - Total
+  repeat: rows
+  source_policy: CA or Python sourced values only; guidance rows and sample labels are not facts.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  kind: records
+- id: geographic
+  section_id: 10
+  headers:
+  - Country / region
+  - FY[  ]
+  - FY[  ]
+  - Change (%)
+  - '% of total'
+  - Remarks
+  row_labels:
+  - '[Country 1]'
+  - '[Country 2]'
+  - Total
+  repeat: rows
+  source_policy: CA or Python sourced values only; guidance rows and sample labels are not facts.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  kind: records
+- id: cashflow_base
+  section_id: 10
+  headers:
+  - SGD'000
+  - Projected FY[  ]
+  - Projected FY[  ]
+  - Projected FY[  ]
+  - Remarks
+  row_labels:
+  - Gross revenue
+  - Net property income / EBITDA
+  - Operating cash flow
+  - Capital expenditure
+  - Interest expense
+  - Scheduled debt repayment
+  - Cash available for debt service
+  - Debt service coverage (x)
+  - Closing cash balance
+  repeat: none
+  source_policy: CA or Python sourced values only; guidance rows and sample labels are not facts.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  kind: matrix
+- id: stress_cases
+  section_id: 10
+  headers:
+  - Scenario
+  - Stress applied
+  - Minimum DSCR (x)
+  - Minimum interest coverage (x)
+  - Outcome / comment
+  row_labels:
+  - Base case
+  - '[Stress case 1]'
+  - '[Stress case 2]'
+  repeat: none
+  source_policy: CA or Python sourced values only; guidance rows and sample labels are not facts.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  kind: matrix
+- id: assumptions
+  section_id: 10
+  headers:
+  - Assumption
+  - Base case
+  - Stress case
+  - Basis for assumption
+  row_labels:
+  - Revenue / rental growth
+  - Occupancy
+  - Operating costs
+  - Interest rate
+  - Capital expenditure
+  - Refinancing
+  repeat: none
+  source_policy: CA or Python sourced values only; guidance rows and sample labels are not facts.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  kind: matrix
+- id: intercompany
+  section_id: 10
+  headers:
+  - Any inter-company debts?
+  - Yes / No
+  - Comments
+  row_labels:
+  - '[Borrower A]'
+  repeat: rows
+  source_policy: CA-confirmed answer and comments; never inferred.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  kind: records
+- id: fx_checklist
+  section_id: 10
+  headers:
+  - FX risk check
+  - Yes / No
+  - Comments
+  row_labels:
+  - '1. No or insignificant FX risk: revenue, costs and borrowings are in the same currency'
+  - 2. Mismatch between revenue currency and cost currency
+  - 3. Mismatch between revenue currency and borrowing currency
+  - 4. Mismatch between asset currency and liability currency (balance sheet translation)
+  - 5. Facility currency differs from the currency of the repayment source
+  - 6. Natural hedge in place (matching currency income, assets or borrowings)
+  - 7. Financial hedges in place (forwards, cross currency swaps), in line with a stated hedging policy
+  - 8. Unhedged exposure is material to debt service or financial covenants
+  repeat: none
+  source_policy: CA-confirmed answers; never inferred.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  kind: matrix
+- id: risks
+  section_id: 11
+  headers:
+  - No.
+  - Key risk
+  - Description
+  - Mitigants
+  row_labels:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  repeat: rows
+  source_policy: Cited risk and mitigant records; example risks are guidance.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  kind: records
+- id: internal_rating
+  section_id: 12
+  headers:
+  - Borrower
+  - Current CRR/SL rating
+  - Previous rating
+  - Rating date
+  - Change and reason
+  row_labels:
+  - '[Borrower A]'
+  - '[Borrower B]'
+  repeat: rows
+  source_policy: Supplied internal rating and separate external agency evidence; no inferred rating.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  kind: records
+- id: external_ratings
+  section_id: 12
+  headers:
+  - Agency
+  - Rating
+  - Outlook
+  - Date
+  row_labels:
+  - '[Moody''s]'
+  - '[S&P]'
+  - '[Fitch]'
+  repeat: rows
+  source_policy: Supplied internal rating and separate external agency evidence; no inferred rating.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  kind: records
+- id: conduct
+  section_id: 13
+  headers:
+  - Facility
+  - Limit
+  - Peak utilisation
+  - Average utilisation
+  - Excesses (no. / max / days)
+  - Past dues (no. / max DPD)
+  - Remarks
+  row_labels:
+  - '[Facility 1]'
+  - '[Facility 2]'
+  repeat: rows
+  source_policy: Python conduct/covenant results; CA-confirmed adverse finding answers.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  kind: records
+- id: compliance
+  section_id: 13
+  headers:
+  - Covenant
+  - Requirement
+  - Last tested
+  - Actual
+  - Compliant
+  row_labels:
+  - '[Covenant 1]'
+  - '[Covenant 2]'
+  repeat: rows
+  source_policy: Python conduct/covenant results; CA-confirmed adverse finding answers.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+    - 1
+  kind: records
+- id: adverse_findings
+  section_id: 13
+  headers:
+  - Any adverse findings from the credit bureau or account conduct?
+  - ☐ Yes
+  - ☐ No
+  row_labels: []
+  repeat: none
+  source_policy: Python conduct/covenant results; CA-confirmed adverse finding answers.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+  kind: checkboxes
+- id: conditions
+  section_id: 14
+  headers:
+  - No.
+  - Condition / covenant
+  - Timing
+  row_labels:
+  - '1'
+  - '2'
+  repeat: rows
+  source_policy: CA-stated position; cited conditions; human workflow signoff only, blank/pending in draft.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+  kind: records
+- id: signoff
+  section_id: 14
+  headers:
+  - Role
+  - Name
+  - Decision
+  - Date
+  row_labels:
+  - 'Prepared by: Credit Analyst'
+  - 'Reviewed and supported by: Credit Head'
+  - 'Approved by: Credit Approver'
+  repeat: none
+  source_policy: CA-stated position; cited conditions; human workflow signoff only, blank/pending in draft.
+  cell_spans:
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  - - 1
+    - 1
+    - 1
+    - 1
+  kind: records
+narrative_anchors:
+- section_id: 1
+  text: '[To be similar to CAS]'
+- section_id: 1
+  text: '[To provide details of the request]'
+- section_id: 2
+  text: '[Existing limits approved and taken for the obligor group, as at DD/MM/YYYY. Amounts in SGD''000
+    unless stated. State "Nil, new to bank" if not applicable.]'
+- section_id: 2
+  text: '[Note any excesses, temporary limits, or limits pending cancellation.]'
+- section_id: 3
+  text: '[Latest developments for the borrower or the financing object since the last review that may
+    affect the assessment. More important for renewal cases.]'
+- section_id: 4
+  text: '[For REITs, property funds and property backed borrowers. Delete if not applicable.]'
+- section_id: 5
+  text: '[State the ultimate parent or sponsor, and any change in shareholding since the last review.]'
+- section_id: 6
+  text: '[Note any recent changes in management or key stakeholders.]'
+- section_id: 7
+  text: '[Proposed terms per facility. Add columns for additional facilities.]'
+- section_id: 8
+  text: '[If unsecured, state the basis, e.g. negative pledge or pari passu undertaking.]'
+- section_id: 9
+  text: '[e.g. net property income from the secured property and the borrower''s operating cash flow]'
+- section_id: 9
+  text: '[e.g. refinancing, asset disposal, sponsor support, enforcement of security]'
+- section_id: 9
+  text: '[For repayment from property income.]'
+- section_id: 10
+  text: '[Figures from the financial spread. Amounts in SGD''000 unless stated. Rows follow the borrower
+    type: REIT measures are shown; bank and other financial institution measures are set in the system
+    configuration.]'
+- section_id: 10
+  text: '[Highlight the major profit and loss and balance sheet items and compare them with prior years.
+    Explain each significant movement.]'
+- section_id: 10
+  text: '[If applicable. Revenue or net property income by business segment or asset class. State "Not
+    applicable" with the reason if the borrower has a single segment.]'
+- section_id: 10
+  text: '[If applicable. Revenue or net property income by country or region. State "Not applicable" with
+    the reason if operations are in one country.]'
+- section_id: 10
+  text: '[Analysis of profitability, balance sheet strength, leverage, liquidity and debt maturity, with
+    the reasons for the main movements over the periods shown.]'
+- section_id: 10
+  text: '[Detailed projection over the facility tenor. Base case assumes stable cash flow. State every
+    assumption and the basis for it.]'
+- section_id: 10
+  text: '[Commentary on performance, trends, capital management and outlook.]'
+- section_id: 12
+  text: '[As per the approved rating output.]'
+- section_id: 13
+  text: '[Past 12 months for existing facilities. State "Not applicable, new to bank" where relevant.]'
+- section_id: 14
+  text: '[Summarise the basis of the recommendation, weighing the key risks against the mitigants.]'

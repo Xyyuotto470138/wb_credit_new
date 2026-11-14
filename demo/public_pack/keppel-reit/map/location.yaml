@@ -1,0 +1,81 @@
+subject: Ocean Financial Centre
+retrieved_at: '2026-11-12'
+geocode:
+  provider: OneMap (Singapore Land Authority)
+  endpoint: https://www.onemap.gov.sg/api/common/elastic/search
+  request_parameters:
+    searchVal: Ocean Financial Centre
+    returnGeom: Y
+    getAddrDetails: Y
+    pageNum: 1
+  result:
+    building: OCEAN FINANCIAL CENTRE
+    address: 10 COLLYER QUAY OCEAN FINANCIAL CENTRE SINGAPORE 049315
+    block: '10'
+    road: COLLYER QUAY
+    postal_code: 049315
+    latitude: 1.283204751555237
+    longitude: 103.8519096124162
+    svy21_x: 30069.02884003334
+    svy21_y: 29515.78912024945
+  results_found: 1
+  cross_check: Search for "10 Collyer Quay" returned three records at postal code 049315 (a consulate, OCEAN FINANCIAL
+    CENTRE, Raffles Place Post Office); the OCEAN FINANCIAL CENTRE record has the same coordinates. Postal code
+    matches the annual report (10 Collyer Quay, Singapore 049315).
+map:
+  file: location_map.png
+  size_px: 1000x650
+  bytes: 475768
+  sha256: c9135ef1279efae909f6a3a9981e108bfe544c6860c354b31d7edaee9670deea
+  provider: OneMap static map API (Singapore Land Authority)
+  endpoint: https://www.onemap.gov.sg/api/staticmap/getStaticImage
+  authentication: Token from https://www.onemap.gov.sg/api/auth/post/getToken using credentials in .env; token and
+    credentials are not recorded.
+  method: OneMap limits static images to 512x512 ("The maximum resolution size is 512 x 512."). Four 512x512 images
+    at zoom 17 were requested with the centres below and pasted at the stated pixel offsets (later tiles over earlier
+    ones) to give 1000x650 centred on the geocoded point. Seams were checked by eye.
+  tile_requests:
+  - layerchosen: default
+    latitude: '1.2839449'
+    longitude: '103.8492918'
+    zoom: 17
+    width: 512
+    height: 512
+    paste_x: 0
+    paste_y: 0
+  - layerchosen: default
+    latitude: '1.2839449'
+    longitude: '103.8545274'
+    zoom: 17
+    width: 512
+    height: 512
+    paste_x: 488
+    paste_y: 0
+  - layerchosen: default
+    latitude: '1.2824646'
+    longitude: '103.8492918'
+    zoom: 17
+    width: 512
+    height: 512
+    paste_x: 0
+    paste_y: 138
+  - layerchosen: default
+    latitude: '1.2824646'
+    longitude: '103.8545274'
+    zoom: 17
+    width: 512
+    height: 512
+    paste_x: 488
+    paste_y: 138
+  zoom: 17
+  centre:
+    latitude: 1.283204751555237
+    longitude: 103.8519096124162
+  marker: Red pin drawn locally with Pillow; its tip is at the image centre (500, 325), which is the geocoded point.
+    It is not a OneMap marker.
+  visual_check: Pin tip sits on the block labelled "Ocean Financial Ctr / Raffles Pl" between Collyer Quay and D'Almeida
+    Street, south-east of Raffles Place MRT; Marina Bay, One Raffles Quay and Marina Bay Link Mall are in frame.
+  attribution_required: OneMap | Map data (c) Contributors, Singapore Land Authority
+  attribution_in_image: Yes, printed twice along the bottom edge (once per bottom tile). Keep it visible when the
+    map is cropped or reused.
+  terms: OneMap API terms of use apply. Not reviewed in detail here; check current terms before external distribution.

@@ -1,0 +1,458 @@
+# B26 model routes. Null fields mean TODO: confirm; never infer a provider ID.
+# Live routes (the project owner's decisions, 11 Nov 2026): Claude direct to Anthropic,
+# GPT direct to OpenAI, every other model through OpenRouter. Only routes that follow this rule may be enabled, and
+# only after their TODO fields are resolved. An enabled live route is callable only in a process started for a live
+# run (WB_CREDIT_LIVE=1) with its key present. Tests and the mock demo never set that.
+version: b26-v1
+default_model: mock-v1
+models:
+- id: mock-v1
+  display_name: Mock A — reviewed order
+  family: offline
+  route: mock
+  provider_type: openai_compatible
+  base_url: null
+  model_id: mock-v1
+  api_key_env: null
+  capabilities:
+    json_mode: true
+    context_size: null
+  enabled: true
+  bank_available: false
+  weights: mock
+  mock_profile: reviewed
+  sources:
+  - backend/app/fixtures/model_profiles.json
+  verified_at: '2026-11-11'
+  notes: Offline fixture demonstration, not a benchmark of any hosted model.
+- id: mock-v2
+  display_name: Mock B — reverse order + rejected test claim
+  family: offline
+  route: mock
+  provider_type: openai_compatible
+  base_url: null
+  model_id: mock-v2
+  api_key_env: null
+  capabilities:
+    json_mode: true
+    context_size: null
+  enabled: true
+  bank_available: false
+  weights: mock
+  mock_profile: reverse_with_rejection
+  sources:
+  - backend/app/fixtures/model_profiles.json
+  verified_at: '2026-11-11'
+  notes: Offline fixture demonstration, not a benchmark of any hosted model.
+- id: fable-5-2-direct
+  display_name: Claude Fable 5.2 · direct
+  family: fable-5-2
+  route: direct
+  provider_type: anthropic
+  base_url: https://api.anthropic.com
+  model_id: claude-fable-5-2
+  api_key_env: ANTHROPIC_API_KEY
+  capabilities:
+    json_mode: false
+    context_size: 1000000
+  enabled: true
+  bank_available: false
+  weights: hosted
+  mock_profile: null
+  sources:
+  - https://platform.claude.com/docs/en/about-claude/models/overview
+  - https://platform.claude.com/docs/en/about-claude/pricing
+  verified_at: '2026-11-12'
+  notes: 'Default live drafting model. JSON is requested in the prompt and validated in code; no JSON mode is relied on.
+    Thinking is always on and sampling parameters are not sent. Refusals use the server-side default fallback; a call
+    served by a fallback model is recorded as unpriced.'
+  price_input_usd_per_mtok: '8.00'
+  price_output_usd_per_mtok: '40.00'
+  price_source: Anthropic published API rates
+  price_date: '2026-11-03'
+- id: opus-5-5-direct
+  display_name: Claude Opus 5.5 · direct
+  family: opus-5-5
+  route: direct
+  provider_type: anthropic
+  base_url: https://api.anthropic.com
+  model_id: claude-opus-5-5
+  api_key_env: ANTHROPIC_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: 1000000
+  enabled: false
+  bank_available: false
+  weights: hosted
+  mock_profile: null
+  sources:
+  - https://platform.claude.com/docs/en/models/opus-5-5/overview
+  - https://platform.claude.com/docs/en/api/overview
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm JSON mode and current route pricing before enabling.'
+- id: opus-5-5-openrouter
+  display_name: Claude Opus 5.5 · OpenRouter
+  family: opus-5-5
+  route: openrouter
+  provider_type: openai_compatible
+  base_url: https://openrouter.ai/api/v1
+  model_id: anthropic/claude-opus-5.5
+  api_key_env: OPENROUTER_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: null
+  enabled: false
+  bank_available: false
+  weights: hosted
+  mock_profile: null
+  sources:
+  - https://openrouter.ai/docs/quickstart
+  - https://openrouter.ai/anthropic/claude-opus-5.5
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm route JSON mode, context size and pricing. Route snapshots
+    may differ from direct aliases.'
+- id: gpt-6-1-direct
+  display_name: GPT 6.1 Sol · direct
+  family: gpt-6-1
+  route: direct
+  provider_type: openai_compatible
+  base_url: https://api.openai.com/v1
+  model_id: gpt-6.1-sol
+  api_key_env: OPENAI_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: 1050000
+  enabled: false
+  bank_available: false
+  weights: hosted
+  mock_profile: null
+  sources:
+  - https://developers.openai.com/api/docs/models/gpt-6.1-sol
+  - https://developers.openai.com/api/reference/overview
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm JSON mode and current route pricing before enabling.'
+- id: gpt-6-1-openrouter
+  display_name: GPT 6.1 Sol · OpenRouter
+  family: gpt-6-1
+  route: openrouter
+  provider_type: openai_compatible
+  base_url: https://openrouter.ai/api/v1
+  model_id: openai/gpt-6.1-sol
+  api_key_env: OPENROUTER_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: null
+  enabled: false
+  bank_available: false
+  weights: hosted
+  mock_profile: null
+  sources:
+  - https://openrouter.ai/docs/quickstart
+  - https://openrouter.ai/openai/gpt-6.1-sol
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm route JSON mode, context size and pricing. Route snapshots
+    may differ from direct aliases.'
+- id: gpt-5-6-direct
+  display_name: GPT 5.6 Sol · direct
+  family: gpt-5-6
+  route: direct
+  provider_type: openai_compatible
+  base_url: https://api.openai.com/v1
+  model_id: gpt-5.6-sol
+  api_key_env: OPENAI_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: 1050000
+  enabled: false
+  bank_available: false
+  weights: hosted
+  mock_profile: null
+  sources:
+  - https://developers.openai.com/api/docs/models/gpt-5.6-sol
+  - https://developers.openai.com/api/reference/overview
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm JSON mode and current route pricing before enabling.'
+- id: gpt-5-6-openrouter
+  display_name: GPT 5.6 Sol · OpenRouter
+  family: gpt-5-6
+  route: openrouter
+  provider_type: openai_compatible
+  base_url: https://openrouter.ai/api/v1
+  model_id: openai/gpt-5.6-sol
+  api_key_env: OPENROUTER_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: null
+  enabled: false
+  bank_available: false
+  weights: hosted
+  mock_profile: null
+  sources:
+  - https://openrouter.ai/docs/quickstart
+  - https://openrouter.ai/openai/gpt-5.6-sol
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm route JSON mode, context size and pricing. Route snapshots
+    may differ from direct aliases.'
+- id: qwen-3-6-plus-direct
+  display_name: Qwen 3.6 Plus (hosted) · direct
+  family: qwen-3-6-plus
+  route: direct
+  provider_type: openai_compatible
+  base_url: https://{WorkspaceId}.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1
+  model_id: qwen3.6-plus
+  api_key_env: DASHSCOPE_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: null
+  enabled: false
+  bank_available: true
+  weights: hosted
+  mock_profile: null
+  sources:
+  - https://www.alibabacloud.com/help/en/model-studio/qwen-code.md
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm JSON mode and current route pricing before enabling. TODO:
+    confirm workspace-specific Singapore endpoint, context size and account model
+    access. Bank availability applies to the family; exact bank variant is unconfirmed.
+    Model ID verified in provider coding/token-plan examples; TODO: confirm pay-as-you-go
+    Singapore availability.'
+- id: qwen-3-6-plus-openrouter
+  display_name: Qwen 3.6 Plus (hosted) · OpenRouter
+  family: qwen-3-6-plus
+  route: openrouter
+  provider_type: openai_compatible
+  base_url: https://openrouter.ai/api/v1
+  model_id: null
+  api_key_env: OPENROUTER_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: null
+  enabled: false
+  bank_available: true
+  weights: hosted
+  mock_profile: null
+  sources:
+  - https://openrouter.ai/docs/quickstart
+  - https://www.alibabacloud.com/help/en/model-studio/qwen-code.md
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm route model ID.'
+- id: qwen-3-8-max-direct
+  display_name: Qwen 3.8 Max (hosted) · direct
+  family: qwen-3-8-max
+  route: direct
+  provider_type: openai_compatible
+  base_url: https://{WorkspaceId}.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1
+  model_id: qwen3.8-max
+  api_key_env: DASHSCOPE_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: null
+  enabled: false
+  bank_available: true
+  weights: hosted
+  mock_profile: null
+  sources:
+  - https://www.alibabacloud.com/help/en/model-studio/qwen-code.md
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm JSON mode and current route pricing before enabling. TODO:
+    confirm workspace-specific Singapore endpoint, context size and account model
+    access. Bank availability applies to the family; exact bank variant is unconfirmed.'
+- id: qwen-3-8-max-openrouter
+  display_name: Qwen 3.8 Max (hosted) · OpenRouter
+  family: qwen-3-8-max
+  route: openrouter
+  provider_type: openai_compatible
+  base_url: https://openrouter.ai/api/v1
+  model_id: qwen/qwen3.8-max-0902
+  api_key_env: OPENROUTER_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: null
+  enabled: false
+  bank_available: true
+  weights: hosted
+  mock_profile: null
+  sources:
+  - https://openrouter.ai/docs/quickstart
+  - https://openrouter.ai/qwen/qwen3.8-max-0902
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm route JSON mode, context size and pricing. Route snapshots
+    may differ from direct aliases.'
+- id: kimi-direct
+  display_name: Kimi K3.1 Pro · direct
+  family: kimi
+  route: direct
+  provider_type: openai_compatible
+  base_url: https://api.moonshot.ai/v1
+  model_id: kimi-k3.1-pro
+  api_key_env: MOONSHOT_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: null
+  enabled: false
+  bank_available: false
+  weights: hosted
+  mock_profile: null
+  sources:
+  - https://platform.kimi.ai/docs/get-your-api-key
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm JSON mode and current route pricing before enabling.'
+- id: kimi-openrouter
+  display_name: Kimi K3.1 Pro · OpenRouter
+  family: kimi
+  route: openrouter
+  provider_type: openai_compatible
+  base_url: https://openrouter.ai/api/v1
+  model_id: null
+  api_key_env: OPENROUTER_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: null
+  enabled: false
+  bank_available: false
+  weights: hosted
+  mock_profile: null
+  sources:
+  - https://openrouter.ai/docs/quickstart
+  - https://platform.kimi.ai/docs/get-your-api-key
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm route model ID.'
+- id: glm-direct
+  display_name: GLM 5.3 · direct
+  family: glm
+  route: direct
+  provider_type: openai_compatible
+  base_url: https://api.z.ai/api/paas/v4/
+  model_id: glm-5.3
+  api_key_env: ZAI_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: null
+  enabled: false
+  bank_available: false
+  weights: hosted
+  mock_profile: null
+  sources:
+  - https://docs.z.ai/guides/overview/quick-start
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm JSON mode and current route pricing before enabling.'
+- id: glm-openrouter
+  display_name: GLM 5.3 · OpenRouter
+  family: glm
+  route: openrouter
+  provider_type: openai_compatible
+  base_url: https://openrouter.ai/api/v1
+  model_id: null
+  api_key_env: OPENROUTER_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: null
+  enabled: false
+  bank_available: false
+  weights: hosted
+  mock_profile: null
+  sources:
+  - https://openrouter.ai/docs/quickstart
+  - https://docs.z.ai/guides/overview/quick-start
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm route model ID.'
+- id: qwen-3-6-27b-openrouter
+  display_name: Qwen 3.6 27B (open weight) · OpenRouter
+  family: qwen-3-6-27b
+  route: openrouter
+  provider_type: openai_compatible
+  base_url: https://openrouter.ai/api/v1
+  model_id: qwen/qwen3.6-27b
+  api_key_env: OPENROUTER_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: null
+  enabled: false
+  bank_available: true
+  weights: open_weight
+  mock_profile: null
+  sources:
+  - https://openrouter.ai/docs/quickstart
+  - https://openrouter.ai/qwen/qwen3.6-27b
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm JSON mode, context size and current route pricing before enabling.'
+- id: qwen-3-6-27b-direct
+  display_name: Qwen 3.6 27B (open weight) · Singapore
+  family: qwen-3-6-27b
+  route: direct
+  provider_type: openai_compatible
+  base_url: https://{WorkspaceId}.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1
+  model_id: null
+  api_key_env: DASHSCOPE_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: null
+  enabled: false
+  bank_available: true
+  weights: open_weight
+  mock_profile: null
+  sources:
+  - https://www.alibabacloud.com/help/en/model-studio/qwen-code.md
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm exact Singapore model ID and availability; do not substitute
+    hosted Plus or Max.'
+- id: qwen-3-8-27b-direct
+  display_name: Qwen 3.8 27B (open weight, unverified) · Singapore
+  family: qwen-3-8-27b
+  route: direct
+  provider_type: openai_compatible
+  base_url: https://{WorkspaceId}.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1
+  model_id: null
+  api_key_env: DASHSCOPE_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: null
+  enabled: false
+  bank_available: true
+  weights: open_weight
+  mock_profile: null
+  sources:
+  - https://www.alibabacloud.com/help/en/model-studio/qwen-code.md
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm this size/variant exists, exact model ID, license and Singapore
+    availability; family availability is user supplied.'
+- id: qwen-3-8-27b-openrouter
+  display_name: Qwen 3.8 27B (open weight, unverified) · OpenRouter
+  family: qwen-3-8-27b
+  route: openrouter
+  provider_type: openai_compatible
+  base_url: https://openrouter.ai/api/v1
+  model_id: null
+  api_key_env: OPENROUTER_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: null
+  enabled: false
+  bank_available: true
+  weights: open_weight
+  mock_profile: null
+  sources:
+  - https://openrouter.ai/docs/quickstart
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm this size/variant exists, exact model ID and license.'
+- id: qwen-ollama
+  display_name: Qwen 3.6 (open weight) · local Ollama
+  family: qwen-3-6-local
+  route: ollama
+  provider_type: openai_compatible
+  base_url: http://localhost:11434/v1/
+  model_id: qwen3.6
+  api_key_env: OLLAMA_API_KEY
+  capabilities:
+    json_mode: null
+    context_size: null
+  enabled: false
+  bank_available: true
+  weights: open_weight
+  mock_profile: null
+  sources:
+  - https://docs.ollama.com/api/openai-compatibility
+  - https://ollama.com/library/qwen3.6
+  verified_at: '2026-11-11'
+  notes: 'TODO: confirm installed tag, size, license, configured context and JSON
+    mode. Optional local rehearsal; no server started by WB Credit.'

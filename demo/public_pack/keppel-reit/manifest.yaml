@@ -1,0 +1,564 @@
+schema_version: 1
+task: keppel-reit-public-pack
+borrower:
+  name: Keppel REIT
+  sgx_code: K71U
+  sponsor: Keppel Ltd.
+  sgx_code_note: K71U taken from web search result titles (SGX/quartr); not printed in the saved PDFs.
+financing_object:
+  name: Ocean Financial Centre
+  address: 10 Collyer Quay, Singapore 049315
+  keppel_reit_interest: 79.9% (approximate), held through Ocean Properties LLP
+as_of: '2026-11-12'
+page_convention: pdf_pages are one-based physical PDF pages; printed_pages are document labels.
+status: downloaded
+ca_confirmation_required: true
+documents:
+- id: kreit-ar2025
+  file: annual-report-2025.pdf
+  catalogue_type:
+    id: 4
+    name: Annual reports
+  title: Keppel REIT Annual Report 2025
+  url: https://www.keppelreit.com/file/investor-relations/publications/annual-reports/keppel-reit-ar25.pdf
+  publisher: Keppel REIT Management Limited
+  date: '2026-03-16'
+  retrieved_at: '2026-11-12'
+  pages: 228
+  sha256: 250f4eafe2c3dde1902b87f2b6c3965fe5bc3f0d6e8e2091fc816d90ed4d80a6
+  bytes: 17321764
+  media_type: application/pdf
+  entity: Keppel REIT
+  kind: annual_report
+  origin: public
+  synthetic: false
+  ca_confirmed: false
+  evidence:
+  - topic: identity_manager_sponsor
+    pdf_pages:
+    - 5
+    printed_pages:
+    - '3'
+    check_terms:
+    - Keppel REIT Management Limited
+    - sponsored by Keppel
+    - 28 April 2006
+  - topic: trust_structure
+    pdf_pages:
+    - 11
+    printed_pages:
+    - 12-13 (spread)
+    check_terms:
+    - HSBC Institutional Trust Services (Singapore) Limited
+    - Ocean Financial Centre 79.9% interest
+    as_of: '2025-12-31'
+  - topic: key_financial_highlights
+    pdf_pages:
+    - 7
+    printed_pages:
+    - '6'
+    check_terms:
+    - 9,978,947
+    - 5,667,960
+    - 215,905
+    as_of: '2025-12-31'
+  - topic: leverage_and_icr
+    pdf_pages:
+    - 65
+    - 66
+    printed_pages:
+    - '68'
+    - '69'
+    check_terms:
+    - 47.9%
+    - 2.6 times
+    - 3.41% p.a.
+    - 2.4 years
+    - borrowing-related fees and distributions on hybrid securities
+    as_of: '2025-12-31'
+  - topic: portfolio_valuation_and_occupancy
+    pdf_pages:
+    - 40
+    - 64
+    printed_pages:
+    - '43'
+    - '67'
+    check_terms:
+    - $11.7 billion
+    - 96.7%
+    - 11,657.0
+    as_of: '2025-12-31'
+  - topic: portfolio_lease_expiry_and_top_tenants
+    pdf_pages:
+    - 42
+    - 43
+    printed_pages:
+    - '45'
+    - '46'
+    check_terms:
+    - PORTFOLIO LEASE EXPIRY PROFILE
+    - 4.4 years
+    - DBS Bank
+    - 29.5%
+    as_of: '2025-12-31'
+  - topic: ocean_financial_centre_property
+    pdf_pages:
+    - 44
+    - 47
+    printed_pages:
+    - '47'
+    - '50'
+    check_terms:
+    - 10 Collyer Quay
+    - 79.9%
+    - S$2,301.1 million
+    - 3.40%
+    - 695,996 sf
+    - 96.0%
+    - The Executive Centre
+    as_of: '2025-12-31'
+  - topic: ocean_financial_centre_valuer_and_100pct_value
+    pdf_pages:
+    - 123
+    - 124
+    printed_pages:
+    - '128'
+    - '129'
+    check_terms:
+    - CBRE Pte. Ltd.
+    - 2,301,120
+    - $2,880,000,000
+    as_of: '2025-12-31'
+  - topic: ocean_financial_centre_holding_structure
+    pdf_pages:
+    - 144
+    - 145
+    printed_pages:
+    - '149'
+    - '150'
+    check_terms:
+    - Ocean Properties LLP
+    - OPLLP owns Ocean Financial Centre
+    - Allianz Real Estate
+    - call option
+    as_of: '2025-12-31'
+  - topic: borrowings_note
+    pdf_pages:
+    - 155
+    - 156
+    printed_pages:
+    - '160'
+    - '161'
+    check_terms:
+    - 3,756,674
+    - $890,067,000
+    - complied with all financial covenants
+    as_of: '2025-12-31'
+  - topic: portfolio_reporting_by_property_and_geography
+    pdf_pages:
+    - 177
+    - 179
+    printed_pages:
+    - '182'
+    - '184'
+    check_terms:
+    - 116,412
+    - 94,698
+    - 151,966
+    - 103,461
+    as_of: '2025-12-31'
+  - topic: valuation_rate_ranges
+    pdf_pages:
+    - 173
+    printed_pages:
+    - '178'
+    check_terms:
+    - Capitalisation rate
+    - 3.40% – 7.75%
+    as_of: '2025-12-31'
+  - topic: unitholding_structure
+    pdf_pages:
+    - 217
+    - 218
+    printed_pages:
+    - '222'
+    - '223'
+    check_terms:
+    - 27 February 2026
+    - Keppel Ltd.
+    - '37.48'
+    - '38.52'
+    as_of: '2026-02-27'
+  - topic: board_and_management
+    pdf_pages:
+    - 13
+    - 15
+    printed_pages:
+    - '16'
+    - '18'
+    check_terms:
+    - TAN SWEE YIOW
+    - CHUA HSIEN YANG
+    - SEBASTIAN SONG
+  period_end: '2025-12-31'
+  listing_url: https://www.keppelreit.com/investor-relations/publications/
+  date_basis: PDF creation date (16 March 2026). Chairman statement dated 6 March 2026; auditor report dated 27
+    February 2026. SGX release date not checked.
+  layout_note: PDF pages 6, 9, 10, 11, 12, 67 and 68 are two-page spreads. Printed page = pdf page + 3 for pdf 13
+    to 66 and + 5 for pdf 69 to 223.
+  catalogue_support:
+  - id: 6
+    name: Financial statements (audited and interim)
+    scope: FY2025 audited financial statements within annual report
+  - id: 20
+    name: Shareholding structure
+    evidence_topics:
+    - trust_structure
+    - unitholding_structure
+    - ocean_financial_centre_holding_structure
+    scope: public unitholdings, sponsor structure and OFC holding entity; dates differ
+  - id: 9
+    name: Valuation report
+    scope: summary_only_not_full_property_report
+  - id: 16
+    name: Lease profile
+    scope: portfolio_and_building_summary_only_not_secured_property_schedule
+- id: kreit-fs1h2026
+  file: financial-statements-1h2026.pdf
+  catalogue_type:
+    id: 6
+    name: Financial statements (audited and interim)
+  title: Keppel REIT Condensed Consolidated Interim Financial Statements for the Half Year Ended 30 June 2026
+  url: https://www.keppelreit.com/file/investor-relations/financial-information/financial-results/2026/kreit-1h-2026-unaudited-results.pdf
+  publisher: Keppel REIT Management Limited
+  date: '2026-07-29'
+  retrieved_at: '2026-11-12'
+  pages: 34
+  sha256: 55c37d45fb87b770c79aa8f1002b2f1b3a4143ae9c0a010df4c4f4fe23f65696
+  bytes: 548462
+  media_type: application/pdf
+  entity: Keppel REIT
+  kind: interim_financial_statements
+  origin: public
+  synthetic: false
+  ca_confirmed: false
+  evidence:
+  - topic: summary_of_results
+    pdf_pages:
+    - 3
+    printed_pages:
+    - '3'
+    check_terms:
+    - 159,339
+    - 122,462
+    - 129,648
+    as_of: '2026-06-30'
+  - topic: balance_sheet
+    pdf_pages:
+    - 9
+    printed_pages:
+    - '9'
+    check_terms:
+    - 10,197,757
+    - 6,180,371
+    - '1.24'
+    as_of: '2026-06-30'
+  - topic: capital_management
+    pdf_pages:
+    - 27
+    printed_pages:
+    - '27'
+    check_terms:
+    - '40.0'
+    - '2.7'
+    - '3.27'
+    - 2,924.1
+    as_of: '2026-06-30'
+  - topic: portfolio_reporting_by_property
+    pdf_pages:
+    - 23
+    printed_pages:
+    - '23'
+    check_terms:
+    - Ocean Financial Centre
+    - 62,509
+    - 51,073
+    as_of: '2026-06-30'
+  period_end: '2026-06-30'
+  listing_url: https://www.keppelreit.com/investor-relations/financial-information/financial-results/
+  limitations:
+  - Unaudited condensed interim statements.
+- id: kreit-pres1h2026
+  file: results-presentation-1h2026.pdf
+  catalogue_type: &id001
+    id: null
+    name: 'Suggested: recent news and exchange announcements'
+  title: Keppel REIT 1H 2026 Financial Results presentation
+  url: https://www.keppelreit.com/file/investor-relations/financial-information/financial-results/2026/kreit-1h-2026-presentation-slides.pdf
+  publisher: Keppel REIT Management Limited
+  date: '2026-07-29'
+  retrieved_at: '2026-11-12'
+  pages: 40
+  sha256: cf0957be2cc6c826f9be465ef3f6aece572c07cc712245170345fcad24d1af68
+  bytes: 9405166
+  media_type: application/pdf
+  entity: Keppel REIT
+  kind: results_presentation
+  origin: public
+  synthetic: false
+  ca_confirmed: false
+  evidence:
+  - topic: capital_management
+    pdf_pages:
+    - 13
+    printed_pages:
+    - '13'
+    check_terms:
+    - 40.0%
+    - 62%
+    - 2.5 years
+    - 2.7x
+    as_of: '2026-06-30'
+  - topic: portfolio_occupancy_by_asset
+    pdf_pages:
+    - 16
+    printed_pages:
+    - '16'
+    check_terms:
+    - Ocean Financial
+    - 96.5%
+    - '14 Assets | AUM: $11.8b'
+    as_of: '2026-06-30'
+  period_end: '2026-06-30'
+  listing_url: https://www.keppelreit.com/investor-relations/financial-information/financial-results/
+- id: kreit-3q2026
+  file: business-update-presentation-3q2026.pdf
+  catalogue_type: *id001
+  title: Keppel REIT 3Q 2026 Key Business and Operational Updates presentation
+  url: https://www.keppelreit.com/file/kreit-3q-2026-presentation-slides.pdf
+  publisher: Keppel REIT Management Limited
+  date: '2026-10-28'
+  retrieved_at: '2026-11-12'
+  pages: 36
+  sha256: ec5d37ffbf16f00ed9229a70ec501b8ac16c92537ab51b5ff10b3557e6741779
+  bytes: 7895646
+  media_type: application/pdf
+  entity: Keppel REIT
+  kind: business_update
+  origin: public
+  synthetic: false
+  ca_confirmed: false
+  evidence:
+  - topic: quarterly_highlights
+    pdf_pages:
+    - 12
+    - 13
+    printed_pages:
+    - '12'
+    - '13'
+    check_terms:
+    - $238.2m
+    - 40.5%
+    - 2.8x
+    - 64%
+    - 3.32% p.a.
+    as_of: '2026-09-30'
+  - topic: debt_maturity
+    pdf_pages:
+    - 14
+    printed_pages:
+    - '14'
+    check_terms:
+    - Debt Maturity Profile
+    - As at 30 Sep 2026
+    - all refinancing requirements for 2026 completed
+    as_of: '2026-09-30'
+  - topic: portfolio_occupancy_and_lease_expiry
+    pdf_pages:
+    - 16
+    - 18
+    - 19
+    printed_pages:
+    - '16'
+    - '18'
+    - '19'
+    check_terms:
+    - 95.2%
+    - 96.0%
+    - 4.5 years
+    - Well-Staggered Lease Expiry Profile
+    as_of: '2026-09-30'
+  - topic: ocean_financial_centre_property
+    pdf_pages:
+    - 29
+    printed_pages:
+    - '29'
+    check_terms:
+    - 697,194 sf
+    - 13 Dec 2110
+    - S$2,301.1m
+    - 3.40%
+    as_of: '2026-09-30'
+  - topic: proposed_acquisition
+    pdf_pages:
+    - 4
+    printed_pages:
+    - '4'
+    check_terms:
+    - Keppel South Central
+    - 51.0%
+    - 39.2%
+  period_end: '2026-09-30'
+  listing_url: https://www.keppelreit.com/investor-relations/financial-information/financial-results/
+  limitations:
+  - Business update, not complete interim financial statements; no balance sheet or DPU.
+  - Keep actual 40.5% aggregate leverage separate from the 39.2% pro forma figure for the proposed Keppel South
+    Central acquisition.
+  - OFC valuation and capitalisation rate on slide 29 are as at 31 Dec 2025, not 30 Sep 2026.
+- id: kreit-mrel3q2026
+  file: media-release-3q2026.pdf
+  catalogue_type: *id001
+  title: 'Media release: Keppel REIT Key Business and Operational Updates for the Third Quarter of 2026 and Nine
+    Months Ended 30 September 2026'
+  url: https://www.keppelreit.com/file/mrel-kreit-3q-2026-financial-highlights.pdf
+  publisher: Keppel REIT Management Limited
+  date: '2026-10-28'
+  retrieved_at: '2026-11-12'
+  pages: 5
+  sha256: 9fe52c47e0a7e275782ce6927f0958520f785af9efa9a9fdd8c11dad5dd6be98
+  bytes: 256980
+  media_type: application/pdf
+  entity: Keppel REIT
+  kind: media_release
+  origin: public
+  synthetic: false
+  ca_confirmed: false
+  evidence:
+  - topic: summary_of_results
+    pdf_pages:
+    - 2
+    printed_pages:
+    - '2'
+    check_terms:
+    - '238.2'
+    - '181.8'
+    - '194.9'
+    as_of: '2026-09-30'
+  - topic: capital_management_and_portfolio_changes
+    pdf_pages:
+    - 3
+    printed_pages:
+    - '3'
+    check_terms:
+    - 40.5%
+    - 2.8 times
+    - KR Ginza II
+    - T Tower
+    - Keppel South Central
+    as_of: '2026-09-30'
+  period_end: '2026-09-30'
+  listing_url: https://www.keppelreit.com/investor-relations/financial-information/financial-results/
+- id: kreit-sp-withdrawal2015
+  file: announcement-sp-rating-withdrawal-20150910.pdf
+  catalogue_type:
+    id: null
+    name: 'Suggested: external rating evidence (historical, withdrawn)'
+    scope: external_only
+  title: 'Announcement: Corporate Credit Rating Update (S&P rating withdrawn at Manager request; final BBB, stable)'
+  url: https://links.sgx.com/1.0.0/corporate-announcements/M95H958WQ1W9K2M9/369300_Announcement%20-%20Corporate%20Credit%20Rating%20Update.pdf
+  publisher: Keppel REIT Management Limited
+  date: '2015-09-10'
+  retrieved_at: '2026-11-12'
+  pages: 2
+  sha256: 886828e1d6f9c1464cba319c4529dd0615a086c9583c4d33ff131d5f30f35346
+  bytes: 144342
+  media_type: application/pdf
+  entity: Keppel REIT
+  kind: exchange_announcement
+  origin: public
+  synthetic: false
+  ca_confirmed: false
+  evidence:
+  - topic: sp_rating_withdrawal
+    pdf_pages:
+    - 1
+    printed_pages:
+    - '1'
+    check_terms:
+    - withdraw
+    - BBB
+    - axA
+    - stable outlook
+    - Baa2
+    - 10 September 2015
+    as_of: '2015-09-10'
+  satisfies_internal_rating: false
+  rating_status: withdrawn
+  limitations:
+  - Historical. Not a current rating. Not an agency report.
+- id: kreit-moodys-withdrawal2016
+  file: announcement-moodys-rating-withdrawal-20160930.pdf
+  catalogue_type:
+    id: null
+    name: 'Suggested: external rating evidence (historical, withdrawn)'
+    scope: external_only
+  title: 'Announcement: Corporate Credit Rating Update (Moody''s rating withdrawn at Manager request; Baa3, stable
+    at withdrawal)'
+  url: https://links.sgx.com/1.0.0/corporate-announcements/B7CGB5VIP4Y8HROL/423108_Announcement%20-%20Corporate%20Credit%20Rating%20Update_30Sep2016.pdf
+  publisher: Keppel REIT Management Limited
+  date: '2016-09-30'
+  retrieved_at: '2026-11-12'
+  pages: 2
+  sha256: 2dfe31f75ac3e91d26215ee5f6657adb0072ba65c9d45513f12a1ae0d174d054
+  bytes: 36207
+  media_type: application/pdf
+  entity: Keppel REIT
+  kind: exchange_announcement
+  origin: public
+  synthetic: false
+  ca_confirmed: false
+  evidence:
+  - topic: moodys_rating_withdrawal
+    pdf_pages:
+    - 1
+    printed_pages:
+    - '1'
+    check_terms:
+    - withdraw
+    - Baa3
+    - stable outlook
+    - without the requirement for a credit rating
+    - 30 September 2016
+    as_of: '2016-09-30'
+  satisfies_internal_rating: false
+  rating_status: withdrawn
+  limitations:
+  - Historical. Not a current rating. Not an agency report.
+external_rating:
+  current_public_issuer_rating: null
+  finding: No current public issuer rating verified. S&P BBB/stable withdrawn 10 Sep 2015 and Moody's Baa3/stable
+    withdrawn 30 Sep 2016, both at the Manager's request.
+  see: facts.yaml section credit_rating
+non_pdf_evidence:
+- path: photos/
+  index: photos/credits.yaml
+- path: map/location_map.png
+  index: map/location.yaml
+- path: facts.yaml
+- path: NOTES.md
+unfilled_private_inputs:
+- Full secured-property valuation report for Ocean Financial Centre
+- Ocean Financial Centre lease schedule and rent roll
+- Insurance report
+- Internal credit rating
+- CAS and synthetic facility term sheet
+- Account conduct and covenant monitoring reports
+- Title and encumbrance search for Ocean Financial Centre; Ocean Properties LLP partnership and option deeds
+freshness_checks:
+- url: https://www.keppelreit.com/investor-relations/publications/
+  checked_at: '2026-11-12'
+  result: Annual Report 2025 (keppel-reit-ar25.pdf) is the latest annual report listed.
+- url: https://www.keppelreit.com/investor-relations/financial-information/financial-results/
+  checked_at: '2026-11-12'
+  result: 3Q 2026 presentation and media release dated 28 October 2026 are the latest results items listed; 1H 2026
+    unaudited results dated 29 July 2026 are the latest financial statements.

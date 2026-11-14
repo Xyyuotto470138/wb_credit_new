@@ -1,0 +1,263 @@
+# FIG Executive Summary specification, version 1.0 (12 Nov 2026).
+# One source for: the Word template (scripts/build_template_fig_v1.py), what the drafting model is asked for,
+# what Python computes, the export fill and the on-screen section layout.
+# Built from the project owner's v0.2 template edits and notes, laid out to common wholesale credit paper practice.
+#
+# Part types:  narrative | table | keyvalue | choice | image
+# fill:        model     the drafting model writes it, every statement cited to a source page
+#              extract   the model copies figures from a cited source line; Python checks each figure against that line
+#              python    computed by code from extracted figures or structured workbooks (never written by a model)
+#              case      case set-up inputs
+#              ca        the credit analyst's own input
+#              workflow  recorded by the approval workflow
+#              asset     a saved file (photograph, map, chart)
+# only_when:   existing_client -> for a new-to-bank borrower the part states "Not applicable: new to bank".
+# uses_sections:  sections whose wording the model is given for this part.
+# reads_sections: sections whose calculated tables this part's calculation reads. Used to order updates after new information.
+version: fig-es-1.0
+team_label: FIG
+template: templates/ES_Template_FIG_v1.0.docx
+unit_note: "Amounts in SGD'000 unless stated."
+cover:
+  key: cover
+  type: keyvalue
+  fill: case
+  pairs:
+  - [Borrower(s) and CAS no., Paper type]
+  - [Obligor group, Review type]
+  - [Country of risk, Industry]
+  - [Internal rating (CRR), External rating]
+  - [Total proposed limits, Relationship manager]
+  - [Credit analyst, Date of paper]
+  options:
+    Paper type: [GRM paper, FRM paper, Standalone]
+    Review type: [New, Renewal, Interim review]
+sections:
+- id: 1
+  parts:
+  - {key: cover_facts, type: keyvalue, hidden: true, fill: model,
+     find: [cas, obligor, country, industry, relationship manager, paper],
+     rows: [CAS number, Obligor group, Country of risk, Industry, Relationship manager, Paper type]}
+  - {key: request, type: narrative, title: Requests, fill: model,
+     guidance: "Summarise the request in line with the CAS: borrower, facilities, amounts, tenor and purpose.",
+     find: [request, facility, purpose, term loan, revolving, refinance]}
+  - {key: justification, type: narrative, title: Justifications, fill: model,
+     guidance: "Provide the justification for the request: relationship rationale, use of proceeds and why the structure is appropriate.",
+     find: [rationale, justification, relationship, support, wallet, returns]}
+  - {key: classification, type: table, title: Account classification, fill: model, only_when: existing_client, repeat: true, seed_rows: 1,
+     guidance: "Complete if the borrower is on Watchlist or Special Mention, or if the classification is changing. Attach the relevant extract of the last approved CAS.",
+     columns: [Borrower / group, Current classification, Date of classification, Proposed classification, Root cause and mitigation, Account strategy and timeline]}
+  - {key: sm_dpd, type: choice, fill: model, only_when: existing_client,
+     questions: ["Is the borrower an existing or to-be-downgraded Special Mention account with current DPD above 45 calendar days?", "If yes, is a letter of demand to be issued?"],
+     options: ["Yes", "No"]}
+- id: 2
+  parts:
+  - {key: exposure, type: table, title: "Existing and proposed limits (SGD'000)", fill: extract, repeat: true, seed_rows: 2, total: Total obligor group,
+     guidance: "Limits approved and taken for the obligor group. State \"Nil, new to bank\" for existing limits where there is no relationship.",
+     find: [facility, limit, amount, maturity, tenor, secured, unsecured],
+     columns: [{name: Borrower}, {name: Facility, hint: "Facility id and type, at most four words"}, {name: Existing, kind: amount, total: sum, nil_when_new: true}, {name: Drawn, kind: amount, total: sum, nil_when_new: true}, {name: Proposed, kind: amount, total: sum}, {name: Change, kind: amount, compute: "Proposed - Existing", total: sum}, {name: Maturity, hint: "Final maturity date only"}, {name: Security, hint: "Secured or Unsecured, one word"}, {name: Limit cap, kind: amount, hint: "The bank's internal limit cap for the borrower or obligor group, if the papers state one"}]}
+  - {key: exposure_notes, type: narrative, title: Notes, fill: model,
+     guidance: "Note any excesses, temporary limits, limits pending cancellation, or exposure of other lenders that is material.",
+     find: [excess, temporary, cancel, limit cap, single borrower, exposure]}
+- id: 3
+  parts:
+  - {key: key_updates, type: narrative, title: Summary, fill: model,
+     guidance: "Latest developments since the last review that affect the assessment. For a new borrower, state that there is no prior review and refer to section 4.",
+     find: [announcement, update, development, acquisition, divestment, rating action]}
+  - {key: update_matrix, type: table, title: Areas updated since the last review, fill: model, repeat: true, seed_rows: 1,
+     guidance: "Y where there is an update in the area. The last column is Yes for an existing borrower with no update in all five areas, and for a new borrower.",
+     columns: [Borrower, Business background, Key management and shareholders, Facility structure, Security support, Source of repayment, No updates to report]}
+  - {key: prior_conditions, type: table, title: Status of prior approval conditions and credit comments, fill: model, only_when: existing_client, repeat: true, seed_rows: 1,
+     columns: [No., Prior approval condition or credit comment, Status, Evidence or comment]}
+- id: 4
+  parts:
+  - {key: profile, type: keyvalue, title: Borrower profile, fill: model,
+     find: [constituted, listed, trust deed, manager, trustee, sponsor, principal activity, website],
+     rows: [Borrower, Date of constitution and listing, Listing exchange, Industry code, Principal activities, Manager and sponsor, Trustee, Website]}
+  - {key: overview, type: narrative, title: Overview, fill: model,
+     guidance: "Business model, portfolio, key markets, competitive position and strategy.",
+     find: [portfolio, strategy, assets under management, grade a, office, markets, overview]}
+  - {key: peers, type: narrative, title: Industry and peer comparison, fill: model,
+     guidance: "Market conditions for the borrower's sector and how the borrower compares with peers on scale, leverage and performance.",
+     find: [market review, office market, rents, vacancy, supply, peers, industry, outlook]}
+  - {key: business_updates, type: narrative, title: Business updates and recent developments, fill: model,
+     guidance: "Material developments in the last twelve months: acquisitions, divestments, capital management, leasing and rating actions.",
+     find: [acquisition, divestment, announcement, completed, business update, leasing, capital management]}
+  - {key: portfolio, type: table, title: Portfolio summary, fill: extract, repeat: true, seed_rows: 2,
+     guidance: "For REITs, property funds and property backed borrowers.",
+     find: [portfolio, property, valuation, occupancy, interest, net lettable area, attributable], pages: 18,
+     columns: [{name: Property}, {name: Location}, {name: Interest held}, {name: Valuation (SGD m), kind: number}, {name: Valuation date}, {name: Committed occupancy (%), kind: number}]}
+  - {key: property, type: keyvalue, title: "Financing object: property profile", fill: model,
+     find: [ocean financial centre, ocean properties, collyer quay, tenure, leasehold, net lettable area, occupancy, valuation, green mark, completed],
+     rows: [Property, Address, Property type and grade, Ownership interest and holding entity, Land tenure, Year of completion, Net lettable area, Committed occupancy, Latest valuation, Green certification]}
+  - {key: photos, type: image, title: Photographs of the financing object, fill: asset, slots: 2, asset: property_photos}
+  - {key: map, type: image, title: Location, fill: asset, slots: 1, asset: location_map}
+  - {key: key_tenants, type: table, title: Key tenants of the financing object, fill: python, compute: key_tenants, repeat: true, seed_rows: 2,
+     columns: [Key tenant, Leased area (sq ft), "% of net lettable area", "% of rental income", Lease expiry]}
+  - {key: concentration, type: table, title: Concentration risk, fill: model, repeat: true, seed_rows: 1,
+     find: [top tenants, concentration, single tenant, sector, geographic, largest],
+     columns: [Concentration risk (if any), Mitigation]}
+- id: 5
+  parts:
+  - {key: holders, type: table, title: Substantial unitholders, fill: extract, repeat: true, seed_rows: 3,
+     find: [substantial unitholders, unitholdings, deemed interest, direct interest, statistics of unitholdings],
+     columns: [{name: Shareholder or unitholder}, {name: Holding (%), kind: number}, {name: Remarks}]}
+  - {key: structure_chart, type: image, title: Group structure, fill: asset, slots: 1, asset: structure_chart}
+  - {key: ownership, type: narrative, title: Ownership and support, fill: model,
+     guidance: "State the ultimate parent or sponsor, its support for the borrower, and any change in shareholding.",
+     find: [sponsor, keppel, substantial unitholder, deemed interest, trust structure, manager]}
+- id: 6
+  parts:
+  - {key: management, type: table, title: Key management, fill: model, repeat: true, seed_rows: 3,
+     find: [chief executive officer, chief financial officer, board of directors, chairman, management team, appointed],
+     columns: [Name, Designation, Experience, Remarks]}
+  - {key: stakeholders, type: table, title: Key stakeholders, fill: model, repeat: true, seed_rows: 3,
+     find: [sponsor, manager, trustee, property manager],
+     columns: [Stakeholder, Role, Relationship or comment]}
+  - {key: management_changes, type: narrative, title: Changes and governance, fill: model,
+     guidance: "Recent changes in the board, management or key stakeholders, and any governance matters.",
+     find: [appointed, resigned, retired, changes to the board, corporate governance]}
+- id: 7
+  parts:
+  - {key: facilities, type: table, title: Proposed facility terms, fill: model, facility_columns: true,
+     guidance: "Proposed terms for each facility.",
+     find: [facility, amount, purpose, tenor, maturity, availability, repayment, margin, fee, security, covenant, conditions],
+     rows: [Borrower, Facility type, Currency and amount, Purpose, Tenor and final maturity, Availability period, Repayment, Pricing (margin and fees), Security, Financial covenants, Other key terms and conditions]}
+- id: 8
+  parts:
+  - {key: security_type, type: choice, title: Security status, fill: model, options: [Secured, Partially secured, Unsecured],
+     find: [security, mortgage, unsecured, negative pledge]}
+  - {key: security_basis, type: narrative, title: Security structure, fill: model,
+     guidance: "Describe the security package and its ranking. If any facility is unsecured, state the basis, for example negative pledge and pari passu undertaking.",
+     find: [mortgage, assignment, charge, negative pledge, pari passu, ranking, perfection]}
+  - {key: security, type: table, title: Security and support, fill: extract, repeat: true, seed_rows: 2,
+     find: [market value, valuation, valuer, mortgage, assignment, basis of valuation],
+     columns: [{name: Security or support}, {name: Description}, {name: Value (SGD m), kind: amount_m}, {name: Valuer and date}, {name: Basis}, {name: Remarks}]}
+  - {key: ltv, type: table, title: Loan to value, fill: extract,
+     find: [loan to value, ltv, market value, secured, term loan, covenant],
+     columns: [{name: Measure}, {name: Secured facility (SGD m), kind: amount_m}, {name: Security value (SGD m), kind: amount_m},
+               {name: LTV (%), kind: percent, compute: "Secured facility (SGD m) / Security value (SGD m) * 100"},
+               {name: LTV covenant (%), kind: number}, {name: Headroom (pp), kind: percent, compute: "LTV covenant (%) - LTV (%)"}],
+     rows: [At proposed limit]}
+  - {key: insurance, type: keyvalue, title: Insurance, fill: model,
+     find: [insurer, sum insured, policy, coverage, expiry, loss payee, mortgagee],
+     rows: [Insurer, Sum insured, Coverage, Period of insurance, Bank's interest noted]}
+- id: 9
+  parts:
+  - {key: primary, type: narrative, title: Primary source, fill: model,
+     guidance: "For example net property income from the financing object and the borrower's operating cash flow.",
+     find: [net property income, rental income, operating cash flow, repayment, debt service]}
+  - {key: secondary, type: narrative, title: Secondary source, fill: model,
+     guidance: "For example refinancing, asset disposal, sponsor support or enforcement of security.",
+     find: [refinancing, divestment, undrawn facilities, sponsor, security, market access, medium term note]}
+  - {key: debt_service, type: table, title: Debt service capacity of the financing object, fill: python, compute: debt_service,
+     columns: [SGD'000, "Projected FY[  ]", "Projected FY[  ]", "Projected FY[  ]", Remarks],
+     rows: [Net property income, Interest expense, Interest coverage (x), Scheduled principal, Debt service coverage (x)]}
+  - {key: lease_profile, type: table, title: Lease expiry profile of the financing object, fill: python, compute: lease_profile, repeat: true, seed_rows: 4,
+     columns: [Year, "% of gross rental income", "% of net lettable area"]}
+  - {key: tenants, type: table, title: Top tenants of the financing object, fill: python, compute: top_tenants, repeat: true, seed_rows: 3,
+     columns: [Tenant, Trade sector, "% of gross rental income", Lease expiry]}
+- id: 10
+  parts:
+  - {key: pl, type: table, title: Profit and loss highlights, fill: extract,
+     guidance: "Group figures from the financial statements.",
+     find: [statement of total return, gross revenue, property income, net property income, finance costs, distributable income, distribution per unit, total return],
+     periods: 2, interim: true, value_kind: amount, row_kinds: {"Distribution per unit (cents)": number},
+     columns: ["Profit and loss, SGD'000", "FY[  ]", "FY[  ]", Change (%), Interim, Remarks],
+     rows: [Gross revenue (property income), Property expenses, Net property income, Finance costs, Total return before tax, Distributable income, Distribution per unit (cents)]}
+  - {key: bs, type: table, title: Balance sheet highlights, fill: extract,
+     find: [balance sheet, statement of financial position, investment properties, total assets, borrowings, total liabilities, unitholders' funds, net asset value per unit, cash and bank balances],
+     periods: 2, interim: true, value_kind: amount, row_kinds: {"Net asset value per unit (SGD)": number},
+     columns: ["Balance sheet, SGD'000", "FY[  ]", "FY[  ]", Change (%), Interim, Remarks],
+     rows: [Investment properties, Cash and bank balances, Total assets, Total borrowings, Total liabilities, Unitholders' funds, Net asset value per unit (SGD)]}
+  - {key: changes, type: narrative, title: Major changes in profit and loss and balance sheet, fill: model,
+     guidance: "Explain the significant year-on-year movements in the tables above.",
+     find: [increase, decrease, due to, higher, lower, mainly, compared to, year-on-year]}
+  - {key: segmental, type: table, title: Segmental performance, fill: extract, repeat: true, seed_rows: 2, total: Total,
+     guidance: "If applicable. Net property income by segment or asset class.",
+     find: [segment, operating segments, net property income by, asset class],
+     periods: 2, value_kind: amount,
+     columns: [Segment, "FY[  ]", "FY[  ]", Change (%), "% of total", Remarks]}
+  - {key: geographic, type: table, title: Geographic performance, fill: extract, repeat: true, seed_rows: 2, total: Total,
+     guidance: "If applicable. Net property income by country.",
+     find: [geographical, by country, singapore, australia, south korea, japan, segment],
+     periods: 2, value_kind: amount,
+     columns: [Country or region, "FY[  ]", "FY[  ]", Change (%), "% of total", Remarks]}
+  - {key: ratios, type: table, title: Analytics, fill: extract,
+     find: [aggregate leverage, interest coverage, cost of debt, term to maturity, fixed rate, committed occupancy, weighted average lease expiry],
+     periods: 2, interim: true, value_kind: number,
+     columns: [Measure, "FY[  ]", "FY[  ]", Interim, Remarks],
+     rows: [Aggregate leverage (%), Interest coverage (x), Average cost of debt (%), Weighted average term to maturity of debt (years), Fixed rate borrowings (%), Portfolio committed occupancy (%), Portfolio WALE (years)]}
+  - {key: analysis, type: narrative, title: Financial analysis, fill: model,
+     guidance: "Profitability, balance sheet strength, leverage, liquidity and debt maturity, with the reasons for the main movements.",
+     find: [capital management, liquidity, debt maturity, refinancing, leverage, interest coverage, undrawn]}
+  - {key: covenants, type: table, hidden: true, fill: extract, repeat: true,
+     guidance: "Financial covenants in the proposed facility terms. Direction is max or min. Latest actual is the borrower's latest reported figure for the same measure, if disclosed.",
+     find: [financial covenants, covenant, not exceed, not less than, aggregate leverage, interest coverage, loan to value],
+     columns: [{name: Covenant}, {name: Requirement}, {name: Threshold, kind: number}, {name: Direction}, {name: Latest actual, kind: number}]}
+  - {key: headroom, type: table, title: Headroom to regulatory limits and financial covenants, fill: python, compute: headroom, repeat: true, seed_rows: 2, reads_sections: [8],
+     regulatory: [{measure: "Aggregate leverage (MAS limit)", row: "Aggregate leverage (%)", limit: "50", direction: max, unit: "%"},
+                  {measure: "Interest coverage (MAS minimum)", row: "Interest coverage (x)", limit: "1.5", direction: min, unit: x}],
+     columns: [Measure, Limit or covenant, Actual, Headroom, Status]}
+  - {key: sensitivity, type: table, title: Interest coverage sensitivity, fill: extract,
+     find: [sensitivity, 10% decrease in ebitda, 100 basis point, interest coverage ratio, adjusted interest coverage],
+     columns: [Scenario, Interest coverage (x), Remarks],
+     rows: [As reported, 10% decrease in EBITDA, 100 bp increase in interest rates]}
+  - {key: cashflow_intro, type: narrative, title: Cash flow projection and analysis, fill: model,
+     guidance: "Scope of the projection, the base case and the stress cases, and what they show about repayment capacity.",
+     find: [projection, base case, stress, assumption, debt service, refinancing]}
+  - {key: cashflow_base, type: table, title: Base case, fill: python, compute: cashflow_base,
+     columns: ["SGD'000", "Projected FY[  ]", "Projected FY[  ]", "Projected FY[  ]", Remarks],
+     rows: [Gross revenue, Net property income, Capital expenditure, Interest expense, Scheduled debt repayment, Cash available for debt service, Debt service coverage (x), Interest coverage (x)]}
+  - {key: stress_cases, type: table, title: Stress cases, fill: python, compute: stress_cases, repeat: true, seed_rows: 3,
+     columns: [Scenario, Stress applied, Minimum DSCR (x), Minimum interest coverage (x), Outcome]}
+  - {key: assumptions, type: table, title: Assumptions and basis, fill: python, compute: assumptions, repeat: true, seed_rows: 4,
+     columns: [Assumption, Base case, Stress case, Basis for assumption]}
+  - {key: intercompany, type: table, title: Inter-company debts, fill: model, repeat: true, seed_rows: 1,
+     find: [related party, inter-company, intercompany, loans from, amounts due to, sponsor loan, subsidiaries],
+     columns: [Borrower, Inter-company debts (Yes / No), Comments]}
+  - {key: fx_checklist, type: table, title: FX risk checklist, fill: model,
+     find: [foreign currency, exchange rate, hedge, hedging, australian dollar, korean won, japanese yen, natural hedge, cross currency],
+     columns: [FX risk check, Yes / No, Comments],
+     rows: ["No or insignificant FX risk: revenue, costs and borrowings are in the same currency", "Mismatch between revenue currency and cost currency", "Mismatch between revenue currency and borrowing currency", "Mismatch between asset currency and liability currency (balance sheet translation)", "Facility currency differs from the currency of the repayment source", "Natural hedge in place (matching currency income, assets or borrowings)", "Financial hedges in place (forwards, cross currency swaps) under a stated hedging policy", "Unhedged exposure is material to debt service or financial covenants"]}
+  - {key: commentary, type: narrative, title: Conclusion on financial standing, fill: model,
+     guidance: "Overall view of financial standing and outlook.",
+     find: [outlook, looking ahead, capital management, rating, financial flexibility]}
+- id: 11
+  parts:
+  - {key: risks, type: table, title: Key credit risks and mitigants, fill: model, repeat: true, seed_rows: 4, uses_sections: [3, 4, 5, 6, 7, 8, 9, 10],
+     find: [risk, refinancing, occupancy, valuation, interest rate, concentration, lease expiry, supply],
+     columns: [No., Key risk, Description, Mitigants]}
+- id: 12
+  parts:
+  - {key: internal_rating, type: table, title: Internal rating, fill: python, compute: internal_rating, repeat: true, seed_rows: 1,
+     columns: [Borrower, Current CRR, Previous rating, Rating date, Change and reason]}
+  - {key: external_ratings, type: table, title: External ratings, fill: model, repeat: true, seed_rows: 1,
+     find: [rating, s&p, standard & poor, moody, fitch, outlook, issuer credit rating, bbb],
+     columns: [Agency, Rating, Outlook, Date, Source]}
+  - {key: rating_comment, type: narrative, title: Rating commentary, fill: model,
+     guidance: "What the external rating reflects. External ratings do not replace the internal rating.",
+     find: [rating, outlook, affirmed, assigned, credit profile]}
+- id: 13
+  parts:
+  - {key: conduct, type: table, title: Account conduct in the past 12 months, fill: python, compute: conduct, only_when: existing_client, repeat: true, seed_rows: 1,
+     columns: [Facility, Limit, Peak utilisation, Average utilisation, Excesses, Past dues, Remarks]}
+  - {key: compliance, type: table, title: Covenant compliance, fill: python, compute: compliance, only_when: existing_client, repeat: true, seed_rows: 1,
+     columns: [Covenant, Requirement, Last tested, Actual, Compliant]}
+  - {key: adverse, type: choice, title: Adverse information, fill: model, questions: ["Any adverse findings from public records or market sources?"], options: ["Yes", "No"],
+     find: [litigation, legal proceedings, default, breach, sanction, investigation, material litigation]}
+  - {key: conduct_note, type: narrative, title: Comments, fill: model,
+     guidance: "For a new borrower, state that there is no account history with the Bank and note any adverse public information.",
+     find: [litigation, default, breach, covenant, compliance]}
+- id: 14
+  parts:
+  - {key: recommendation, type: narrative, title: Basis of recommendation, fill: model, uses_sections: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+     guidance: "Summarise the basis of the recommendation, weighing the key risks against the mitigants. The wording follows the credit analyst's stated position.",
+     find: [recommend, support, risk, mitigant]}
+  - {key: recommendation_choice, type: choice, title: Recommendation, fill: ca, options: [Recommended for approval, Recommended with conditions, Not recommended]}
+  - {key: conditions, type: table, title: Conditions and covenants, fill: model, repeat: true, seed_rows: 2,
+     find: [conditions precedent, condition subsequent, covenant, undertaking, before drawdown],
+     columns: [No., Condition or covenant, Timing]}
+  - {key: signoff, type: table, title: Sign-off, fill: workflow,
+     columns: [Role, Name, Decision, Date],
+     rows: ["Prepared by: Credit Analyst", "Reviewed and supported by: Credit Head", "Approved by: Credit Approver"]}

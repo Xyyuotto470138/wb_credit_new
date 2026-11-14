@@ -1,0 +1,349 @@
+{
+  "version": "0020a-reviewed-synthesis-v2",
+  "label": "SYNTHETIC DEMO DATA where labelled; public sources retain provenance",
+  "claims": [
+    {
+      "id": "repayment-assumptions",
+      "section_id": 9,
+      "content_hash": "f01d72f39c7ec35d43f76f7ae5e24568643f179672ccf6108caf9072c673c069",
+      "filename": "projections.xlsx",
+      "page": 2,
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "quotes": [
+        "Scenario only. No group financial forecast; published portfolio totals are unchanged.",
+        "Refinancing at maturity",
+        "Not committed",
+        "Lease renewals",
+        "Assumed at same rents",
+        "no renewals are committed"
+      ],
+      "text": "Primary repayment is assessed against the supplied property cash-flow scenario. The forecast assumes lease renewals at unchanged rents; these renewals are not committed. Secondary repayment through refinancing is not committed and no refinancing receipt is assumed. This property scenario does not establish consolidated group repayment capacity.",
+      "subpart": "Primary and secondary repayment"
+    },
+    {
+      "id": "repayment-tenants",
+      "section_id": 9,
+      "content_hash": "ed4c44a62cdf386dcdaa8a05d99dae38871da45157e0f2743e45d30a3f4b7147",
+      "filename": "rent_roll.xlsx",
+      "page": 1,
+      "source_period": "2026-10-31",
+      "entity": "ESR-REIT",
+      "quotes": [
+        "Rent roll for 16 Tai Seng Street",
+        "At 31 Oct 2026.",
+        "Demo Tenant A",
+        "2027-04-30",
+        "Vacant"
+      ],
+      "text": "The fictional property rent roll is a snapshot at 31 October 2026, with vacant space and Demo Tenant A's lease expiring on 30 April 2027. Renewal and reletting assumptions require review before relying on this rental stream for repayment; the rent roll does not evidence committed future renewals.",
+      "subpart": "Primary and secondary repayment"
+    },
+    {
+      "id": "lease-risk",
+      "section_id": 11,
+      "content_hash": "b47f5026458f43fc25b64e4a5d5032651f7a9386cf2610a1be4a19c562c6cf3f",
+      "filename": "lease_profile.xlsx",
+      "page": 1,
+      "source_period": "2026-10-31",
+      "entity": "ESR-REIT",
+      "quotes": [
+        "Lease expiry profile for 16 Tai Seng Street",
+        "At 31 Oct 2026.",
+        "Expiry year",
+        "2027",
+        "Vacant"
+      ],
+      "text": "Lease expiry and vacancy risk: the supplied property profile contains expiring rent and vacant area. Mitigant review: obtain evidence of renewals and reletting before treating forecast rental continuity as secured.",
+      "subpart": "Risks and mitigants"
+    },
+    {
+      "id": "conclusion-commercial-gaps",
+      "section_id": 14,
+      "content_hash": "dbfeb8dae8ba8fadd1730c633d411f164283db3704096684e2934ab80711986d",
+      "filename": "pricing.pdf",
+      "page": 1,
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "quotes": [
+        "No live SORA fixing, RAROC, funding cost or profitability hurdle is supplied.",
+        "The RM supports review of the request; the CA must state the current position independently."
+      ],
+      "text": "The supplied pricing report leaves the live SORA fixing, RAROC, funding cost and profitability hurdle as named gaps. Commercial returns require completion before assessing the pricing case.",
+      "subpart": "Conditions and covenants"
+    },
+    {
+      "content_hash": "ed4c44a62cdf386dcdaa8a05d99dae38871da45157e0f2743e45d30a3f4b7147",
+      "filename": "rent_roll.xlsx",
+      "page": 1,
+      "source_period": "2026-10-31",
+      "entity": "ESR-REIT",
+      "id": "top-tenants",
+      "section_id": 9,
+      "text": "At 31 October 2026, Demo Tenant A (testing and certification) accounts for {share_a}% of contractual annual rent, expiring 30 April 2027; Demo Tenant B (light industrial), {share_b}%, expires 31 October 2029; Demo Tenant C (business services), {share_c}%, expires 31 October 2030. The near-term concentration in Tenant A makes renewal or reletting material to repayment.",
+      "quotes": [
+        "Demo Tenant A Testing and certification 5000 150000 1800000 2027-04-30",
+        "Demo Tenant B Light industrial 3000 90000 1080000 2029-10-31",
+        "Demo Tenant C Business services 1632 50000 600000 2030-10-31",
+        "Vacant Not applicable 9555 0 0"
+      ],
+      "subpart": "Top tenants",
+      "numbers": {
+        "a": {
+          "token": "1800000",
+          "quote": "Demo Tenant A Testing and certification 5000 150000 1800000 2027-04-30",
+          "unit": "currency",
+          "currency": "SGD"
+        },
+        "b": {
+          "token": "1080000",
+          "quote": "Demo Tenant B Light industrial 3000 90000 1080000 2029-10-31",
+          "unit": "currency",
+          "currency": "SGD"
+        },
+        "c": {
+          "token": "600000",
+          "quote": "Demo Tenant C Business services 1632 50000 600000 2030-10-31",
+          "unit": "currency",
+          "currency": "SGD"
+        },
+        "share_a": {
+          "token": "1800000",
+          "quote": "Demo Tenant A Testing and certification 5000 150000 1800000 2027-04-30",
+          "unit": "percent",
+          "op": "share_of_sum",
+          "numerator": "a",
+          "operands": [
+            "a",
+            "b",
+            "c"
+          ],
+          "format": ".2f"
+        },
+        "share_b": {
+          "token": "1080000",
+          "quote": "Demo Tenant B Light industrial 3000 90000 1080000 2029-10-31",
+          "unit": "percent",
+          "op": "share_of_sum",
+          "numerator": "b",
+          "operands": [
+            "a",
+            "b",
+            "c"
+          ],
+          "format": ".2f"
+        },
+        "share_c": {
+          "token": "600000",
+          "quote": "Demo Tenant C Business services 1632 50000 600000 2030-10-31",
+          "unit": "percent",
+          "op": "share_of_sum",
+          "numerator": "c",
+          "operands": [
+            "a",
+            "b",
+            "c"
+          ],
+          "format": ".2f"
+        }
+      }
+    },
+    {
+      "content_hash": "b47f5026458f43fc25b64e4a5d5032651f7a9386cf2610a1be4a19c562c6cf3f",
+      "filename": "lease_profile.xlsx",
+      "page": 1,
+      "source_period": "2026-10-31",
+      "entity": "ESR-REIT",
+      "id": "lease-expiries",
+      "section_id": 9,
+      "text": "The property lease schedule at 31 October 2026 shows {rent_a}% of rent expiring in 2027, {rent_b}% in 2029 and {rent_c}% in 2030. The corresponding shares of total net lettable area are {area_a}%, {area_b}% and {area_c}%; vacant space is {vacancy}% of total area. Vacancy and expiring rent limit reliance on unchanged-rent renewal assumptions.",
+      "quotes": [
+        "2027 1800000 5000",
+        "2028 0 0",
+        "2029 1080000 3000",
+        "2030 600000 1632",
+        "Vacant 0 9555"
+      ],
+      "subpart": "Lease expiry profile",
+      "numbers": {
+        "a": {
+          "token": "1800000",
+          "quote": "2027 1800000 5000",
+          "unit": "currency",
+          "currency": "SGD"
+        },
+        "b": {
+          "token": "1080000",
+          "quote": "2029 1080000 3000",
+          "unit": "currency",
+          "currency": "SGD"
+        },
+        "c": {
+          "token": "600000",
+          "quote": "2030 600000 1632",
+          "unit": "currency",
+          "currency": "SGD"
+        },
+        "a_area": {
+          "token": "5000",
+          "quote": "2027 1800000 5000",
+          "unit": "sqm"
+        },
+        "b_area": {
+          "token": "3000",
+          "quote": "2029 1080000 3000",
+          "unit": "sqm"
+        },
+        "c_area": {
+          "token": "1632",
+          "quote": "2030 600000 1632",
+          "unit": "sqm"
+        },
+        "vacant_area": {
+          "token": "9555",
+          "quote": "Vacant 0 9555",
+          "unit": "sqm"
+        },
+        "rent_a": {
+          "token": "1800000",
+          "quote": "2027 1800000 5000",
+          "unit": "percent",
+          "op": "share_of_sum",
+          "numerator": "a",
+          "operands": [
+            "a",
+            "b",
+            "c"
+          ],
+          "format": ".2f"
+        },
+        "rent_b": {
+          "token": "1080000",
+          "quote": "2029 1080000 3000",
+          "unit": "percent",
+          "op": "share_of_sum",
+          "numerator": "b",
+          "operands": [
+            "a",
+            "b",
+            "c"
+          ],
+          "format": ".2f"
+        },
+        "rent_c": {
+          "token": "600000",
+          "quote": "2030 600000 1632",
+          "unit": "percent",
+          "op": "share_of_sum",
+          "numerator": "c",
+          "operands": [
+            "a",
+            "b",
+            "c"
+          ],
+          "format": ".2f"
+        },
+        "area_a": {
+          "token": "5000",
+          "quote": "2027 1800000 5000",
+          "unit": "percent",
+          "op": "share_of_sum",
+          "numerator": "a_area",
+          "operands": [
+            "a_area",
+            "b_area",
+            "c_area",
+            "vacant_area"
+          ],
+          "format": ".2f"
+        },
+        "area_b": {
+          "token": "3000",
+          "quote": "2029 1080000 3000",
+          "unit": "percent",
+          "op": "share_of_sum",
+          "numerator": "b_area",
+          "operands": [
+            "a_area",
+            "b_area",
+            "c_area",
+            "vacant_area"
+          ],
+          "format": ".2f"
+        },
+        "area_c": {
+          "token": "1632",
+          "quote": "2030 600000 1632",
+          "unit": "percent",
+          "op": "share_of_sum",
+          "numerator": "c_area",
+          "operands": [
+            "a_area",
+            "b_area",
+            "c_area",
+            "vacant_area"
+          ],
+          "format": ".2f"
+        },
+        "vacancy": {
+          "token": "9555",
+          "quote": "Vacant 0 9555",
+          "unit": "percent",
+          "op": "share_of_sum",
+          "numerator": "vacant_area",
+          "operands": [
+            "a_area",
+            "b_area",
+            "c_area",
+            "vacant_area"
+          ],
+          "format": ".2f"
+        }
+      }
+    }
+  ],
+  "dependency_rules": [
+    {
+      "id": "refinancing-risk",
+      "section_id": 11,
+      "requires": [
+        "tl-maturity",
+        "rcf-maturity"
+      ],
+      "text": "Maturity and refinancing risk: the term loan has bullet principal and the revolving facility requires a fresh approval for renewal. Mitigant review: obtain a supported maturity repayment plan. Facility maturity terms alone do not evidence available refinancing."
+    },
+    {
+      "id": "security-risk",
+      "section_id": 11,
+      "requires": [
+        "tl-security-8"
+      ],
+      "text": "Security enforceability risk: the proposed mortgage and rent assignment are described in the term sheet, but legal perfection requires separate evidence and no corporate guarantee is assumed. Potential mitigant: the proposed security remains subject to legal review and perfection; it is not treated as an established recovery source."
+    },
+    {
+      "id": "floating-rate-risk",
+      "section_id": 11,
+      "requires": [
+        "tl-pricing",
+        "rcf-pricing"
+      ],
+      "text": "Interest-rate risk: the proposed facilities are priced over SORA. Mitigant review: assess debt-service sensitivity and any facility-specific hedging evidence. The quoted pricing does not establish hedging protection."
+    },
+    {
+      "id": "repayment-risk",
+      "section_id": 11,
+      "requires": [
+        "repayment-assumptions"
+      ],
+      "text": "Repayment assumption risk: the property forecast assumes unchanged rents on uncommitted renewals and has no committed refinancing receipt. Mitigant review: obtain support for rental continuity and additional repayment funding; address the property cash-flow shortfall."
+    },
+    {
+      "id": "valuation-risk",
+      "section_id": 11,
+      "requires": [
+        "tl-security-8"
+      ],
+      "text": "Valuation risk: the fully drawn term loan is sensitive to the latest property appraisal. Reassess the mortgage LTV and covenant headroom on each revised valuation before drawdown; a lower value reduces the collateral buffer. Obtain evidence of title, ranking and enforceability before relying on security recovery."
+    }
+  ]
+}

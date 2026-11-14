@@ -1,0 +1,167 @@
+# SYNTHETIC DEMO DATA, not a real record
+schema_version: 1
+case_id: demo-renewal-001
+borrower:
+  name: ESR-REIT
+  sgx_code: 9A4U
+  isin: SGXC55341835
+  public_manifest: demo/public_pack/esr-reit/manifest.yaml
+  property: 16 Tai Seng Street
+lender: the Bank
+as_of: '2026-10-31'
+prior_approval_date: '2026-05-01'
+proposal_date: '2026-11-02'
+late_valuation_date: '2026-11-09'
+unit: SGD_million
+facilities:
+  - id: TL-01
+    type: Secured term loan
+    existing_limit: '45'
+    outstanding: '42'
+    proposed_limit: '60'
+    security: Property mortgage and assignment of rents
+    existing_maturity: '2027-04-30'
+    proposed_maturity: '2029-11-30'
+    margin_bps: 160
+    upfront_fee_pct: '0.30'
+  - id: RCF-01
+    type: Unsecured revolving credit facility
+    existing_limit: '10'
+    outstanding: '4'
+    proposed_limit: '15'
+    security: Unsecured; negative pledge and pari passu undertaking
+    existing_maturity: '2027-04-30'
+    proposed_maturity: '2027-11-30'
+    margin_bps: 180
+    upfront_fee_pct: '0.25'
+property:
+  initial_value: '112'
+  revised_value: '104'
+  initial_date: '2026-10-31'
+  nla_sqm: 19187
+  revision_reason: 'Fictional notice received 2026-11-09: Demo Tenant A will not renew at expiry on 2027-04-30. The revised appraisal allows for downtime, reletting costs and a higher yield. This is not a report about any real tenant.'
+  insured_reinstatement_value: '90'
+  operating_cost_annual: '1.8'
+  reserve_annual: '0.6'
+  capex_reserve_annual: '0.3'
+public_property:
+  document_id: esr-ar2025
+  pdf_pages: [72, 73]
+  printed_pages: [70, 71]
+  as_of: '2025-12-31'
+  property_type: High-specifications industrial
+  lease_type: Multi-tenanted
+  gfa_sqm: 22798
+  nla_sqm: 19187
+  land_tenure_years: '30+30'
+  land_lease_expiry: '2067-07-03'
+  remaining_land_lease_years: '41.5'
+  acquisition_date: '2012-05-29'
+  purchase_price_or_development_cost: '100.5'
+  occupancy_pct: '50.2'
+  valuation: '109.0'
+  rental_income_fy2025: '3.5'
+covenants:
+  leverage_max_pct: '45'
+  icr_min_x: '2'
+  ltv_max_pct: '55'
+public_observations:
+  # Values are public reported observations, not fabricated group totals.
+  - metric: aggregate_leverage_pct
+    value: '44.1'
+    document_id: esr-3q2026
+    pdf_page: 2
+    as_of: '2026-09-30'
+  - metric: interest_coverage_x
+    value: '2.6'
+    document_id: esr-3q2026
+    pdf_page: 2
+    as_of: '2026-09-30'
+leases:
+  - tenant: Demo Tenant A
+    sector: Testing and certification
+    area_sqm: 5000
+    monthly_rent_sgd: 150000
+    expiry: '2027-04-30'
+  - tenant: Demo Tenant B
+    sector: Light industrial
+    area_sqm: 3000
+    monthly_rent_sgd: 90000
+    expiry: '2029-10-31'
+  - tenant: Demo Tenant C
+    sector: Business services
+    area_sqm: 1632
+    monthly_rent_sgd: 50000
+    expiry: '2030-10-31'
+  - tenant: Vacant
+    sector: Not applicable
+    area_sqm: 9555
+    monthly_rent_sgd: 0
+    expiry: null
+conduct:
+  period_start: '2025-11-01'
+  period_end: '2026-10-31'
+  month_end_tl: [42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42]
+  month_end_rcf: [3, 4, 5, 4, 6, 5, 4, 5, 6, 5, 4, 4]
+  monthly_peak_rcf: [5, 6, 7, 6, 8, 7, 6, 10.5, 8, 7, 6, 6]
+  excess:
+    facility: RCF-01
+    start: '2026-06-14'
+    end: '2026-06-15'
+    peak_outstanding: '10.5'
+    limit: '10'
+    cured: '2026-06-16'
+  past_due:
+    facility: TL-01
+    due_date: '2026-03-31'
+    paid_date: '2026-04-03'
+    amount: '0.12'
+internal_rating:
+  grade: DEMO-G4
+  prior_date: '2026-04-30'
+  current_date: '2026-10-31'
+public_historical:
+  document_id: esr-ar2025
+  as_of: '2025-12-31'
+  listing_date: '2006-07-25'
+  manager: ESR-REIT Management (S) Limited
+  sponsor: ESR Group Limited
+  sponsor_holding_pct: '21.51'
+  other_holding_pct: '78.49'
+  portfolio_valuation: '4858.6'
+  occupancy_pct: '91.1'
+  wale_years: '4.4'
+  leverage_pct: '43.4'
+  icr_x: '2.5'
+  debt: '2236.1'
+  cost_of_debt_pct: '3.35'
+  debt_maturity_years: '2.0'
+  fixed_rate_pct: '68.4'
+  management:
+    - [Adrian Chui, CEO and Executive Director, Since March 2017]
+    - [Don Kok, Chief Financial Officer, Since August 2022]
+  source_pages:
+    identity: 2
+    ownership: 10
+    management: 35
+    portfolio: 50
+    leases: 53
+    capital_management: 59
+# Application Case fields; borrower identity and configuration pin are added by the loader.
+app_case:
+  team_id: fig
+  case_type: renewal
+  borrower_type: reit
+  facility_types: [term, revolving]
+  existing_client: true
+  new_to_bank: false
+  property_or_asset_security: true
+  insured_security_or_assets: true
+  financial_covenants: true
+  covenants: true
+  new_money: true
+  property_income_repayment: true
+  bureau_covered: false
+  has_information_memorandum: false
+  public_entity: true
+  ca_position: null

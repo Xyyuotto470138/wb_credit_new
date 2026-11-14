@@ -1,0 +1,73 @@
+version: '1'
+alternatives:
+- id: financial_report
+  members:
+  - 4
+  - 6
+  minimum: 1
+suggestions:
+- id: limits_utilisation
+  when: {op: eq, field: existing_client, value: true}
+  reason: Review whether CAS includes a usable exposure table; an extract may be needed.
+  name: Limits and utilisation extract (if CAS has no exposure table)
+  sections:
+  - 2
+  status: Suggested
+- id: security_guarantees
+  when: {op: eq, field: property_or_asset_security, value: true}
+  owner_group: client
+  reason: Security is in scope; request supporting security or guarantee documents.
+  name: Security or guarantee documents
+  sections:
+  - 8
+  status: Suggested
+- id: bank_disclosures
+  public_search: true
+  when: {op: eq, field: borrower_type, value: bank}
+  reason: Bank borrower disclosures may support the financial analysis.
+  name: Regulatory capital and liquidity disclosures for bank borrowers
+  sections:
+  - 10
+  status: Suggested
+- id: external_rating
+  public_search: true
+  when: {op: eq, field: public_entity, value: true}
+  reason: Public context may support the assessment; it does not replace internal records.
+  name: External rating agency releases
+  sections:
+  - 12
+  status: Suggested
+- id: public_news
+  public_search: true
+  when: {op: eq, field: public_entity, value: true}
+  reason: Public context may support the assessment; it does not replace internal records.
+  name: Recent news and exchange announcements
+  sections:
+  - 3
+  - 10
+  status: Suggested
+- id: prior_condition_evidence
+  name: Evidence of fulfilment of prior approval conditions
+  sections: [3, 14]
+  trigger_catalogue_ids: [22]
+  reason: Prior approval conditions were provided; check evidence of fulfilment for each condition.
+  status: Suggested
+public_confirmation_required: true
+generated_spread_requires_validation: true
+industry_code_requires_confirmation: true
+external_rating_satisfies_internal: false
+partial_disclosure_satisfies_full_report: false
+missing_document_is_fact: false
+draft_gates:
+- section_id: 3
+  when: {op: eq, field: case_type, value: renewal}
+  any_inputs: [3]
+  reason: Prior ES is needed as the renewal comparison baseline.
+- section_id: 12
+  when: {op: always}
+  any_inputs: [10]
+  reason: Supplied internal rating is required; external releases cannot replace it.
+- section_id: 13
+  when: {op: eq, field: existing_client, value: true}
+  any_inputs: [17]
+  reason: Account conduct evidence is needed; covenant reports alone do not establish repayment conduct.

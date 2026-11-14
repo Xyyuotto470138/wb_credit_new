@@ -1,0 +1,348 @@
+schema_version: 1
+task: '0002'
+borrower:
+  name: ESR-REIT
+  sgx_code: 9A4U
+  isin: SGXC55341835
+  sponsor: ESR Group Limited
+as_of: '2026-11-10'
+page_convention: pdf_pages are one-based physical PDF pages; printed_pages are document
+  labels.
+status: downloaded
+ca_confirmation_required: true
+documents:
+- id: esr-ar2025
+  file: annual-report-2025.pdf
+  catalogue_type:
+    id: 4
+    name: Annual reports
+  title: ESR-REIT Annual Report 2025
+  url: https://links.sgx.com/FileOpen/ESR-REIT%20AR%202025.ashx?App=Announcement&FileID=881689
+  publisher: ESR-REIT Management (S) Limited
+  date: '2026-04-02'
+  retrieved_at: '2026-11-10'
+  pages: 244
+  sha256: 638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b
+  bytes: 18418859
+  media_type: application/pdf
+  entity: ESR-REIT
+  kind: annual_report
+  origin: public
+  synthetic: false
+  ca_confirmed: false
+  evidence:
+  - topic: identity_and_sponsor
+    pdf_pages:
+    - 2
+    - 12
+    printed_pages:
+    - inside front cover
+    - '10'
+    check_terms:
+    - ESR Group Limited
+    - logistics real estate
+  - topic: leverage_and_icr
+    pdf_pages:
+    - 59
+    printed_pages:
+    - '57'
+    check_terms:
+    - '43.4'
+    - '2.5'
+    - MAS Interest Coverage Ratio
+    as_of: '2025-12-31'
+  - topic: portfolio_valuation_and_occupancy
+    pdf_pages:
+    - 50
+    printed_pages:
+    - '48'
+    check_terms:
+    - 4,858.6
+    - '91.1'
+    as_of: '2025-12-31'
+  - topic: portfolio_lease_expiry
+    pdf_pages:
+    - 53
+    printed_pages:
+    - '51'
+    check_terms:
+    - Portfolio Lease Expiry Profile
+    - '4.4'
+    as_of: '2025-12-31'
+  - topic: singapore_property
+    pdf_pages:
+    - 72
+    - 73
+    printed_pages:
+    - '70'
+    - '71'
+    check_terms:
+    - 16 Tai Seng Street
+    - '109.0'
+    - '50.2'
+    as_of: '2025-12-31'
+  - topic: trust_structure
+    pdf_pages:
+    - 10
+    printed_pages:
+    - '8'
+    check_terms:
+    - The Sponsor
+    - 99%
+    as_of: '2025-12-31'
+  - topic: unitholding_structure
+    pdf_pages:
+    - 229
+    - 230
+    - 231
+    printed_pages:
+    - '227'
+    - '228'
+    - '229'
+    check_terms:
+    - 19 March 2026
+    - ESR Group Limited
+    - 21.478%
+    as_of: '2026-03-19'
+  - topic: valuation_rate_ranges
+    pdf_pages:
+    - 210
+    - 211
+    printed_pages:
+    - '208'
+    - '209'
+    check_terms:
+    - Capitalisation rates
+  period_end: '2025-12-31'
+  listing_url: https://esr-reit.listedcompany.com/ar.html
+  catalogue_support:
+  - id: 6
+    name: Financial statements (audited and interim)
+    scope: FY2025 audited financial statements within annual report
+  - id: 20
+    name: Shareholding structure
+    evidence_topics:
+    - trust_structure
+    - unitholding_structure
+    scope: public unitholdings and sponsor structure; dates differ
+  - id: 9
+    name: Valuation report
+    scope: summary_only_not_full_property_report
+  - id: 16
+    name: Lease profile
+    scope: portfolio_summary_only_not_secured_property_schedule
+- id: esr-3q2026
+  file: business-update-3q2026.pdf
+  catalogue_type:
+    id: null
+    name: 'Suggested: recent news and exchange announcements'
+  title: ESR-REIT 3Q2026 Interim Business Update
+  url: https://esr-reit.listedcompany.com/newsroom/20261027_070044_9A4U_YFZEGXW2FZEMWKRO.1.pdf
+  publisher: ESR-REIT Management (S) Limited
+  date: '2026-10-27'
+  retrieved_at: '2026-11-10'
+  pages: 17
+  sha256: 12a54e2345dc2eda615e507deaab19799d15f6e92e1a63bf5854e03c399edb6b
+  bytes: 1245759
+  media_type: application/pdf
+  entity: ESR-REIT
+  kind: business_update
+  origin: public
+  synthetic: false
+  ca_confirmed: false
+  evidence:
+  - topic: quarterly_highlights
+    pdf_pages:
+    - 2
+    printed_pages:
+    - '2'
+    check_terms:
+    - 44.1%
+    - 2.6x
+    - 91.7%
+    as_of: '2026-09-30'
+  - topic: tenant_rent_update
+    pdf_pages:
+    - 3
+    printed_pages:
+    - '3'
+    check_terms:
+    - A$2.8m
+    - ACFS
+  - topic: lease_expiry
+    pdf_pages:
+    - 6
+    printed_pages:
+    - '6'
+    check_terms:
+    - 4.8 years
+    - Lease Expiry Profile
+    as_of: '2026-09-30'
+  period_end: '2026-09-30'
+  listing_url: https://esr-reit.listedcompany.com/news.html/id/2631050
+  limitations:
+  - Business update, not complete interim financial statements.
+  - Keep actual 44.1% gearing separate from 43.3% pro forma gearing.
+  - Tenant rent arrears do not establish borrower bank account conduct.
+- id: esr-fitch2025
+  file: fitch-rating-release-20251028.pdf
+  catalogue_type:
+    id: 10
+    name: Credit rating report
+    scope: external_only
+  title: Fitch Publishes ESR-REIT's First-Time IDR at 'BBB'; Outlook Stable (with
+    issuer cover announcement)
+  url: https://links.sgx.com/FileOpen/News%20Release%20-%20Fitch%20Ratings%20Assigns%20BBB%20Rating%20with%20Stable%20Outlook%20to%20ESR-REIT.ashx?App=Announcement&FileID=865202
+  publisher: Fitch Ratings; distributed by ESR-REIT Management (S) Limited via SGX
+  date: '2025-10-28'
+  retrieved_at: '2026-11-10'
+  pages: 14
+  sha256: 019d59a2c9825d5272264aa25ddb5aa5c4f21090518b4f1635db01edf8fe38ed
+  bytes: 332831
+  media_type: application/pdf
+  entity: ESR-REIT
+  kind: external_rating_release
+  origin: public
+  synthetic: false
+  ca_confirmed: false
+  evidence:
+  - topic: agency_rating_action
+    pdf_pages:
+    - 2
+    printed_pages:
+    - agency 1/11
+    check_terms:
+    - BBB
+    - Stable
+    - 28 Oct 2025
+  - topic: issuer_cover
+    pdf_pages:
+    - 1
+    printed_pages:
+    - issuer 1
+    check_terms:
+    - 29 October 2025
+  listing_url: https://links.sgx.com/1.0.0/corporate-announcements/AFZ4UOTXJEOSN1SM/
+  agency_url: https://www.fitchratings.com/research/corporate-finance/fitch-publishes-esr-reit-first-time-idr-at-bbb-outlook-stable-28-10-2025
+  cover_date: '2025-10-29'
+  agency_pdf_pages:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  satisfies_internal_rating: false
+- id: esr-divestment20261021
+  file: announcement-divestment-20261021.pdf
+  catalogue_type:
+    id: null
+    name: 'Suggested: recent news and exchange announcements'
+  title: ESR-REIT Completes Divestment of 30 Pioneer Road in Singapore
+  url: https://esr-reit.listedcompany.com/newsroom/20261021_180024_9A4U_12QZMUTT9DQ1NP2I.1.pdf
+  publisher: ESR-REIT Management (S) Limited
+  date: '2026-10-21'
+  retrieved_at: '2026-11-10'
+  pages: 3
+  sha256: 9b3664d4aece65ca255dd640c5f17c3ea12835968a69362e40b93acf6d5b4240
+  bytes: 150333
+  media_type: application/pdf
+  entity: ESR-REIT
+  kind: exchange_announcement
+  origin: public
+  synthetic: false
+  ca_confirmed: false
+  evidence:
+  - topic: completed_disposal
+    pdf_pages:
+    - 1
+    printed_pages:
+    - '1'
+    check_terms:
+    - 30 PIONEER ROAD
+    - 21 October 2026
+  listing_url: https://esr-reit.listedcompany.com/news.html/id/2630714
+- id: esr-loan20261012
+  file: announcement-loan-20261012.pdf
+  catalogue_type:
+    id: null
+    name: 'Suggested: recent news and exchange announcements'
+  title: Entry into JPY 7,100,000,000 Sustainability-Linked Unsecured Term Loan Facility
+  url: https://esr-reit.listedcompany.com/newsroom/20261012_200602_9A4U_6YZU3K7066VMMBD4.1.pdf
+  publisher: ESR-REIT Management (S) Limited
+  date: '2026-10-12'
+  retrieved_at: '2026-11-10'
+  pages: 5
+  sha256: 3207e1855fcdeb3dc865911eb1c83492b8ac036620a9006a903a7c261c6b8059
+  bytes: 155758
+  media_type: application/pdf
+  entity: ESR-REIT
+  kind: exchange_announcement
+  origin: public
+  synthetic: false
+  ca_confirmed: false
+  evidence:
+  - topic: public_financing_announcement
+    pdf_pages:
+    - 1
+    - 2
+    printed_pages:
+    - '1'
+    - '2'
+    check_terms:
+    - 7,100,000,000
+    - UNSECURED
+  listing_url: https://esr-reit.listedcompany.com/news.html/id/2629891
+  limitations:
+  - Public financing is not the proposed synthetic demo facility or its term sheet.
+- id: esr-rent20261006
+  file: announcement-rent-update-20261006.pdf
+  catalogue_type:
+    id: null
+    name: 'Suggested: recent news and exchange announcements'
+  title: Update on Default of Rent Payments by ACFS Port Logistics in Australia
+  url: https://esr-reit.listedcompany.com/newsroom/20261006_172624_9A4U_V8TM4VE3R86VWL3G.1.pdf
+  publisher: ESR-REIT Management (S) Limited
+  date: '2026-10-06'
+  retrieved_at: '2026-11-10'
+  pages: 4
+  sha256: 63b3e952021e0aadfb98fe9a49191c41b94199072acc6d9d9064721d4a76aaa5
+  bytes: 140709
+  media_type: application/pdf
+  entity: ESR-REIT
+  kind: exchange_announcement
+  origin: public
+  synthetic: false
+  ca_confirmed: false
+  evidence:
+  - topic: tenant_arrears_update
+    pdf_pages:
+    - 1
+    printed_pages:
+    - '1'
+    check_terms:
+    - ACFS
+    - A$3.0 million
+    - A$0.4 million
+    as_of: '2026-09-30'
+  listing_url: https://esr-reit.listedcompany.com/news.html/id/2629414
+unfilled_private_inputs:
+- Full secured-property valuation report
+- Secured-property lease schedule and rent roll
+- Insurance report
+- Internal credit rating
+- CAS and synthetic facility term sheet
+- Account conduct and covenant monitoring reports
+freshness_checks:
+- url: https://esr-reit.listedcompany.com/ar.html
+  checked_at: '2026-11-10'
+  result: FY2025 report dated 2 April 2026 is latest annual report listed.
+- url: https://esr-reit.listedcompany.com/newsroom.html
+  checked_at: '2026-11-10'
+  result: 3Q2026 update dated 27 October 2026 is latest business update listed; three
+    substantive October announcements saved separately.

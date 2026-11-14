@@ -1,0 +1,576 @@
+version: '2'
+sets:
+  reit:
+    borrower_types:
+    - reit
+    metrics:
+    - id: aggregate_leverage
+      name: Aggregate leverage
+      unit: percent
+      formula:
+        op: reported
+        operands:
+        - regulatory_leverage
+      reported_fallback: true
+      definition: Use disclosed regulatory measure; debt/assets only with verified
+        regulatory scope. No inferred borrowing capacity.
+      thresholds:
+      - value: '50'
+        comparison: maximum
+        headroom:
+          op: subtract
+          operands:
+          - limit
+          - actual
+        source: WB_Credit_PROJECT.md section 3.1; https://www.mas.gov.sg/news/media-releases/2024/mas-rationalises-leverage-requirements-and-introduces-additional-disclosures-for-reits
+        effective_date: '2024-11-28'
+        verification: MAS source checked 2026-11-10
+      nonnegative: true
+      input_units:
+        regulatory_leverage: percent
+      required_basis: MAS Appendix 6 reported
+      minimum: '0'
+      template_rows:
+      - Aggregate leverage (%)
+      source_labels:
+      - aggregate leverage
+      - gearing
+    - id: interest_coverage
+      name: Interest coverage
+      unit: times
+      formula:
+        op: reported
+        operands:
+        - regulatory_icr
+      reported_fallback: true
+      definition: Use regulatory disclosure or verified complete operands. NPI/finance
+        costs is a separate proxy and cannot drive regulatory headroom.
+      thresholds:
+      - value: '1.5'
+        comparison: minimum
+        headroom:
+          op: subtract
+          operands:
+          - actual
+          - limit
+        source: WB_Credit_PROJECT.md section 3.1; https://www.mas.gov.sg/news/media-releases/2024/mas-rationalises-leverage-requirements-and-introduces-additional-disclosures-for-reits
+        effective_date: '2024-11-28'
+        verification: MAS source checked 2026-11-10
+      - value: '1.8'
+        comparison: flag_below
+        headroom: null
+        source: WB_Credit_PROJECT.md section 3.1; https://www.mas.gov.sg/news/media-releases/2024/mas-rationalises-leverage-requirements-and-introduces-additional-disclosures-for-reits
+        effective_date: '2024-11-28'
+        verification: MAS source checked 2026-11-10
+      nonnegative: false
+      input_units:
+        regulatory_icr: times
+      required_basis: MAS Appendix 6 reported
+      template_rows:
+      - Interest coverage (x)
+      - As reported
+      source_labels:
+      - MAS Interest Coverage Ratio
+      - regulatory ICR
+    - id: debt_maturity
+      name: Debt maturity profile
+      unit: currency
+      formula:
+        op: bucket_sum
+        operands:
+        - debt_amounts
+        - total_debt
+      reported_fallback: false
+      definition: Reconcile same-currency maturity buckets against total debt.
+      thresholds: []
+      nonnegative: true
+      input_units:
+        debt_amounts: currency
+        total_debt: currency
+    - id: fixed_rate_share
+      name: Share of fixed rate debt
+      unit: percent
+      formula:
+        op: ratio
+        operands:
+        - fixed_or_hedged_debt
+        - total_debt
+      reported_fallback: true
+      definition: Matched scope/date; do not double count hedging.
+      thresholds: []
+      nonnegative: true
+      input_units:
+        fixed_or_hedged_debt: currency
+        total_debt: currency
+      minimum: '0'
+      maximum: '100'
+      multiplier: '100'
+      required_basis: fixed or hedged, non-overlapping
+      template_rows:
+      - Fixed rate debt (%)
+    - id: occupancy
+      name: Occupancy
+      unit: percent
+      formula:
+        op: ratio
+        operands:
+        - occupied_area
+        - lettable_area
+      reported_fallback: true
+      definition: Comparable area basis; never an unweighted property average.
+      thresholds: []
+      nonnegative: true
+      input_units:
+        occupied_area: sqm
+        lettable_area: sqm
+      minimum: '0'
+      maximum: '100'
+      multiplier: '100'
+      required_basis: comparable lettable area
+      template_rows:
+      - Occupancy (%)
+    - id: wale
+      name: WALE
+      unit: years
+      formula:
+        op: weighted_average
+        operands:
+        - remaining_lease_years
+        - weights
+      reported_fallback: true
+      definition: Use disclosed rental-income or area weights and as-of date.
+      thresholds: []
+      nonnegative: true
+      input_units:
+        remaining_lease_years: years
+        weights: percent
+      template_rows:
+      - WALE (years)
+      allowed_bases:
+      - rental-income weights
+      - area weights
+    - id: npi
+      name: Net property income
+      unit: currency
+      formula:
+        op: subtract
+        operands:
+        - property_income
+        - property_expenses
+      reported_fallback: true
+      definition: Positive property expense magnitude is subtracted; reconcile exactly
+        to reported NPI. Signed B09 expenses must be explicitly normalized before
+        use.
+      thresholds: []
+      nonnegative: true
+      input_units:
+        property_income: currency
+        property_expenses: currency
+        reported_npi: currency
+      reconcile_to: reported_npi
+      tolerance: '0'
+      template_rows:
+      - Net property income
+    - id: dpu
+      name: Distribution per unit
+      unit: currency/unit
+      formula:
+        op: ratio
+        operands:
+        - distributions
+        - eligible_units
+      reported_fallback: true
+      definition: Normalize cents versus currency units and period.
+      thresholds: []
+      nonnegative: true
+      input_units:
+        distributions: currency
+        eligible_units: units
+      template_rows:
+      - Distribution per unit (cents)
+    - id: portfolio_valuation
+      name: Portfolio valuation
+      unit: currency
+      formula:
+        op: sum
+        operands:
+        - asset_values
+      reported_fallback: true
+      definition: Same-date comparable values and ownership basis; FX must be sourced.
+        Portfolio is distinct from secured property.
+      thresholds: []
+      nonnegative: true
+      input_units:
+        asset_values: currency
+      required_basis: portfolio attributable valuation
+    - id: capitalisation_rates
+      name: Capitalisation rates
+      unit: percent
+      formula:
+        op: reported
+        operands:
+        - disclosed_valuation_rates
+      reported_fallback: true
+      definition: Extract disclosed rates/ranges by property/date; NPI/value yield
+        is a separate proxy.
+      thresholds: []
+      nonnegative: true
+      input_units:
+        disclosed_valuation_rates: percent
+      minimum: '0'
+      maximum: '100'
+      required_basis: disclosed valuation capitalisation rate
+      forbid_proxy: true
+      source_labels:
+      - capitalisation rate
+      - capitalization rate
+    - id: property_income
+      name: Gross revenue
+      unit: currency
+      formula:
+        op: reported
+        operands:
+        - property_income
+      reported_fallback: true
+      definition: Sourced reported value with matched scope and period; no substitute
+        inferred.
+      input_units:
+        property_income: currency
+      template_rows:
+      - Gross revenue
+    - id: distributable_income
+      name: Distributable income
+      unit: currency
+      formula:
+        op: reported
+        operands:
+        - distributable_income
+      reported_fallback: true
+      definition: Sourced reported value with matched scope and period; no substitute
+        inferred.
+      input_units:
+        distributable_income: currency
+      template_rows:
+      - Distributable income
+    - id: investment_properties
+      name: Investment properties
+      unit: currency
+      formula:
+        op: reported
+        operands:
+        - investment_properties
+      reported_fallback: true
+      definition: Sourced reported value with matched scope and period; no substitute
+        inferred.
+      input_units:
+        investment_properties: currency
+      template_rows:
+      - Investment properties
+    - id: total_assets
+      name: Total assets
+      unit: currency
+      formula:
+        op: reported
+        operands:
+        - total_assets
+      reported_fallback: true
+      definition: Sourced reported value with matched scope and period; no substitute
+        inferred.
+      input_units:
+        total_assets: currency
+      template_rows:
+      - Total assets
+    - id: total_debt
+      name: Total borrowings
+      unit: currency
+      formula:
+        op: reported
+        operands:
+        - total_debt
+      reported_fallback: true
+      definition: Sourced reported value with matched scope and period; no substitute
+        inferred.
+      input_units:
+        total_debt: currency
+      template_rows:
+      - Total borrowings
+    - id: unitholders_funds
+      name: Unitholders’ funds
+      unit: currency
+      formula:
+        op: reported
+        operands:
+        - unitholders_funds
+      reported_fallback: true
+      definition: Sourced reported value with matched scope and period; no substitute
+        inferred.
+      input_units:
+        unitholders_funds: currency
+      template_rows:
+      - Unitholders' funds
+    - id: nav_per_unit
+      name: NAV per unit (S$)
+      unit: currency/unit
+      formula:
+        op: reported
+        operands:
+        - nav_per_unit
+      reported_fallback: true
+      definition: Sourced reported value with matched scope and period; no substitute
+        inferred.
+      input_units:
+        nav_per_unit: currency/unit
+      template_rows:
+      - NAV per unit (S$)
+    - id: average_cost_of_debt
+      name: Average cost of debt (%)
+      unit: percent
+      formula:
+        op: reported
+        operands:
+        - average_cost_of_debt
+      reported_fallback: true
+      definition: Sourced reported value with matched scope and period; no substitute
+        inferred.
+      input_units:
+        average_cost_of_debt: percent
+      template_rows:
+      - Average cost of debt (%)
+    - id: weighted_debt_maturity
+      name: Weighted average debt maturity (years)
+      unit: years
+      formula:
+        op: reported
+        operands:
+        - weighted_debt_maturity
+      reported_fallback: true
+      definition: Sourced reported value with matched scope and period; no substitute
+        inferred.
+      input_units:
+        weighted_debt_maturity: years
+      template_rows:
+      - Weighted average debt maturity (years)
+    - id: icr_ebitda_down_10
+      name: 10% decrease in EBITDA
+      unit: times
+      formula:
+        op: ebitda_stress
+        operands:
+        - regulatory_ebitda
+        - regulatory_interest
+      reported_fallback: false
+      definition: Separate annual sensitivity with complete regulatory EBITDA/interest
+        basis including fees and hybrid distributions. Rate shock applies to all debt
+        including fixed/hedged debt. No floating-debt shortcut.
+      input_units:
+        regulatory_ebitda: currency
+        regulatory_interest: currency
+      required_basis: MAS TTM complete sensitivity
+      forbid_proxy: true
+      nonnegative: true
+      template_rows:
+      - 10% decrease in EBITDA
+    - id: icr_rates_up_100bp
+      name: 100 bp increase in interest rates
+      unit: times
+      formula:
+        op: interest_stress
+        operands:
+        - regulatory_ebitda
+        - regulatory_interest
+        - total_debt
+      reported_fallback: false
+      definition: Separate annual sensitivity with complete regulatory EBITDA/interest
+        basis including fees and hybrid distributions. Rate shock applies to all debt
+        including fixed/hedged debt. No floating-debt shortcut.
+      input_units:
+        regulatory_ebitda: currency
+        regulatory_interest: currency
+        total_debt: currency
+      required_basis: MAS TTM complete sensitivity
+      forbid_proxy: true
+      nonnegative: true
+      template_rows:
+      - 100 bp increase in interest rates
+    - id: ltv
+      name: Loan to value
+      unit: percent
+      formula:
+        op: ratio
+        operands:
+        - secured_debt
+        - secured_property_value
+      reported_fallback: false
+      definition: Only the debt secured by the valued property; unsecured RCF excluded.
+        Match exposure and valuation date and property scope.
+      input_units:
+        secured_debt: currency
+        secured_property_value: currency
+      multiplier: '100'
+      nonnegative: true
+      required_basis: secured property LTV
+      template_rows:
+      - LTV (%)
+missing_operand_policy: N/A with named gap
+arithmetic: Python Decimal
+spreading:
+  reit_core:
+    version: reit-core-v1
+    borrower_types:
+    - reit
+    readiness_scope: Group
+    scopes:
+    - Group
+    - Trust
+    units:
+      $’000: '1000'
+      SGD thousands: '1000'
+      SGD: '1'
+    currencies:
+      SGD:
+      - Singapore Dollars
+      - Singapore dollars
+      - SGD
+      - S$
+    accounts:
+      total_assets:
+        statement: balance_sheet
+        aliases:
+        - Total assets
+        required: true
+      total_liabilities:
+        statement: balance_sheet
+        aliases:
+        - Total liabilities
+        required: true
+      net_assets:
+        statement: balance_sheet
+        aliases:
+        - Net assets
+        - Total equity
+        required: true
+      property_income:
+        statement: income_statement
+        aliases:
+        - Gross revenue
+        - Total gross revenue
+        required: true
+      property_expenses:
+        statement: income_statement
+        aliases:
+        - Property expenses
+        required: true
+      npi:
+        statement: income_statement
+        aliases:
+        - Net property income
+        required: true
+      profit_before_tax:
+        statement: income_statement
+        aliases:
+        - Total return/(loss) for the year before income tax
+        - Profit before tax
+        required: true
+      tax:
+        statement: income_statement
+        aliases:
+        - Income tax expense
+        required: true
+      profit_after_tax:
+        statement: income_statement
+        aliases:
+        - Total return/(loss) for the year after income tax
+        - Profit after tax
+        required: true
+      cf_profit_before_tax:
+        statement: cash_flow
+        aliases:
+        - Total return/(loss) before income tax for the year
+        - Profit before tax
+        required: true
+      cf_operating:
+        statement: cash_flow
+        aliases:
+        - Net cash generated from operating activities
+        - Net cash from operating activities
+        required: true
+      cf_investing:
+        statement: cash_flow
+        aliases:
+        - Net cash used in investing activities
+        - Net cash from investing activities
+        required: true
+      cf_financing:
+        statement: cash_flow
+        aliases:
+        - Net cash (used in)/generated from financing activities
+        - Net cash from financing activities
+        required: true
+      cf_change:
+        statement: cash_flow
+        aliases:
+        - Net (decrease)/increase in cash and cash equivalents
+        - Net change in cash
+        required: true
+      cf_open:
+        statement: cash_flow
+        aliases:
+        - Cash and cash equivalents at 1 January
+        - Opening cash
+        required: true
+      cf_fx:
+        statement: cash_flow
+        aliases:
+        - Effect of exchange rate fluctuations on cash held
+        - FX effects
+        required: true
+      cf_close:
+        statement: cash_flow
+        aliases:
+        - Cash and cash equivalents at 31 December (Note 11)
+        - Closing cash
+        required: true
+    equations:
+    - id: bs_equation
+      terms:
+        total_assets: 1
+        total_liabilities: -1
+        net_assets: -1
+      tolerance: '1'
+      required: true
+    - id: npi_equation
+      terms:
+        property_income: 1
+        property_expenses: 1
+        npi: -1
+      tolerance: '1'
+      required: true
+    - id: profit_flow
+      terms:
+        profit_before_tax: 1
+        tax: 1
+        profit_after_tax: -1
+      tolerance: '1'
+      required: true
+    - id: cf_net_change
+      terms:
+        cf_operating: 1
+        cf_investing: 1
+        cf_financing: 1
+        cf_change: -1
+      tolerance: '1'
+      required: true
+    - id: cf_cash_bridge
+      terms:
+        cf_open: 1
+        cf_change: 1
+        cf_fx: 1
+        cf_close: -1
+      tolerance: '1'
+      required: true
+    - id: cross_profit_before_tax
+      terms:
+        profit_before_tax: 1
+        cf_profit_before_tax: -1
+      tolerance: '1'
+      required: true

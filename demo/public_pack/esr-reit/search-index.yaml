@@ -1,0 +1,29 @@
+# Curated B06 mappings; physical PDF pages, verified against the saved B02 pack.
+# These do not alter the original source manifest or imply CA confirmation.
+documents:
+  esr-ar2025:
+    catalogue_id: 4
+    scope: annual-report
+    catalogue_support:
+      - {id: 6, coverage: full, pages: [127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225]}
+      - {id: 20, coverage: full, pages: [10, 229, 230, 231]}
+      - {id: 9, coverage: partial, pages: [50, 72, 73, 210, 211]}
+      - {id: 16, coverage: partial, pages: [53]}
+  esr-3q2026:
+    suggestion_id: public_news
+    scope: source:esr-3q2026
+  esr-fitch2025:
+    suggestion_id: external_rating
+    scope: external-rating:Fitch
+    coverage: partial
+    catalogue_support:
+      - {id: 10, coverage: partial, pages: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
+  esr-divestment20261021:
+    suggestion_id: public_news
+    scope: source:esr-divestment20261021
+  esr-loan20261012:
+    suggestion_id: public_news
+    scope: source:esr-loan20261012
+  esr-rent20261006:
+    suggestion_id: public_news
+    scope: source:esr-rent20261006

@@ -1,0 +1,2479 @@
+{
+  "version": "0023-reviewed-export-inputs-v1",
+  "label": "SYNTHETIC DEMO DATA where labelled; public sources retain provenance",
+  "claims": [
+    {
+      "id": "request",
+      "section_id": 1,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "Renew and upsize the facilities to refinance the existing term loan, fund property capital expenditure and provide revolving working capital.",
+      "quotes": [
+        "Renewal and upsize, subject to human credit review.",
+        "Purpose: refinance the existing term loan and fund property capital expenditure; revolving facility for working capital."
+      ],
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Requests"
+    },
+    {
+      "id": "request-limits",
+      "section_id": 1,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "Increase TL-01 from SGD {old_tl} million to SGD {new_tl} million, with bullet repayment on 30 November 2029; increase RCF-01 from SGD {old_rcf} million to SGD {new_rcf} million, maturing on 30 November 2027.",
+      "quotes": [
+        "TL-01: existing SGD 45.00m; proposed SGD 60.00m. RCF-01: existing SGD 10.00m; proposed SGD 15.00m.",
+        "TL-01 matures 2029-11-30, bullet principal; RCF-01 matures 2027-11-30"
+      ],
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Requests",
+      "numbers": {
+        "old_tl": {
+          "token": "45.00",
+          "quote": "TL-01: existing SGD 45.00m; proposed SGD 60.00m.",
+          "unit": "currency_million",
+          "currency": "SGD"
+        },
+        "new_tl": {
+          "token": "60.00",
+          "quote": "TL-01: existing SGD 45.00m; proposed SGD 60.00m.",
+          "unit": "currency_million",
+          "currency": "SGD"
+        },
+        "old_rcf": {
+          "token": "10.00",
+          "quote": "RCF-01: existing SGD 10.00m; proposed SGD 15.00m.",
+          "unit": "currency_million",
+          "currency": "SGD"
+        },
+        "new_rcf": {
+          "token": "15.00",
+          "quote": "RCF-01: existing SGD 10.00m; proposed SGD 15.00m.",
+          "unit": "currency_million",
+          "currency": "SGD"
+        }
+      }
+    },
+    {
+      "id": "conditions",
+      "section_id": 3,
+      "content_hash": "8878c5f451357420c99eedaf4ff5715c4b165a974e4f153b73446873a63f6675",
+      "filename": "prior_conditions.pdf",
+      "page": 1,
+      "text": "Prior approval conditions: updated valuation and renewed insurance naming the Bank as mortgagee/loss payee have been supplied for review, together with current covenant certification. Acceptance remains outstanding. Check the fully drawn proposed term loan against the latest valuation before drawdown.",
+      "quotes": [
+        "C01: provide an updated secured-property valuation before renewal.",
+        "C02: provide renewed insurance noting the Bank as mortgagee/loss payee.",
+        "C03: quarterly certificate and covenant monitoring.",
+        "Outstanding action: verify the proposed fully drawn TL against the latest valuation before any drawdown."
+      ],
+      "source_period": "2026-11-04",
+      "entity": "ESR-REIT",
+      "subpart": "Status of prior approval conditions / credit comments"
+    },
+    {
+      "id": "disposal",
+      "section_id": 3,
+      "content_hash": "9b3664d4aece65ca255dd640c5f17c3ea12835968a69362e40b93acf6d5b4240",
+      "filename": "announcement-divestment-20261021.pdf",
+      "page": 1,
+      "text": "The disposal of 30 Pioneer Road was completed on 21 October 2026. Review the effect on recurring rental income and use of disposal proceeds in the renewal assessment.",
+      "quotes": [
+        "21 October 2026",
+        "30 PIONEER ROAD"
+      ],
+      "source_period": "2026-10-21",
+      "entity": "ESR-REIT",
+      "subpart": "Developments and credit impact"
+    },
+    {
+      "id": "business",
+      "section_id": 4,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 2,
+      "text": "ESR-REIT is a Singapore-listed real estate investment trust investing in income-producing industrial properties. The FY2025 business description covers logistics, high-specifications industrial, business parks and general industrial properties across Singapore, Australia and Japan.",
+      "quotes": [
+        "ESR-REIT invests in quality income-producing industrial properties in key gateway markets.",
+        "logistics properties, high-specifications industrial properties, business parks and general industrial properties",
+        "Singapore (50 assets), Australia (18 assets) and Japan (2 assets)"
+      ],
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Overview"
+    },
+    {
+      "id": "sponsor",
+      "section_id": 4,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 2,
+      "text": "The REIT is managed by ESR-REIT Management (S) Limited and sponsored by ESR Group Limited, as described in the FY2025 report.",
+      "quotes": [
+        "managed by ESR- REIT Management (S) Limited",
+        "sponsored by ESR Group Limited"
+      ],
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Manager / sponsor"
+    },
+    {
+      "id": "manager-ownership",
+      "section_id": 5,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 2,
+      "text": "The FY2025 report identifies ESR Group as sponsor and states that the manager is owned by ESR ({n1}%) and Shanghai Summit Pte. Ltd. ({n0}%). These are interests in the manager; they must be distinguished from units in the REIT.",
+      "quotes": [
+        "The Manager is owned by ESR (99.0%) and Shanghai Summit Pte. Ltd. (1.0%), respectively."
+      ],
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Shareholders and interests",
+      "numbers": {
+        "n0": {
+          "token": "1.0",
+          "quote": "The Manager is owned by ESR (99.0%) and Shanghai Summit Pte. Ltd. (1.0%), respectively.",
+          "unit": "percent"
+        },
+        "n1": {
+          "token": "99.0",
+          "quote": "The Manager is owned by ESR (99.0%) and Shanghai Summit Pte. Ltd. (1.0%), respectively.",
+          "unit": "percent"
+        }
+      }
+    },
+    {
+      "id": "trust-structure",
+      "section_id": 5,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 10,
+      "text": "The trust structure at 31 December 2025 shows unitholders investing in ESR-REIT, which owns properties or property-holding entities, with the manager providing management services. The supplied structure diagram should be reviewed alongside the separately dated unitholding register.",
+      "quotes": [
+        "As at 31 December 2025.",
+        "Property- 100% Managers1 Holding Entities",
+        "Management Trustee’s fees (S) Limited Services"
+      ],
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Group structure chart"
+    },
+    {
+      "id": "management",
+      "section_id": 6,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 34,
+      "text": "The FY2025 management team disclosure names Adrian Chui as Chief Executive Officer and Executive Director, Don Kok as Chief Financial Officer, Nancy Tan as Head of Investment, Carlvin Chia as Head of Asset Management, and Charlene-Jayne Chang as Head of Capital Markets and Investor Relations.",
+      "quotes": [
+        "Mr. Carlvin Chia Ms. Nancy Tan Mr. Adrian Chui",
+        "Head of Asset Management Head of Investment Chief Executive Officer and Executive Director",
+        "Ms. Charlene-Jayne Chang Mr. Don Kok",
+        "Head of Capital Markets and Chief Financial Officer Investor Relations"
+      ],
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Management team"
+    },
+    {
+      "id": "management-responsibility",
+      "section_id": 6,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 35,
+      "text": "The report describes the CEO as responsible for strategy, business-plan execution and major stakeholder relationships, reporting to the Board. The CFO oversees finance and tax functions, including capital management strategies, reporting to the CEO.",
+      "quotes": [
+        "He reports to the Board",
+        "managing major stakeholder relationships",
+        "setting the strategic objectives and direction",
+        "he oversees all finance and tax-related functions, including the implementation of capital management strategies."
+      ],
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Experience and responsibilities"
+    },
+    {
+      "id": "tl-limit",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "SGD {n0} million",
+      "quotes": [
+        "proposed SGD 60.00m."
+      ],
+      "facility": "TL-01",
+      "field": "Proposed limit",
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms",
+      "numbers": {
+        "n0": {
+          "token": "60.00",
+          "quote": "proposed SGD 60.00m.",
+          "unit": "currency_million",
+          "currency": "SGD"
+        }
+      }
+    },
+    {
+      "id": "rcf-limit",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "SGD {n0} million",
+      "quotes": [
+        "proposed SGD 15.00m."
+      ],
+      "facility": "RCF-01",
+      "field": "Proposed limit",
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms",
+      "numbers": {
+        "n0": {
+          "token": "15.00",
+          "quote": "proposed SGD 15.00m.",
+          "unit": "currency_million",
+          "currency": "SGD"
+        }
+      }
+    },
+    {
+      "id": "tl-maturity",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "2029-11-30; bullet principal",
+      "quotes": [
+        "TL-01 matures 2029-11-30, bullet principal"
+      ],
+      "facility": "TL-01",
+      "field": "Maturity / repayment",
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms"
+    },
+    {
+      "id": "rcf-maturity",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "2027-11-30; renewal subject to fresh approval; no automatic extension",
+      "quotes": [
+        "RCF-01 matures 2027-11-30, renewable only by a fresh human decision."
+      ],
+      "facility": "RCF-01",
+      "field": "Maturity / repayment",
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms"
+    },
+    {
+      "id": "tl-pricing",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "{n2}-month SORA + {n1} bp; upfront fee {n0}%; interest quarterly",
+      "quotes": [
+        "TL-01 3-month SORA + 160 bp, upfront fee 0.30%"
+      ],
+      "facility": "TL-01",
+      "field": "Pricing",
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms",
+      "numbers": {
+        "n0": {
+          "token": "0.30",
+          "quote": "TL-01 3-month SORA + 160 bp, upfront fee 0.30%",
+          "unit": "percent"
+        },
+        "n1": {
+          "token": "160",
+          "quote": "TL-01 3-month SORA + 160 bp, upfront fee 0.30%",
+          "unit": "basis points"
+        },
+        "n2": {
+          "token": "3",
+          "quote": "TL-01 3-month SORA + 160 bp, upfront fee 0.30%",
+          "unit": "months"
+        }
+      }
+    },
+    {
+      "id": "rcf-pricing",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "{n3}-month SORA + {n2} bp; upfront fee {n1}%; undrawn fee {n0}% p.a.; interest quarterly",
+      "quotes": [
+        "RCF-01 3-month SORA + 180 bp, upfront fee 0.25%. Interest quarterly. RCF undrawn fee 0.40% p.a."
+      ],
+      "facility": "RCF-01",
+      "field": "Pricing",
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms",
+      "numbers": {
+        "n0": {
+          "token": "0.40",
+          "quote": "RCF-01 3-month SORA + 180 bp, upfront fee 0.25%. Interest quarterly. RCF undrawn fee 0.40% p.a.",
+          "unit": "percent"
+        },
+        "n1": {
+          "token": "0.25",
+          "quote": "RCF-01 3-month SORA + 180 bp, upfront fee 0.25%. Interest quarterly. RCF undrawn fee 0.40% p.a.",
+          "unit": "percent"
+        },
+        "n2": {
+          "token": "180",
+          "quote": "RCF-01 3-month SORA + 180 bp, upfront fee 0.25%. Interest quarterly. RCF undrawn fee 0.40% p.a.",
+          "unit": "basis points"
+        },
+        "n3": {
+          "token": "3",
+          "quote": "RCF-01 3-month SORA + 180 bp, upfront fee 0.25%. Interest quarterly. RCF undrawn fee 0.40% p.a.",
+          "unit": "months"
+        }
+      }
+    },
+    {
+      "id": "tl-security-7",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "The proposed term-loan security is a first mortgage over 16 Tai Seng Street and assignment of rents. No corporate guarantee is assumed; legal perfection requires separate evidence.",
+      "quotes": [
+        "TL-01: first mortgage over 16 Tai Seng Street and assignment of rents. No corporate guarantee is assumed.",
+        "Legal perfection is an assumption requiring evidence"
+      ],
+      "facility": "TL-01",
+      "field": "Security",
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms"
+    },
+    {
+      "id": "rcf-security-7",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "The RCF is described as unsecured, with a negative pledge and pari passu undertaking.",
+      "quotes": [
+        "RCF-01: expressly unsecured, negative pledge and pari passu undertaking."
+      ],
+      "facility": "RCF-01",
+      "field": "Security",
+      "requires_unsecured_confirmation": true,
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms"
+    },
+    {
+      "id": "tl-security-8",
+      "section_id": 8,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "The proposed term-loan security is a first mortgage over 16 Tai Seng Street and assignment of rents. No corporate guarantee is assumed; legal perfection requires separate evidence.",
+      "quotes": [
+        "TL-01: first mortgage over 16 Tai Seng Street and assignment of rents. No corporate guarantee is assumed.",
+        "Legal perfection is an assumption requiring evidence"
+      ],
+      "facility": "TL-01",
+      "field": "Security",
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Security / support"
+    },
+    {
+      "id": "rcf-security-8",
+      "section_id": 8,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "The RCF is described as unsecured, with a negative pledge and pari passu undertaking.",
+      "quotes": [
+        "RCF-01: expressly unsecured, negative pledge and pari passu undertaking."
+      ],
+      "facility": "RCF-01",
+      "field": "Security",
+      "requires_unsecured_confirmation": true,
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Security / support"
+    },
+    {
+      "id": "valuation",
+      "section_id": 8,
+      "content_hash": "831e0827a1f9c3efee88999c66fad3913b52ee5690dafeb73f0f856f30af80ac",
+      "filename": "valuation_v1.pdf",
+      "page": 1,
+      "text": "Demo Valuer reports a market value of SGD {n0} million for 16 Tai Seng Street, effective 31 October 2026; basis: market value for the secured property.",
+      "quotes": [
+        "valuation effective 2026-10-31. Property: 16 Tai Seng Street.",
+        "Market value: SGD 112.00 million.",
+        "not the public annual-report summary"
+      ],
+      "source_period": "2026-10-31",
+      "entity": "ESR-REIT",
+      "subpart": "Security / support",
+      "numbers": {
+        "n0": {
+          "token": "112.00",
+          "quote": "Market value: SGD 112.00 million.",
+          "unit": "currency_million",
+          "currency": "SGD"
+        }
+      }
+    },
+    {
+      "id": "rating",
+      "section_id": 12,
+      "content_hash": "69b849ce41291a0831d1bc3e59fa4e9b122bf8a48c92c79d008ae658130b45c4",
+      "filename": "internal_rating.pdf",
+      "page": 1,
+      "text": "The supplied internal rating is DEMO-G4, provided by the Demo Rating Officer on 31 October 2026. The report records the previous grade as DEMO-G4 dated 30 April 2026. This is a fictional demo grade with no asserted probability of default or mapping to an external agency scale.",
+      "quotes": [
+        "supplied by Demo Rating Officer on 2026-10-31: DEMO-G4.",
+        "Previous rating DEMO-G4 dated 2026-04-30.",
+        "No probability of default, bank scale or mapping to a public agency rating is asserted."
+      ],
+      "internal_rating": true,
+      "source_period": "2026-10-31",
+      "entity": "ESR-REIT",
+      "subpart": "Current and previous internal rating"
+    },
+    {
+      "id": "rating-review",
+      "section_id": 12,
+      "content_hash": "69b849ce41291a0831d1bc3e59fa4e9b122bf8a48c92c79d008ae658130b45c4",
+      "filename": "internal_rating.pdf",
+      "page": 1,
+      "text": "The supplied rationale retains the grade while reviewing refinancing, concentration and valuation sensitivity. Validity runs to 31 October 2027, subject to earlier review following material evidence changes.",
+      "quotes": [
+        "retain grade for this scenario, while reviewing refinancing, concentration and valuation sensitivity.",
+        "to 2027-10-31, subject to earlier review following material evidence changes."
+      ],
+      "internal_rating": true,
+      "source_period": "2026-10-31",
+      "entity": "ESR-REIT",
+      "subpart": "Change and reason"
+    },
+    {
+      "id": "unitholders",
+      "section_id": 5,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 230,
+      "text": "The substantial-unitholder register at 19 March 2026 reports ESR Group Limited with a total deemed interest of {n1}% and Tong Jinquan with a total interest of {n0}%. The overlapping deemed-interest chains should be read from the register, rather than added together as separate ownership blocks.",
+      "quotes": [
+        "as at 19 March 2026",
+        "ESR Group Limited – – 173,208,392(3)(4)(5)(6)(7) 21.478% 173,208,392 21.478%",
+        "Mr. Tong Jinquan 17,280,299 2.143% 25,518,483(1) 3.164% 42,798,782 5.307%"
+      ],
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Shareholders and interests",
+      "numbers": {
+        "n0": {
+          "token": "5.307",
+          "quote": "Mr. Tong Jinquan 17,280,299 2.143% 25,518,483(1) 3.164% 42,798,782 5.307%",
+          "unit": "percent",
+          "period": "2026-03-19"
+        },
+        "n1": {
+          "token": "21.478",
+          "quote": "ESR Group Limited – – 173,208,392(3)(4)(5)(6)(7) 21.478% 173,208,392 21.478%",
+          "unit": "percent",
+          "period": "2026-03-19"
+        }
+      }
+    },
+    {
+      "id": "rent-update",
+      "section_id": 3,
+      "content_hash": "63b3e952021e0aadfb98fe9a49191c41b94199072acc6d9d9064721d4a76aaa5",
+      "filename": "announcement-rent-update-20261006.pdf",
+      "page": 1,
+      "text": "The October rent update reports continued rental receipts from the administrators and receivers of ACFS, while recovery of earlier arrears remains in progress. The outstanding balance and replacement of guarantees warrant follow-up. This disclosure concerns a tenant; it does not establish the borrower’s conduct with the Bank.",
+      "quotes": [
+        "ESR-REIT has received all rent payments due in respect of the Properties for the period since 13 August 2026",
+        "The Manager has issued breach notices to ACFS to seek the replacement of the Bankers’ Guarantees",
+        "recovery of the remaining balance of the Outstanding Arrears."
+      ],
+      "source_period": "2026-10-06",
+      "entity": "ESR-REIT",
+      "subpart": "Developments and credit impact"
+    },
+    {
+      "id": "insurance",
+      "section_id": 8,
+      "content_hash": "fa73f64f23430e1fc0e79001122bb382450a081bb0c544aba73eb53c1b05f8d0",
+      "filename": "insurance.pdf",
+      "page": 1,
+      "text": "Demo Insurer provides property damage, fire and business interruption cover for 16 Tai Seng Street from 1 November 2026 to 31 October 2027. Reinstatement sum insured is SGD {n0} million; the Bank is named as mortgagee and loss payee. Exclusions include wear and tear, gradual contamination and uninsured tenant liabilities. Review coverage adequacy and renewal before drawdown.",
+      "quotes": [
+        "Period: 2026-11-01 to 2027-10-31.",
+        "The Bank is named as mortgagee and loss payee",
+        "Reinstatement sum insured SGD 90.00m.",
+        "This does not establish an actual insurance contract or perfected security.",
+        "fictional insurer Demo Insurer",
+        "property damage, fire and business interruption",
+        "Exclusions: wear and tear, gradual contamination and uninsured tenant liabilities."
+      ],
+      "source_period": "2026-10-31",
+      "entity": "ESR-REIT",
+      "subpart": "Insurance",
+      "numbers": {
+        "n0": {
+          "token": "90.00",
+          "quote": "Reinstatement sum insured SGD 90.00m.",
+          "unit": "currency_million",
+          "currency": "SGD"
+        }
+      }
+    },
+    {
+      "id": "valuation-revised",
+      "section_id": 8,
+      "content_hash": "165e288e2c4b6014bbac9f75ac8e9d360c128299fc860f4504ceef2f45164245",
+      "filename": "valuation_v2.pdf",
+      "page": 1,
+      "text": "Demo Valuer reports a revised market value of SGD {n0} million for 16 Tai Seng Street, effective 9 November 2026, following the fictional notice of tenant non-renewal. The updated valuation supersedes the initial report.",
+      "quotes": [
+        "valuation effective 2026-11-09. Property: 16 Tai Seng Street.",
+        "Market value: SGD 104.00 million.",
+        "Supersedes DEMO-VAL-001",
+        "Demo Tenant A will not renew at expiry on 2027-04-30.",
+        "human reassessment is required."
+      ],
+      "source_period": "2026-11-09",
+      "entity": "ESR-REIT",
+      "subpart": "Security / support",
+      "numbers": {
+        "n0": {
+          "token": "104.00",
+          "quote": "Market value: SGD 104.00 million.",
+          "unit": "currency_million",
+          "currency": "SGD"
+        }
+      }
+    },
+    {
+      "id": "justification",
+      "section_id": 1,
+      "content_hash": "21688e5103e9173f30c125124a170b2bcdb844f0ea65027e5e1c87f319e77c63",
+      "filename": "cas.pdf",
+      "page": 1,
+      "text": "The requested upsize provides a capital expenditure buffer and staggers the facility maturities. The current facilities mature on 30 April 2027.",
+      "quotes": [
+        "Rationale: stagger maturities and provide a capital expenditure buffer.",
+        "maturity 2027-04-30."
+      ],
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Justifications"
+    },
+    {
+      "id": "classification",
+      "section_id": 1,
+      "content_hash": "21688e5103e9173f30c125124a170b2bcdb844f0ea65027e5e1c87f319e77c63",
+      "filename": "cas.pdf",
+      "page": 1,
+      "text": "The CAS records current classification as Pass, not on Watchlist or Special Mention, and current DPD of {dpd}.",
+      "quotes": [
+        "Current classification: Pass; not on Watchlist or Special Mention. Current days past due (DPD): 0."
+      ],
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Classification",
+      "numbers": {
+        "dpd": {
+          "token": "0",
+          "quote": "Current days past due (DPD): 0",
+          "unit": "days"
+        }
+      }
+    },
+    {
+      "id": "portfolio",
+      "section_id": 4,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 50,
+      "text": "At 31 December 2025, portfolio valuation was SGD {valuation} million and occupancy was {occupancy}%. The portfolio spans Singapore, Australia and Japan.",
+      "quotes": [
+        "Portfolio Valuation (S$ million) 4,950.6 4,858.6",
+        "Portfolio Occupancy (%) 92.3 91.1",
+        "Singapore, Australia and Japan"
+      ],
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Portfolio summary",
+      "numbers": {
+        "valuation": {
+          "token": "4,858.6",
+          "quote": "Portfolio Valuation (S$ million) 4,950.6 4,858.6",
+          "unit": "currency_million",
+          "currency": "SGD"
+        },
+        "occupancy": {
+          "token": "91.1",
+          "quote": "Portfolio Occupancy (%) 92.3 91.1",
+          "unit": "percent"
+        }
+      }
+    },
+    {
+      "id": "portfolio-wale-4",
+      "section_id": 4,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 53,
+      "text": "At 31 December 2025, portfolio WALE by gross rental income was {wale} years. This portfolio measure does not describe the secured property alone.",
+      "quotes": [
+        "a portfolio weighted average lease expiry",
+        "(“WALE”) (by gross rental income) of 4.4"
+      ],
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Portfolio summary",
+      "numbers": {
+        "wale": {
+          "token": "4.4",
+          "quote": "(“WALE”) (by gross rental income) of 4.4",
+          "unit": "years"
+        }
+      }
+    },
+    {
+      "id": "portfolio-wale-10",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 53,
+      "text": "At 31 December 2025, portfolio WALE by gross rental income was {wale} years. This portfolio measure does not describe the secured property alone.",
+      "quotes": [
+        "a portfolio weighted average lease expiry",
+        "(“WALE”) (by gross rental income) of 4.4"
+      ],
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Portfolio",
+      "numbers": {
+        "wale": {
+          "token": "4.4",
+          "quote": "(“WALE”) (by gross rental income) of 4.4",
+          "unit": "years"
+        }
+      }
+    },
+    {
+      "id": "occupancy-commentary",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 50,
+      "text": "Portfolio occupancy declined from {previous}% at 31 December 2024 to {current}% at 31 December 2025. The lower occupied proportion warrants attention to reletting and rental continuity.",
+      "quotes": [
+        "Portfolio Occupancy (%) 92.3 91.1 -1.2%"
+      ],
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Commentary",
+      "numbers": {
+        "previous": {
+          "token": "92.3",
+          "quote": "Portfolio Occupancy (%) 92.3 91.1 -1.2%",
+          "unit": "percent",
+          "period": "2024-12-31"
+        },
+        "current": {
+          "token": "91.1",
+          "quote": "Portfolio Occupancy (%) 92.3 91.1 -1.2%",
+          "unit": "percent"
+        }
+      }
+    },
+    {
+      "id": "tl-01-purpose",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "Refinance the existing term loan and fund property capital expenditure.",
+      "quotes": [
+        "Purpose: refinance the existing term loan and fund property capital expenditure; revolving facility for working capital."
+      ],
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms",
+      "facility": "TL-01",
+      "field": "Purpose"
+    },
+    {
+      "id": "tl-01-borrower",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "ESR-REIT",
+      "quotes": [
+        "Borrower: ESR-REIT"
+      ],
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms",
+      "facility": "TL-01",
+      "field": "Borrower"
+    },
+    {
+      "id": "tl-01-availability",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "{days} days from execution.",
+      "quotes": [
+        "TL availability: 90 days from execution; RCF drawings up to its maturity."
+      ],
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms",
+      "facility": "TL-01",
+      "field": "Availability period",
+      "numbers": {
+        "days": {
+          "token": "90",
+          "quote": "TL availability: 90 days from execution; RCF drawings up to its maturity.",
+          "unit": "days"
+        }
+      }
+    },
+    {
+      "id": "tl-01-covenants",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "Aggregate leverage at or below {leverage}%; reported group ICR at or above {icr}x; TL drawn LTV at or below {ltv}%. Test quarterly and before drawings.",
+      "quotes": [
+        "aggregate leverage <= 45%; reported group ICR >= 2x; TL drawn LTV <= 55%. Test quarterly and before drawings."
+      ],
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms",
+      "facility": "TL-01",
+      "field": "Financial covenants",
+      "numbers": {
+        "leverage": {
+          "token": "45",
+          "quote": "aggregate leverage <= 45%; reported group ICR >= 2x; TL drawn LTV <= 55%. Test quarterly and before drawings.",
+          "unit": "percent"
+        },
+        "icr": {
+          "token": "2",
+          "quote": "aggregate leverage <= 45%; reported group ICR >= 2x; TL drawn LTV <= 55%. Test quarterly and before drawings.",
+          "unit": "times"
+        },
+        "ltv": {
+          "token": "55",
+          "quote": "aggregate leverage <= 45%; reported group ICR >= 2x; TL drawn LTV <= 55%. Test quarterly and before drawings.",
+          "unit": "percent"
+        }
+      }
+    },
+    {
+      "id": "tl-01-conditions",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "Before drawdown, obtain valuation, insurance and security evidence and complete required approvals. Legal perfection remains to be evidenced.",
+      "quotes": [
+        "Before drawdown: CA review of valuation, insurance and security evidence; required documents and human approvals."
+      ],
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms",
+      "facility": "TL-01",
+      "field": "Other key terms and conditions"
+    },
+    {
+      "id": "rcf-01-purpose",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "Working capital.",
+      "quotes": [
+        "Purpose: refinance the existing term loan and fund property capital expenditure; revolving facility for working capital."
+      ],
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms",
+      "facility": "RCF-01",
+      "field": "Purpose"
+    },
+    {
+      "id": "rcf-01-borrower",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "ESR-REIT",
+      "quotes": [
+        "Borrower: ESR-REIT"
+      ],
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms",
+      "facility": "RCF-01",
+      "field": "Borrower"
+    },
+    {
+      "id": "rcf-01-availability",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "Drawings up to final maturity.",
+      "quotes": [
+        "TL availability: 90 days from execution; RCF drawings up to its maturity."
+      ],
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms",
+      "facility": "RCF-01",
+      "field": "Availability period"
+    },
+    {
+      "id": "rcf-01-covenants",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "Aggregate leverage at or below {leverage}%; reported group ICR at or above {icr}x; TL drawn LTV at or below {ltv}%. Test quarterly and before drawings.",
+      "quotes": [
+        "aggregate leverage <= 45%; reported group ICR >= 2x; TL drawn LTV <= 55%. Test quarterly and before drawings."
+      ],
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms",
+      "facility": "RCF-01",
+      "field": "Financial covenants",
+      "numbers": {
+        "leverage": {
+          "token": "45",
+          "quote": "aggregate leverage <= 45%; reported group ICR >= 2x; TL drawn LTV <= 55%. Test quarterly and before drawings.",
+          "unit": "percent"
+        },
+        "icr": {
+          "token": "2",
+          "quote": "aggregate leverage <= 45%; reported group ICR >= 2x; TL drawn LTV <= 55%. Test quarterly and before drawings.",
+          "unit": "times"
+        },
+        "ltv": {
+          "token": "55",
+          "quote": "aggregate leverage <= 45%; reported group ICR >= 2x; TL drawn LTV <= 55%. Test quarterly and before drawings.",
+          "unit": "percent"
+        }
+      }
+    },
+    {
+      "id": "rcf-01-conditions",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "Before drawdown, obtain valuation, insurance and security evidence and complete required approvals. Legal perfection remains to be evidenced.",
+      "quotes": [
+        "Before drawdown: CA review of valuation, insurance and security evidence; required documents and human approvals."
+      ],
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms",
+      "facility": "RCF-01",
+      "field": "Other key terms and conditions"
+    },
+    {
+      "id": "security-ltv-initial",
+      "section_id": 8,
+      "content_hash": "831e0827a1f9c3efee88999c66fad3913b52ee5690dafeb73f0f856f30af80ac",
+      "filename": "valuation_v1.pdf",
+      "page": 1,
+      "text": "Fully drawn TL of SGD {debt} million against market value of SGD {security} million gives {ltv}% LTV, with {headroom} percentage points of headroom to the {limit}% contractual maximum. The RCF is excluded from the mortgage LTV numerator.",
+      "quotes": [
+        "Fully drawn proposed term loan SGD 60.00m / value SGD 112.00m = 53.57% LTV.",
+        "Contractual maximum 55%"
+      ],
+      "source_period": "2026-10-31",
+      "entity": "ESR-REIT",
+      "subpart": "LTV",
+      "numbers": {
+        "debt": {
+          "token": "60.00",
+          "quote": "Fully drawn proposed term loan SGD 60.00m / value SGD 112.00m = 53.57% LTV.",
+          "unit": "currency_million",
+          "currency": "SGD"
+        },
+        "security": {
+          "token": "112.00",
+          "quote": "Fully drawn proposed term loan SGD 60.00m / value SGD 112.00m = 53.57% LTV.",
+          "unit": "currency_million",
+          "currency": "SGD"
+        },
+        "limit": {
+          "token": "55",
+          "quote": "Contractual maximum 55%",
+          "unit": "percent"
+        },
+        "ltv": {
+          "token": "60.00",
+          "quote": "Fully drawn proposed term loan SGD 60.00m / value SGD 112.00m = 53.57% LTV.",
+          "unit": "percent",
+          "op": "ratio_percent",
+          "operands": [
+            "debt",
+            "security"
+          ],
+          "format": ".2f"
+        },
+        "headroom": {
+          "token": "55",
+          "quote": "Contractual maximum 55%",
+          "unit": "percentage points",
+          "op": "ltv_headroom",
+          "operands": [
+            "limit",
+            "debt",
+            "security"
+          ],
+          "format": ".2f"
+        }
+      }
+    },
+    {
+      "id": "security-ltv-revised",
+      "section_id": 8,
+      "content_hash": "165e288e2c4b6014bbac9f75ac8e9d360c128299fc860f4504ceef2f45164245",
+      "filename": "valuation_v2.pdf",
+      "page": 1,
+      "text": "Fully drawn TL of SGD {debt} million against market value of SGD {security} million gives {ltv}% LTV, with {headroom} percentage points of headroom to the {limit}% contractual maximum. The RCF is excluded from the mortgage LTV numerator.",
+      "quotes": [
+        "Fully drawn proposed term loan SGD 60.00m / value SGD 104.00m = 57.69% LTV.",
+        "Contractual maximum 55%"
+      ],
+      "source_period": "2026-11-09",
+      "entity": "ESR-REIT",
+      "subpart": "LTV",
+      "numbers": {
+        "debt": {
+          "token": "60.00",
+          "quote": "Fully drawn proposed term loan SGD 60.00m / value SGD 104.00m = 57.69% LTV.",
+          "unit": "currency_million",
+          "currency": "SGD"
+        },
+        "security": {
+          "token": "104.00",
+          "quote": "Fully drawn proposed term loan SGD 60.00m / value SGD 104.00m = 57.69% LTV.",
+          "unit": "currency_million",
+          "currency": "SGD"
+        },
+        "limit": {
+          "token": "55",
+          "quote": "Contractual maximum 55%",
+          "unit": "percent"
+        },
+        "ltv": {
+          "token": "60.00",
+          "quote": "Fully drawn proposed term loan SGD 60.00m / value SGD 104.00m = 57.69% LTV.",
+          "unit": "percent",
+          "op": "ratio_percent",
+          "operands": [
+            "debt",
+            "security"
+          ],
+          "format": ".2f"
+        },
+        "headroom": {
+          "token": "55",
+          "quote": "Contractual maximum 55%",
+          "unit": "percentage points",
+          "op": "ltv_headroom",
+          "operands": [
+            "limit",
+            "debt",
+            "security"
+          ],
+          "format": ".2f"
+        }
+      }
+    },
+    {
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 2,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "id": "listing",
+      "section_id": 4,
+      "text": "ESR-REIT has been listed on the Singapore Exchange Securities Trading Limited since 25 July 2006. Its website is www.esr-reit.com.sg.",
+      "quotes": [
+        "Singapore Exchange Securities Trading Limited since 25 July 2006",
+        "www.esr-reit.com.sg."
+      ],
+      "subpart": "Borrower details"
+    },
+    {
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 2,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "id": "stakeholders",
+      "section_id": 6,
+      "text": "ESR Group Limited is the sponsor and ESR-REIT Management (S) Limited is the manager. Sponsor affiliation is not evidence of a guarantee or committed liquidity support.",
+      "quotes": [
+        "managed by ESR- REIT Management (S) Limited",
+        "sponsored by ESR Group Limited"
+      ],
+      "subpart": "Key stakeholders"
+    },
+    {
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 35,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "id": "management-tenure",
+      "section_id": 6,
+      "text": "Adrian Chui joined the manager as CEO and Executive Director in March 2017; Don Kok was appointed CFO on 15 August 2022. The CEO reports to the Board and the CFO reports to the CEO.",
+      "quotes": [
+        "Mr. Adrian Chui joined the Manager in March 2017 as CEO and Executive Director. He reports to the Board",
+        "Mr. Don Kok was appointed CFO on 15 August 2022. Reporting to the CEO"
+      ],
+      "subpart": "Experience and responsibilities"
+    },
+    {
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 10,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "id": "trustee-role",
+      "section_id": 5,
+      "text": "The trust structure identifies a trustee acting on behalf of ESR-REIT and property-holding entities owning the underlying assets. The complete subsidiary ownership schedule requires confirmation.",
+      "quotes": [
+        "Acts on behalf of",
+        "ESR-REIT Trustee",
+        "Property- 100% Managers1 Holding Entities"
+      ],
+      "subpart": "Group structure chart"
+    },
+    {
+      "content_hash": "36fabf94f0b2705ea3caeafdc28325e5b510c6a0cbc40a6da49fa516ac196864",
+      "filename": "compliance_certificate.pdf",
+      "page": 1,
+      "source_period": "2026-10-31",
+      "entity": "ESR-REIT",
+      "id": "contractual-headroom",
+      "section_id": 10,
+      "text": "The certificate tests leverage of {leverage}% against a {lev_limit}% contractual maximum, leaving {lev_room} percentage points of headroom. Reported ICR of {icr}x against a {icr_limit}x minimum leaves {icr_room}x. These group observations are dated 30 September 2026; the certificate tests them at 31 October 2026. The limited leverage buffer warrants monitoring before further drawings.",
+      "quotes": [
+        "reported aggregate leverage 44.1%; reported interest coverage 2.6x.",
+        "leverage maximum 45%; ICR minimum 2x."
+      ],
+      "subpart": "Headroom to financial covenants",
+      "numbers": {
+        "leverage": {
+          "token": "44.1",
+          "quote": "reported aggregate leverage 44.1%; reported interest coverage 2.6x.",
+          "unit": "percent",
+          "period": "2026-09-30"
+        },
+        "lev_limit": {
+          "token": "45",
+          "quote": "leverage maximum 45%; ICR minimum 2x.",
+          "unit": "percent"
+        },
+        "icr": {
+          "token": "2.6",
+          "quote": "reported aggregate leverage 44.1%; reported interest coverage 2.6x.",
+          "unit": "times",
+          "period": "2026-09-30"
+        },
+        "icr_limit": {
+          "token": "2",
+          "quote": "leverage maximum 45%; ICR minimum 2x.",
+          "unit": "times"
+        },
+        "lev_room": {
+          "token": "45",
+          "quote": "leverage maximum 45%; ICR minimum 2x.",
+          "unit": "percentage points",
+          "op": "subtract",
+          "operands": [
+            "lev_limit",
+            "leverage"
+          ],
+          "format": ".2f"
+        },
+        "icr_room": {
+          "token": "2.6",
+          "quote": "reported aggregate leverage 44.1%; reported interest coverage 2.6x.",
+          "unit": "times",
+          "op": "subtract",
+          "operands": [
+            "icr",
+            "icr_limit"
+          ],
+          "format": ".2f"
+        }
+      }
+    },
+    {
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "id": "trustee-4",
+      "section_id": 4,
+      "page": 232,
+      "text": "The FY2025 annual report identifies Perpetual (Asia) Limited as trustee of ESR-REIT.",
+      "quotes": [
+        "Perpetual (Asia) Limited, as trustee of ESR-REIT"
+      ],
+      "subpart": "Trustee"
+    },
+    {
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "id": "trustee-5",
+      "section_id": 5,
+      "page": 232,
+      "text": "The FY2025 annual report identifies Perpetual (Asia) Limited as trustee of ESR-REIT.",
+      "quotes": [
+        "Perpetual (Asia) Limited, as trustee of ESR-REIT"
+      ],
+      "subpart": "Group structure chart"
+    },
+    {
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "id": "trustee-6",
+      "section_id": 6,
+      "page": 232,
+      "text": "The FY2025 annual report identifies Perpetual (Asia) Limited as trustee of ESR-REIT.",
+      "quotes": [
+        "Perpetual (Asia) Limited, as trustee of ESR-REIT"
+      ],
+      "subpart": "Key stakeholders"
+    },
+    {
+      "id": "external-rating",
+      "section_id": 12,
+      "page": 2,
+      "filename": "fitch-rating-release-20251028.pdf",
+      "content_hash": "019d59a2c9825d5272264aa25ddb5aa5c4f21090518b4f1635db01edf8fe38ed",
+      "source_period": "2025-10-28",
+      "entity": "ESR-REIT",
+      "subpart": "External ratings",
+      "text": "Fitch published ESR-REIT's long-term IDR at BBB with Stable outlook on 28 October 2025. This is the dated external rating action supplied for review; it does not replace the internal rating.",
+      "quotes": [
+        "Fitch Ratings - Singapore - 28 Oct 2025: Fitch Ratings has published a 'BBB' Long-Term Issue Default Rating (IDR) for Singapore-listed ESR-REIT. The Outlook is Stable."
+      ]
+    },
+    {
+      "id": "tl-01-type",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "Term loan",
+      "quotes": [
+        "Purpose: refinance the existing term loan and fund property capital expenditure; revolving facility for working capital."
+      ],
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms",
+      "facility": "TL-01",
+      "field": "Facility type"
+    },
+    {
+      "id": "rcf-01-type",
+      "section_id": 7,
+      "content_hash": "094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd",
+      "filename": "term_sheet.pdf",
+      "page": 1,
+      "text": "Revolving credit facility",
+      "quotes": [
+        "Purpose: refinance the existing term loan and fund property capital expenditure; revolving facility for working capital."
+      ],
+      "source_period": "2026-11-02",
+      "entity": "ESR-REIT",
+      "subpart": "Key terms",
+      "facility": "RCF-01",
+      "field": "Facility type"
+    },
+    {
+      "id": "country",
+      "section_id": 4,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 239,
+      "text": "ESR-REIT is constituted in Singapore.",
+      "quotes": [
+        "Constituted in the Republic of Singapore"
+      ],
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Header"
+    },
+    {
+      "id": "obligor-group",
+      "section_id": 4,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 2,
+      "text": "ESR Group is the sponsor group of ESR-REIT.",
+      "quotes": [
+        "sponsored by ESR Group Limited"
+      ],
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Header"
+    },
+    {
+      "id": "financial-distributable-2025",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 129,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Distributable income (2025): {amount} currency_thousand.",
+      "quotes": [
+        "176,076 164,064"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "176,076",
+          "quote": "176,076 164,064",
+          "unit": "currency_thousand",
+          "period": "2025",
+          "scope": "Group",
+          "format": "f",
+          "currency": "SGD"
+        }
+      },
+      "financial_cell": {
+        "label": "Distributable income",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-investment-2025",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 127,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Investment properties (2025): {amount} currency_thousand.",
+      "quotes": [
+        "Investment properties 4 5,013,226 5,548,674 920,927 1,287,655"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "5,013,226",
+          "quote": "Investment properties 4 5,013,226 5,548,674 920,927 1,287,655",
+          "unit": "currency_thousand",
+          "period": "2025",
+          "scope": "Group",
+          "format": "f",
+          "currency": "SGD"
+        }
+      },
+      "financial_cell": {
+        "label": "Investment properties",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-funds-2025",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 127,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Unitholders' funds (2025): {amount} currency_thousand.",
+      "quotes": [
+        "Unitholders’ funds 2,055,640 2,213,895 2,062,244 2,207,895"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "2,055,640",
+          "quote": "Unitholders’ funds 2,055,640 2,213,895 2,062,244 2,207,895",
+          "unit": "currency_thousand",
+          "period": "2025",
+          "scope": "Group",
+          "format": "f",
+          "currency": "SGD"
+        }
+      },
+      "financial_cell": {
+        "label": "Unitholders' funds",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-nav-2025",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 127,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "NAV per unit (S$) (2025): {amount} sgd_per_unit.",
+      "quotes": [
+        "Net asset value per Unit ($)(1) 2.55 2.75 2.56 2.74"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "2.55",
+          "quote": "Net asset value per Unit ($)(1) 2.55 2.75 2.56 2.74",
+          "unit": "sgd_per_unit",
+          "period": "2025",
+          "scope": "Group",
+          "format": "f",
+          "currency": "SGD"
+        }
+      },
+      "financial_cell": {
+        "label": "NAV per unit (S$)",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-dpu-2025",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 24,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Distribution per unit (cents) (2025): {amount} cents.",
+      "quotes": [
+        "FY2025 176.1 FY2025 21.914"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "21.914",
+          "quote": "FY2025 176.1 FY2025 21.914",
+          "unit": "cents",
+          "period": "2025",
+          "scope": "Group",
+          "format": "f"
+        }
+      },
+      "financial_cell": {
+        "label": "Distribution per unit (cents)",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-distributable-2024",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 129,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Distributable income (2024): {amount} currency_thousand.",
+      "quotes": [
+        "176,076 164,064"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "164,064",
+          "quote": "176,076 164,064",
+          "unit": "currency_thousand",
+          "period": "2024",
+          "scope": "Group",
+          "format": "f",
+          "currency": "SGD"
+        }
+      },
+      "financial_cell": {
+        "label": "Distributable income",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-investment-2024",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 127,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Investment properties (2024): {amount} currency_thousand.",
+      "quotes": [
+        "Investment properties 4 5,013,226 5,548,674 920,927 1,287,655"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "5,548,674",
+          "quote": "Investment properties 4 5,013,226 5,548,674 920,927 1,287,655",
+          "unit": "currency_thousand",
+          "period": "2024",
+          "scope": "Group",
+          "format": "f",
+          "currency": "SGD"
+        }
+      },
+      "financial_cell": {
+        "label": "Investment properties",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-funds-2024",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 127,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Unitholders' funds (2024): {amount} currency_thousand.",
+      "quotes": [
+        "Unitholders’ funds 2,055,640 2,213,895 2,062,244 2,207,895"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "2,213,895",
+          "quote": "Unitholders’ funds 2,055,640 2,213,895 2,062,244 2,207,895",
+          "unit": "currency_thousand",
+          "period": "2024",
+          "scope": "Group",
+          "format": "f",
+          "currency": "SGD"
+        }
+      },
+      "financial_cell": {
+        "label": "Unitholders' funds",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-nav-2024",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 127,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "NAV per unit (S$) (2024): {amount} sgd_per_unit.",
+      "quotes": [
+        "Net asset value per Unit ($)(1) 2.55 2.75 2.56 2.74"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "2.75",
+          "quote": "Net asset value per Unit ($)(1) 2.55 2.75 2.56 2.74",
+          "unit": "sgd_per_unit",
+          "period": "2024",
+          "scope": "Group",
+          "format": "f",
+          "currency": "SGD"
+        }
+      },
+      "financial_cell": {
+        "label": "NAV per unit (S$)",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-dpu-2024",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 24,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Distribution per unit (cents) (2024): {amount} cents.",
+      "quotes": [
+        "FY2024 164.1 FY20241 21.190"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "21.190",
+          "quote": "FY2024 164.1 FY20241 21.190",
+          "unit": "cents",
+          "period": "2024",
+          "scope": "Group",
+          "format": "f"
+        }
+      },
+      "financial_cell": {
+        "label": "Distribution per unit (cents)",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-debt-2025",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 59,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Total borrowings (2025): {amount} currency_million.",
+      "quotes": [
+        "Total Gross Debt (S$ million) 2,236.1 2,269.7"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "2,236.1",
+          "quote": "Total Gross Debt (S$ million) 2,236.1 2,269.7",
+          "unit": "currency_million",
+          "period": "2025",
+          "scope": "Group",
+          "format": "f",
+          "currency": "SGD"
+        }
+      },
+      "financial_cell": {
+        "label": "Total borrowings",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-leverage-2025",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 59,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Aggregate leverage (%) (2025): {amount} percent.",
+      "quotes": [
+        "Debt to Total Assets (%)1 43.4 42.8"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "43.4",
+          "quote": "Debt to Total Assets (%)1 43.4 42.8",
+          "unit": "percent",
+          "period": "2025",
+          "scope": "Group",
+          "format": "f"
+        }
+      },
+      "financial_cell": {
+        "label": "Aggregate leverage (%)",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-icr-2025",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 59,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Interest coverage (x) (2025): {amount} times.",
+      "quotes": [
+        "MAS Interest Coverage Ratio (times)2 2.5 2.5"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "2.5",
+          "quote": "MAS Interest Coverage Ratio (times)2 2.5 2.5",
+          "unit": "times",
+          "period": "2025",
+          "scope": "Group",
+          "format": "f"
+        }
+      },
+      "financial_cell": {
+        "label": "Interest coverage (x)",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-cost-2025",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 59,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Average cost of debt (%) (2025): {amount} percent.",
+      "quotes": [
+        "Weighted Average All-in Cost of Debt (%) p.a. 3.35 3.84"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "3.35",
+          "quote": "Weighted Average All-in Cost of Debt (%) p.a. 3.35 3.84",
+          "unit": "percent",
+          "period": "2025",
+          "scope": "Group",
+          "format": "f"
+        }
+      },
+      "financial_cell": {
+        "label": "Average cost of debt (%)",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-maturity-2025",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 59,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Weighted average debt maturity (years) (2025): {amount} years.",
+      "quotes": [
+        "Weighted Average Debt Expiry (“WADE”) (years) 2.0 2.8"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "2.0",
+          "quote": "Weighted Average Debt Expiry (“WADE”) (years) 2.0 2.8",
+          "unit": "years",
+          "period": "2025",
+          "scope": "Group",
+          "format": "f"
+        }
+      },
+      "financial_cell": {
+        "label": "Weighted average debt maturity (years)",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-fixed-2025",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 59,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Fixed rate debt (%) (2025): {amount} percent.",
+      "quotes": [
+        "Interest Rate Exposure Fixed (%) 68.4 74.8"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "68.4",
+          "quote": "Interest Rate Exposure Fixed (%) 68.4 74.8",
+          "unit": "percent",
+          "period": "2025",
+          "scope": "Group",
+          "format": "f"
+        }
+      },
+      "financial_cell": {
+        "label": "Fixed rate debt (%)",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-debt-2024",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 59,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Total borrowings (2024): {amount} currency_million.",
+      "quotes": [
+        "Total Gross Debt (S$ million) 2,236.1 2,269.7"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "2,269.7",
+          "quote": "Total Gross Debt (S$ million) 2,236.1 2,269.7",
+          "unit": "currency_million",
+          "period": "2024",
+          "scope": "Group",
+          "format": "f",
+          "currency": "SGD"
+        }
+      },
+      "financial_cell": {
+        "label": "Total borrowings",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-leverage-2024",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 59,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Aggregate leverage (%) (2024): {amount} percent.",
+      "quotes": [
+        "Debt to Total Assets (%)1 43.4 42.8"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "42.8",
+          "quote": "Debt to Total Assets (%)1 43.4 42.8",
+          "unit": "percent",
+          "period": "2024",
+          "scope": "Group",
+          "format": "f"
+        }
+      },
+      "financial_cell": {
+        "label": "Aggregate leverage (%)",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-icr-2024",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 59,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Interest coverage (x) (2024): {amount} times.",
+      "quotes": [
+        "MAS Interest Coverage Ratio (times)2 2.5 2.5"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "2.5",
+          "quote": "MAS Interest Coverage Ratio (times)2 2.5 2.5",
+          "unit": "times",
+          "period": "2024",
+          "scope": "Group",
+          "format": "f"
+        }
+      },
+      "financial_cell": {
+        "label": "Interest coverage (x)",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-cost-2024",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 59,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Average cost of debt (%) (2024): {amount} percent.",
+      "quotes": [
+        "Weighted Average All-in Cost of Debt (%) p.a. 3.35 3.84"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "3.84",
+          "quote": "Weighted Average All-in Cost of Debt (%) p.a. 3.35 3.84",
+          "unit": "percent",
+          "period": "2024",
+          "scope": "Group",
+          "format": "f"
+        }
+      },
+      "financial_cell": {
+        "label": "Average cost of debt (%)",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-maturity-2024",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 59,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Weighted average debt maturity (years) (2024): {amount} years.",
+      "quotes": [
+        "Weighted Average Debt Expiry (“WADE”) (years) 2.0 2.8"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "2.8",
+          "quote": "Weighted Average Debt Expiry (“WADE”) (years) 2.0 2.8",
+          "unit": "years",
+          "period": "2024",
+          "scope": "Group",
+          "format": "f"
+        }
+      },
+      "financial_cell": {
+        "label": "Weighted average debt maturity (years)",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-fixed-2024",
+      "section_id": 10,
+      "content_hash": "638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b",
+      "filename": "annual-report-2025.pdf",
+      "page": 59,
+      "source_period": "2025-12-31",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Fixed rate debt (%) (2024): {amount} percent.",
+      "quotes": [
+        "Interest Rate Exposure Fixed (%) 68.4 74.8"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "74.8",
+          "quote": "Interest Rate Exposure Fixed (%) 68.4 74.8",
+          "unit": "percent",
+          "period": "2024",
+          "scope": "Group",
+          "format": "f"
+        }
+      },
+      "financial_cell": {
+        "label": "Fixed rate debt (%)",
+        "operand": "amount",
+        "interim": false
+      }
+    },
+    {
+      "id": "financial-debt-2026-09-30",
+      "section_id": 10,
+      "content_hash": "12a54e2345dc2eda615e507deaab19799d15f6e92e1a63bf5854e03c399edb6b",
+      "filename": "business-update-3q2026.pdf",
+      "page": 11,
+      "source_period": "2026-09-30",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Total borrowings (2026-09-30): {amount} currency_million.",
+      "quotes": [
+        "Total Gross Debt (S$ million) 2,227.1 2,236.1"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "2,227.1",
+          "quote": "Total Gross Debt (S$ million) 2,227.1 2,236.1",
+          "unit": "currency_million",
+          "period": "2026-09-30",
+          "scope": "Group",
+          "format": "f",
+          "currency": "SGD"
+        }
+      },
+      "financial_cell": {
+        "label": "Total borrowings",
+        "operand": "amount",
+        "interim": true
+      }
+    },
+    {
+      "id": "financial-leverage-2026-09-30",
+      "section_id": 10,
+      "content_hash": "12a54e2345dc2eda615e507deaab19799d15f6e92e1a63bf5854e03c399edb6b",
+      "filename": "business-update-3q2026.pdf",
+      "page": 11,
+      "source_period": "2026-09-30",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Aggregate leverage (%) (2026-09-30): {amount} percent.",
+      "quotes": [
+        "Debt to Total Assets (%)(2) 44.1 43.4"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "44.1",
+          "quote": "Debt to Total Assets (%)(2) 44.1 43.4",
+          "unit": "percent",
+          "period": "2026-09-30",
+          "scope": "Group",
+          "format": "f"
+        }
+      },
+      "financial_cell": {
+        "label": "Aggregate leverage (%)",
+        "operand": "amount",
+        "interim": true
+      }
+    },
+    {
+      "id": "financial-icr-2026-09-30",
+      "section_id": 10,
+      "content_hash": "12a54e2345dc2eda615e507deaab19799d15f6e92e1a63bf5854e03c399edb6b",
+      "filename": "business-update-3q2026.pdf",
+      "page": 11,
+      "source_period": "2026-09-30",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Interest coverage (x) (2026-09-30): {amount} times.",
+      "quotes": [
+        "MAS Interest Coverage Ratio (times) 2.6 2.5"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "2.6",
+          "quote": "MAS Interest Coverage Ratio (times) 2.6 2.5",
+          "unit": "times",
+          "period": "2026-09-30",
+          "scope": "Group",
+          "format": "f"
+        }
+      },
+      "financial_cell": {
+        "label": "Interest coverage (x)",
+        "operand": "amount",
+        "interim": true
+      }
+    },
+    {
+      "id": "financial-cost-2026-09-30",
+      "section_id": 10,
+      "content_hash": "12a54e2345dc2eda615e507deaab19799d15f6e92e1a63bf5854e03c399edb6b",
+      "filename": "business-update-3q2026.pdf",
+      "page": 11,
+      "source_period": "2026-09-30",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Average cost of debt (%) (2026-09-30): {amount} percent.",
+      "quotes": [
+        "Weighted Average All-in Cost of Debt (%) p.a. 3.38 3.35"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "3.38",
+          "quote": "Weighted Average All-in Cost of Debt (%) p.a. 3.38 3.35",
+          "unit": "percent",
+          "period": "2026-09-30",
+          "scope": "Group",
+          "format": "f"
+        }
+      },
+      "financial_cell": {
+        "label": "Average cost of debt (%)",
+        "operand": "amount",
+        "interim": true
+      }
+    },
+    {
+      "id": "financial-maturity-2026-09-30",
+      "section_id": 10,
+      "content_hash": "12a54e2345dc2eda615e507deaab19799d15f6e92e1a63bf5854e03c399edb6b",
+      "filename": "business-update-3q2026.pdf",
+      "page": 11,
+      "source_period": "2026-09-30",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Weighted average debt maturity (years) (2026-09-30): {amount} years.",
+      "quotes": [
+        "Weighted Average Debt Expiry (“WADE”) (years) 1.9 2.0"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "1.9",
+          "quote": "Weighted Average Debt Expiry (“WADE”) (years) 1.9 2.0",
+          "unit": "years",
+          "period": "2026-09-30",
+          "scope": "Group",
+          "format": "f"
+        }
+      },
+      "financial_cell": {
+        "label": "Weighted average debt maturity (years)",
+        "operand": "amount",
+        "interim": true
+      }
+    },
+    {
+      "id": "financial-fixed-2026-09-30",
+      "section_id": 10,
+      "content_hash": "12a54e2345dc2eda615e507deaab19799d15f6e92e1a63bf5854e03c399edb6b",
+      "filename": "business-update-3q2026.pdf",
+      "page": 11,
+      "source_period": "2026-09-30",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Fixed rate debt (%) (2026-09-30): {amount} percent.",
+      "quotes": [
+        "Fixed Interest Rate Exposure (%) 62.9 68.4"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "62.9",
+          "quote": "Fixed Interest Rate Exposure (%) 62.9 68.4",
+          "unit": "percent",
+          "period": "2026-09-30",
+          "scope": "Group",
+          "format": "f"
+        }
+      },
+      "financial_cell": {
+        "label": "Fixed rate debt (%)",
+        "operand": "amount",
+        "interim": true
+      }
+    },
+    {
+      "id": "financial-revenue-2026-09-30",
+      "section_id": 10,
+      "content_hash": "12a54e2345dc2eda615e507deaab19799d15f6e92e1a63bf5854e03c399edb6b",
+      "filename": "business-update-3q2026.pdf",
+      "page": 2,
+      "source_period": "2026-09-30",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Gross revenue (YTD / at 30 Sep 2026): {amount} currency_million.",
+      "quotes": [
+        "329.6",
+        "Gross Revenue"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "329.6",
+          "quote": "329.6",
+          "unit": "currency_million",
+          "period": "2026-09-30",
+          "scope": "Group",
+          "currency": "SGD"
+        }
+      },
+      "financial_cell": {
+        "label": "Gross revenue",
+        "operand": "amount",
+        "interim": true
+      }
+    },
+    {
+      "id": "financial-npi-2026-09-30",
+      "section_id": 10,
+      "content_hash": "12a54e2345dc2eda615e507deaab19799d15f6e92e1a63bf5854e03c399edb6b",
+      "filename": "business-update-3q2026.pdf",
+      "page": 2,
+      "source_period": "2026-09-30",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Net property income (YTD / at 30 Sep 2026): {amount} currency_million.",
+      "quotes": [
+        "237.5",
+        "Net Property Income"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "237.5",
+          "quote": "237.5",
+          "unit": "currency_million",
+          "period": "2026-09-30",
+          "scope": "Group",
+          "currency": "SGD"
+        }
+      },
+      "financial_cell": {
+        "label": "Net property income",
+        "operand": "amount",
+        "interim": true
+      }
+    },
+    {
+      "id": "financial-distributable-2026-09-30",
+      "section_id": 10,
+      "content_hash": "12a54e2345dc2eda615e507deaab19799d15f6e92e1a63bf5854e03c399edb6b",
+      "filename": "business-update-3q2026.pdf",
+      "page": 2,
+      "source_period": "2026-09-30",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Distributable income (YTD / at 30 Sep 2026): {amount} currency_million.",
+      "quotes": [
+        "136.0",
+        "Distributable Income"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "136.0",
+          "quote": "136.0",
+          "unit": "currency_million",
+          "period": "2026-09-30",
+          "scope": "Group",
+          "currency": "SGD"
+        }
+      },
+      "financial_cell": {
+        "label": "Distributable income",
+        "operand": "amount",
+        "interim": true
+      }
+    },
+    {
+      "id": "financial-nav-2026-09-30",
+      "section_id": 10,
+      "content_hash": "12a54e2345dc2eda615e507deaab19799d15f6e92e1a63bf5854e03c399edb6b",
+      "filename": "business-update-3q2026.pdf",
+      "page": 2,
+      "source_period": "2026-09-30",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "NAV per unit (S$) (YTD / at 30 Sep 2026): {amount} sgd_per_unit.",
+      "quotes": [
+        "2.43",
+        "NAV per Unit"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "2.43",
+          "quote": "2.43",
+          "unit": "sgd_per_unit",
+          "period": "2026-09-30",
+          "scope": "Group",
+          "currency": "SGD"
+        }
+      },
+      "financial_cell": {
+        "label": "NAV per unit (S$)",
+        "operand": "amount",
+        "interim": true
+      }
+    },
+    {
+      "id": "financial-occupancy-2026-09-30",
+      "section_id": 10,
+      "content_hash": "12a54e2345dc2eda615e507deaab19799d15f6e92e1a63bf5854e03c399edb6b",
+      "filename": "business-update-3q2026.pdf",
+      "page": 2,
+      "source_period": "2026-09-30",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "Occupancy (%) (YTD / at 30 Sep 2026): {amount} percent.",
+      "quotes": [
+        "91.7",
+        "Healthy Occupancy Rate"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "91.7",
+          "quote": "91.7",
+          "unit": "percent",
+          "period": "2026-09-30",
+          "scope": "Group",
+          "currency": null
+        }
+      },
+      "financial_cell": {
+        "label": "Occupancy (%)",
+        "operand": "amount",
+        "interim": true
+      }
+    },
+    {
+      "id": "financial-wale-2026-09-30",
+      "section_id": 10,
+      "content_hash": "12a54e2345dc2eda615e507deaab19799d15f6e92e1a63bf5854e03c399edb6b",
+      "filename": "business-update-3q2026.pdf",
+      "page": 6,
+      "source_period": "2026-09-30",
+      "entity": "ESR-REIT",
+      "subpart": "Financial highlights",
+      "text": "WALE (years) (YTD / at 30 Sep 2026): {amount} years.",
+      "quotes": [
+        "Portfolio has a WALE of 4.8 years"
+      ],
+      "numbers": {
+        "amount": {
+          "token": "4.8",
+          "quote": "Portfolio has a WALE of 4.8 years",
+          "unit": "years",
+          "period": "2026-09-30",
+          "scope": "Group",
+          "currency": null
+        }
+      },
+      "financial_cell": {
+        "label": "WALE (years)",
+        "operand": "amount",
+        "interim": true
+      }
+    }
+  ],
+  "subparts": {
+    "1": {
+      "Requests": [
+        "request",
+        "request-limits"
+      ],
+      "Justifications": [
+        "justification"
+      ],
+      "Classification": [
+        "classification"
+      ]
+    },
+    "2": {
+      "Current client group exposure": [
+        "computed"
+      ],
+      "Excesses, temporary limits and cancellations": []
+    },
+    "3": {
+      "Developments and credit impact": [
+        "disposal",
+        "rent-update"
+      ],
+      "Status of prior approval conditions / credit comments": [
+        "conditions"
+      ]
+    },
+    "4": {
+      "Borrower and principal activities": [
+        "business"
+      ],
+      "Manager / sponsor": [
+        "sponsor"
+      ],
+      "Overview": [
+        "business"
+      ],
+      "Portfolio summary": [
+        "portfolio",
+        "portfolio-wale-4"
+      ],
+      "Industry code": [],
+      "Listing date, exchange and website": [
+        "listing"
+      ],
+      "Trustee identity": [
+        "trustee-4"
+      ]
+    },
+    "5": {
+      "Shareholders and interests": [
+        "unitholders",
+        "manager-ownership"
+      ],
+      "Group structure chart": [
+        "trust-structure"
+      ],
+      "Changes since last review": []
+    },
+    "6": {
+      "Management team": [
+        "management"
+      ],
+      "Experience and responsibilities": [
+        "management-responsibility"
+      ],
+      "Key stakeholders": [
+        "stakeholders"
+      ],
+      "Recent management changes": []
+    },
+    "7": {
+      "Key terms": [
+        "facility"
+      ]
+    },
+    "8": {
+      "Security / support": [
+        "tl-security-8",
+        "valuation",
+        "valuation-revised"
+      ],
+      "LTV": [
+        "security-ltv-initial",
+        "security-ltv-revised"
+      ],
+      "Insurance": [
+        "insurance"
+      ]
+    },
+    "9": {
+      "Primary and secondary repayment": [
+        "repayment-assumptions"
+      ],
+      "Debt service capacity": [
+        "computed"
+      ],
+      "Lease expiry profile": [
+        "lease-expiries"
+      ],
+      "Top tenants": [
+        "top-tenants"
+      ]
+    },
+    "10": {
+      "Income and balance sheet": [
+        "computed"
+      ],
+      "Capital management": [
+        "computed"
+      ],
+      "Portfolio": [
+        "occupancy-commentary",
+        "portfolio-wale-10"
+      ],
+      "Headroom to regulatory limits and financial covenants": [
+        "contractual-headroom",
+        "computed"
+      ],
+      "Interest coverage sensitivity": [],
+      "Commentary": [
+        "occupancy-commentary"
+      ]
+    },
+    "11": {
+      "Refinancing risk": [
+        "refinancing-risk"
+      ],
+      "Leasing / occupancy risk": [
+        "lease-risk"
+      ],
+      "Valuation risk": [
+        "valuation-risk"
+      ],
+      "Interest rate risk": [
+        "floating-rate-risk"
+      ],
+      "Security enforceability": [
+        "security-risk"
+      ]
+    },
+    "12": {
+      "Current and previous internal rating": [
+        "rating"
+      ],
+      "Change and reason": [
+        "rating-review"
+      ],
+      "External ratings": [
+        "external-rating"
+      ]
+    },
+    "13": {
+      "Conduct of Account": [
+        "computed"
+      ],
+      "Covenant compliance": [
+        "computed"
+      ],
+      "Credit bureau findings": []
+    },
+    "14": {
+      "CA-stated position": [
+        "ca_position"
+      ],
+      "Basis of position": [
+        "dependency"
+      ],
+      "Conditions and covenants": [
+        "conclusion-commercial-gaps"
+      ],
+      "Sign-off": []
+    }
+  },
+  "coverage_gaps": {
+    "1": [],
+    "2": [
+      "Temporary limits and pending cancellations: no reviewed schedule supplied; the exposure extract covers the Bank only."
+    ],
+    "4": [
+      "Industry code: CA-confirmed mapping is required. Property-level WALE is not supplied by the public portfolio WALE."
+    ],
+    "5": [
+      "Shareholding: public/other holdings and changes since the prior review require a reconciled register; overlapping deemed interests must not be summed."
+    ],
+    "6": [
+      "Management: subsequent personnel changes require dated evidence."
+    ],
+    "7": [
+      "Facility type and repayment: term-loan bullet and revolving structure follow the term sheet; detailed amortisation or extension rights beyond the supplied terms require evidence."
+    ],
+    "8": [
+      "Security: title, ranking and perfection evidence remains outstanding; no separate realizable value is assigned to rents or a guarantee. Insurance adequacy requires review of the complete policy."
+    ],
+    "9": [
+      "Debt service capacity: consolidated group forecast and committed maturity repayment funding remain outstanding. Historical income coverage and other unsupported debt-service rows require validated source mappings."
+    ],
+    "10": [
+      "Income / balance sheet: distributable income, NAV per unit and unsupported financial rows remain open pending validated source mappings. Interest coverage sensitivity: matched EBITDA, interest and repricing assumptions are required; no inferred stress result."
+    ],
+    "12": [
+      "External ratings: subsequent agency actions require updated evidence; no Moody’s or S&P rating is inferred."
+    ],
+    "13": [
+      "Credit bureau: reviewed findings have not been supplied; no clean-bureau conclusion is made."
+    ],
+    "14": [
+      "Conditions and covenants: CA to specify adopted conditions and timing; supplied prior conditions and term-sheet prerequisites are supporting context only. Sign-off names, decisions and dates remain pending."
+    ]
+  }
+}

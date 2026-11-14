@@ -1,0 +1,263 @@
+{
+  "tables": [
+    {
+      "statement": "balance_sheet",
+      "evidence_id": "page:127",
+      "columns": [
+        {
+          "period": "2025",
+          "scope": "Group"
+        },
+        {
+          "period": "2024",
+          "scope": "Group"
+        },
+        {
+          "period": "2025",
+          "scope": "Trust"
+        },
+        {
+          "period": "2024",
+          "scope": "Trust"
+        }
+      ],
+      "header_quote": "2025 2024 2025 2024",
+      "scope_quote": "Group Trust",
+      "unit_quote": "$’000",
+      "unit": "$’000",
+      "currency": "SGD",
+      "currency_evidence_id": "page:162",
+      "currency_quote": "The financial statements are presented in Singapore dollars",
+      "rows": [
+        {
+          "label": "Total assets",
+          "note": "",
+          "values": [
+            "5,864,836",
+            "6,007,400",
+            "4,035,916",
+            "4,118,216"
+          ],
+          "quote": "Total assets 5,864,836 6,007,400 4,035,916 4,118,216"
+        },
+        {
+          "label": "Total liabilities",
+          "note": "",
+          "values": [
+            "3,283,543",
+            "3,331,724",
+            "1,517,525",
+            "1,505,145"
+          ],
+          "quote": "Total liabilities 3,283,543 3,331,724 1,517,525 1,505,145"
+        },
+        {
+          "label": "Net assets",
+          "note": "",
+          "values": [
+            "2,581,293",
+            "2,675,676",
+            "2,518,391",
+            "2,613,071"
+          ],
+          "quote": "Net assets 2,581,293 2,675,676 2,518,391 2,613,071"
+        }
+      ]
+    },
+    {
+      "statement": "income_statement",
+      "evidence_id": "page:128",
+      "columns": [
+        {
+          "period": "2025",
+          "scope": "Group"
+        },
+        {
+          "period": "2024",
+          "scope": "Group"
+        }
+      ],
+      "header_quote": "2025 2024",
+      "scope_quote": "Group",
+      "unit_quote": "$’000",
+      "unit": "$’000",
+      "currency": "SGD",
+      "currency_evidence_id": "page:162",
+      "currency_quote": "The financial statements are presented in Singapore dollars",
+      "rows": [
+        {
+          "label": "Gross revenue",
+          "note": "19",
+          "values": [
+            "445,984",
+            "370,504"
+          ],
+          "quote": "Gross revenue 19 445,984 370,504"
+        },
+        {
+          "label": "Property expenses",
+          "note": "20",
+          "values": [
+            "(117,305)",
+            "(108,850)"
+          ],
+          "quote": "Property expenses 20 (117,305) (108,850)"
+        },
+        {
+          "label": "Net property income",
+          "note": "",
+          "values": [
+            "328,679",
+            "261,654"
+          ],
+          "quote": "Net property income 328,679 261,654"
+        },
+        {
+          "label": "Total return/(loss) for the year before income tax",
+          "note": "",
+          "values": [
+            "61,548",
+            "(97,658)"
+          ],
+          "quote": "Total return/(loss) for the year before income tax 61,548 (97,658)"
+        },
+        {
+          "label": "Income tax expense",
+          "note": "24",
+          "values": [
+            "(7,818)",
+            "(9,956)"
+          ],
+          "quote": "Income tax expense 24 (7,818) (9,956)"
+        },
+        {
+          "label": "Total return/(loss) for the year after income tax",
+          "note": "",
+          "values": [
+            "53,730",
+            "(107,614)"
+          ],
+          "quote": "Total return/(loss) for the year after income tax 53,730 (107,614)"
+        }
+      ]
+    },
+    {
+      "statement": "cash_flow",
+      "evidence_id": "page:155",
+      "columns": [
+        {
+          "period": "2025",
+          "scope": "Group"
+        },
+        {
+          "period": "2024",
+          "scope": "Group"
+        }
+      ],
+      "header_quote": "2025 2024",
+      "scope_quote": "Group",
+      "unit_quote": "$’000",
+      "unit": "$’000",
+      "currency": "SGD",
+      "currency_evidence_id": "page:162",
+      "currency_quote": "The financial statements are presented in Singapore dollars",
+      "rows": [
+        {
+          "label": "Total return/(loss) before income tax for the year",
+          "note": "",
+          "values": [
+            "61,548",
+            "(97,658)"
+          ],
+          "quote": "Total return/(loss) before income tax for the year 61,548 (97,658)"
+        },
+        {
+          "label": "Net cash generated from operating activities",
+          "note": "",
+          "values": [
+            "294,161",
+            "270,912"
+          ],
+          "quote": "Net cash generated from operating activities 294,161 270,912"
+        },
+        {
+          "label": "Net cash used in investing activities",
+          "note": "",
+          "values": [
+            "(27,214)",
+            "(438,238)"
+          ],
+          "quote": "Net cash used in investing activities (27,214) (438,238)"
+        }
+      ]
+    },
+    {
+      "statement": "cash_flow",
+      "evidence_id": "page:156",
+      "columns": [
+        {
+          "period": "2025",
+          "scope": "Group"
+        },
+        {
+          "period": "2024",
+          "scope": "Group"
+        }
+      ],
+      "header_quote": "2025 2024",
+      "scope_quote": "Group",
+      "unit_quote": "$’000",
+      "unit": "$’000",
+      "currency": "SGD",
+      "currency_evidence_id": "page:162",
+      "currency_quote": "The financial statements are presented in Singapore dollars",
+      "rows": [
+        {
+          "label": "Net cash (used in)/generated from financing activities",
+          "note": "",
+          "values": [
+            "(289,839)",
+            "200,410"
+          ],
+          "quote": "Net cash (used in)/generated from financing activities (289,839) 200,410"
+        },
+        {
+          "label": "Net (decrease)/increase in cash and cash equivalents",
+          "note": "",
+          "values": [
+            "(22,892)",
+            "33,084"
+          ],
+          "quote": "Net (decrease)/increase in cash and cash equivalents (22,892) 33,084"
+        },
+        {
+          "label": "Cash and cash equivalents at 1 January",
+          "note": "",
+          "values": [
+            "70,214",
+            "38,409"
+          ],
+          "quote": "Cash and cash equivalents at 1 January 70,214 38,409"
+        },
+        {
+          "label": "Effect of exchange rate fluctuations on cash held",
+          "note": "",
+          "values": [
+            "(1,394)",
+            "(1,279)"
+          ],
+          "quote": "Effect of exchange rate fluctuations on cash held (1,394) (1,279)"
+        },
+        {
+          "label": "Cash and cash equivalents at 31 December (Note 11)",
+          "note": "",
+          "values": [
+            "45,928",
+            "70,214"
+          ],
+          "quote": "Cash and cash equivalents at 31 December (Note 11) 45,928 70,214"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,325 @@
+# SYNTHETIC DEMO DATA, not a real record
+schema_version: 1
+task: '0005'
+case_config: case.yaml
+label: SYNTHETIC DEMO DATA, not a real record
+borrower:
+  name: ESR-REIT
+  sgx_code: 9A4U
+  isin: SGXC55341835
+  public_manifest: demo/public_pack/esr-reit/manifest.yaml
+  property: 16 Tai Seng Street
+lender: the Bank
+documents:
+- id: term-sheet
+  file: tranche_1/term_sheet.pdf
+  catalogue_id: 2
+  tranche: 1
+  entity: ESR-REIT
+  date: '2026-11-02'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 094d04bc31359b6677f71467b0d5e8d943957c262558133d23a1031707f3f5dd
+  bytes: 7156
+  pages: 1
+  citation_locator: One-based physical PDF page
+  revision: 1
+- id: rm-support
+  file: tranche_1/rm_support.eml
+  catalogue_id: 12
+  tranche: 1
+  entity: ESR-REIT
+  date: '2026-11-02'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 529b7429cd1f48c339501b18c67f84cae3dc2a605d57b77396ada4d00fd1672e
+  bytes: 1056
+  citation_locator: Decoded message body, normalized page 1
+  revision: 1
+- id: cas
+  file: tranche_2/cas.pdf
+  catalogue_id: 1
+  tranche: 2
+  entity: ESR-REIT
+  date: '2026-11-02'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 21688e5103e9173f30c125124a170b2bcdb844f0ea65027e5e1c87f319e77c63
+  bytes: 7210
+  pages: 1
+  citation_locator: One-based physical PDF page
+  revision: 1
+- id: prior-es
+  file: tranche_2/prior_es.docx
+  catalogue_id: 3
+  tranche: 2
+  entity: ESR-REIT
+  date: '2026-05-01'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 2c04d48d0a492a44f477227ff6b69904f86548d5efb6036df914e855d1b5a00b
+  bytes: 25979
+  template_sha256: 9e810fe363c3dc3ab038a60135e3b0467cbc3eee37c1d74a88f1a4a85ed6ef21
+  citation_locator: Numbered section and table; physical pages from latest render
+  revision: 1
+  period_scope: historical_approval_only
+- id: prior-conditions
+  file: tranche_2/prior_conditions.pdf
+  catalogue_id: 22
+  tranche: 2
+  entity: ESR-REIT
+  date: '2026-11-04'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 8878c5f451357420c99eedaf4ff5715c4b165a974e4f153b73446873a63f6675
+  bytes: 4885
+  pages: 1
+  citation_locator: One-based physical PDF page
+  revision: 1
+- id: monitoring
+  file: tranche_2/covenant_monitoring.xlsx
+  catalogue_id: 21
+  tranche: 2
+  entity: ESR-REIT
+  date: '2026-10-31'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 4a77545effcb5f3099274224016744de950959dbb7bc09c18c6f8f22ba27fb1f
+  bytes: 5498
+  sheets:
+    Tests:
+      header_row: 5
+      first_data_row: 6
+      last_data_row: 8
+    Sources:
+      header_row: 5
+      first_data_row: 6
+      last_data_row: 9
+  citation_locator: Worksheet and Excel row/cell; data begins at row 6
+  revision: 1
+  period_end: '2026-10-31'
+- id: compliance
+  file: tranche_2/compliance_certificate.pdf
+  catalogue_id: 8
+  tranche: 2
+  entity: ESR-REIT
+  date: '2026-11-04'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 36fabf94f0b2705ea3caeafdc28325e5b510c6a0cbc40a6da49fa516ac196864
+  bytes: 5964
+  pages: 1
+  citation_locator: One-based physical PDF page
+  revision: 1
+  period_end: '2026-10-31'
+- id: pricing
+  file: tranche_2/pricing.pdf
+  catalogue_id: 11
+  tranche: 2
+  entity: ESR-REIT
+  date: '2026-11-02'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: dbfeb8dae8ba8fadd1730c633d411f164283db3704096684e2934ab80711986d
+  bytes: 4233
+  pages: 1
+  citation_locator: One-based physical PDF page
+  revision: 1
+- id: valuation-v1
+  file: tranche_2/valuation_v1.pdf
+  catalogue_id: 9
+  tranche: 2
+  entity: ESR-REIT
+  date: '2026-11-04'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 831e0827a1f9c3efee88999c66fad3913b52ee5690dafeb73f0f856f30af80ac
+  bytes: 10695
+  pages: 2
+  citation_locator: One-based physical PDF page
+  revision: 1
+  period_end: '2026-10-31'
+- id: insurance
+  file: tranche_2/insurance.pdf
+  catalogue_id: 13
+  tranche: 2
+  entity: ESR-REIT
+  date: '2026-10-31'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: fa73f64f23430e1fc0e79001122bb382450a081bb0c544aba73eb53c1b05f8d0
+  bytes: 4423
+  pages: 1
+  citation_locator: One-based physical PDF page
+  revision: 1
+- id: rent-roll
+  file: tranche_2/rent_roll.xlsx
+  catalogue_id: 15
+  tranche: 2
+  entity: ESR-REIT
+  date: '2026-10-31'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: ed4c44a62cdf386dcdaa8a05d99dae38871da45157e0f2743e45d30a3f4b7147
+  bytes: 5596
+  sheets:
+    Leases:
+      header_row: 5
+      first_data_row: 6
+      last_data_row: 9
+    Sources:
+      header_row: 5
+      first_data_row: 6
+      last_data_row: 11
+  citation_locator: Worksheet and Excel row/cell; data begins at row 6
+  revision: 1
+  period_end: '2026-10-31'
+- id: lease-profile
+  file: tranche_2/lease_profile.xlsx
+  catalogue_id: 16
+  tranche: 2
+  entity: ESR-REIT
+  date: '2026-10-31'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: b47f5026458f43fc25b64e4a5d5032651f7a9386cf2610a1be4a19c562c6cf3f
+  bytes: 4401
+  sheets:
+    Expiry:
+      header_row: 5
+      first_data_row: 6
+      last_data_row: 11
+  citation_locator: Worksheet and Excel row/cell; data begins at row 6
+  revision: 1
+  period_end: '2026-10-31'
+- id: projections
+  file: tranche_2/projections.xlsx
+  catalogue_id: 14
+  tranche: 2
+  entity: ESR-REIT
+  date: '2026-11-02'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: f01d72f39c7ec35d43f76f7ae5e24568643f179672ccf6108caf9072c673c069
+  bytes: 5789
+  sheets:
+    Forecast:
+      header_row: 5
+      first_data_row: 6
+      last_data_row: 8
+    Assumptions:
+      header_row: 5
+      first_data_row: 6
+      last_data_row: 17
+  citation_locator: Worksheet and Excel row/cell; data begins at row 6
+  revision: 1
+- id: limits
+  file: tranche_2/limits_utilisation.xlsx
+  catalogue_id: null
+  tranche: 2
+  entity: ESR-REIT
+  date: '2026-10-31'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 370f8764281b48dab70efc1b57866c4cff85934af529641a114f29cab21dba4f
+  bytes: 4333
+  suggestion_id: limits_utilisation
+  sheets:
+    Exposure:
+      header_row: 5
+      first_data_row: 6
+      last_data_row: 8
+  citation_locator: Worksheet and Excel row/cell; data begins at row 6
+  revision: 1
+  period_end: '2026-10-31'
+- id: conduct
+  file: tranche_3/account_conduct.xlsx
+  catalogue_id: 17
+  tranche: 3
+  entity: ESR-REIT
+  date: '2026-10-31'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 9d4d2361cd299c5517de3c84728b62a6b09df456cc560a98b15bcab407e93696
+  bytes: 5886
+  sheets:
+    Monthly:
+      header_row: 5
+      first_data_row: 6
+      last_data_row: 29
+    Events:
+      header_row: 5
+      first_data_row: 6
+      last_data_row: 7
+  citation_locator: Worksheet and Excel row/cell; data begins at row 6
+  revision: 1
+  period_end: '2026-10-31'
+  period_scope: current_review
+- id: internal-rating
+  file: tranche_3/internal_rating.pdf
+  catalogue_id: 10
+  tranche: 3
+  entity: ESR-REIT
+  date: '2026-10-31'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 69b849ce41291a0831d1bc3e59fa4e9b122bf8a48c92c79d008ae658130b45c4
+  bytes: 4681
+  pages: 1
+  citation_locator: One-based physical PDF page
+  revision: 1
+  period_scope: current_review
+- id: valuation-v2
+  file: late_update/valuation_v2.pdf
+  catalogue_id: 9
+  tranche: late_update
+  entity: ESR-REIT
+  date: '2026-11-09'
+  synthetic: true
+  origin: generated
+  ca_confirmed: false
+  sha256: 165e288e2c4b6014bbac9f75ac8e9d360c128299fc860f4504ceef2f45164245
+  bytes: 11328
+  pages: 2
+  citation_locator: One-based physical PDF page
+  supersedes: valuation-v1
+  revision: 2
+  expected_stale_sections:
+  - 8
+  - 9
+  - 11
+  - 14
+public_sources:
+- id: esr-ar2025
+  file: demo/public_pack/esr-reit/annual-report-2025.pdf
+  url: https://links.sgx.com/FileOpen/ESR-REIT%20AR%202025.ashx?App=Announcement&FileID=881689
+  retrieved_at: '2026-11-10'
+  sha256: 638f8d635d2ebc15d6171a95f04e4d7194273e80fe5b5db5d3671f7a755c811b
+- id: esr-3q2026
+  file: demo/public_pack/esr-reit/business-update-3q2026.pdf
+  url: https://esr-reit.listedcompany.com/newsroom/20261027_070044_9A4U_YFZEGXW2FZEMWKRO.1.pdf
+  retrieved_at: '2026-11-10'
+  sha256: 12a54e2345dc2eda615e507deaab19799d15f6e92e1a63bf5854e03c399edb6b
+boundaries:
+- Never treat synthetic facility exposures as public group borrowings.
+- Public portfolio evidence remains in its original saved pack with date and URL.
+- Current internal rating and conduct remain tranche 3 inputs despite historical prior
+  ES.
+- Industry mapping, generated spread and CA position are later app/demo steps.
+- Late update is a scenario input, not implemented Stale behavior.

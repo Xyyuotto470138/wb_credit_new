@@ -1,0 +1,43 @@
+# SYNTHETIC DEMO DATA, not a real record
+schema_version: 1
+case_id: demo-new-001
+lender: the Bank
+as_of: '2026-10-31'
+proposal_date: '2026-11-10'
+unit: SGD_thousand
+borrower:
+  name: Keppel REIT
+  sgx_code: K71U
+  public_manifest: demo/public_pack/keppel-reit/manifest.yaml
+  property: Ocean Financial Centre
+assets:
+  property_photos:
+  - file: demo/public_pack/keppel-reit/photos/ofc-exterior-collyer-quay-2026.jpg
+  - file: demo/public_pack/keppel-reit/photos/ofc-exterior-ground-level-2025.jpg
+  credits: demo/public_pack/keppel-reit/photos/credits.yaml
+  location_map: demo/public_pack/keppel-reit/map/location_map.png
+  location: demo/public_pack/keppel-reit/map/location.yaml
+  financing_object: Ocean Financial Centre
+demo_ca_position: Recommended with conditions. Support the new secured term loan and revolving credit facility for
+  Keppel REIT, subject to the valuation report being addressed to the Bank, the consent of the other partners to
+  the security and perfection of the mortgage and assignments before first drawdown.
+app_case:
+  team_id: fig_re
+  case_type: new
+  borrower_type: reit
+  facility_types:
+  - term
+  - revolving
+  existing_client: false
+  new_to_bank: true
+  property_or_asset_security: true
+  insured_security_or_assets: true
+  financial_covenants: true
+  covenants: true
+  new_money: true
+  property_income_repayment: true
+  bureau_covered: false
+  has_information_memorandum: false
+  public_entity: true
+  ca_position: null
+  default_model_id: fable-5-2-direct
