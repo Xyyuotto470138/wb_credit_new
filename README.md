@@ -23,7 +23,7 @@ Everything below works in the app now and can be seen on the saved demo paper wi
 
 ## What it does not do
 
-- **No login or permissions.** The role switch (maker, checker) is a demo control.
+- **No real login or permissions.** The sign-in page checks made-up demo accounts and sets the role on the screens only. The back end does not check who is calling it.
 - **No bank systems.** Limits, ratings and account conduct come from synthetic files, not from a master system.
 - **One team, one template.** The specification driven path covers the FIG template for a REIT borrower. The second demo paper runs on an earlier path with fixed mock wording.
 - **Live drafting needs your own key and costs money.** Without a key you can open, edit, confirm, review and export the saved paper, but not draft new wording.
@@ -91,6 +91,18 @@ scripts/demo/serve.sh --keppel
 Open **What changed** in the left rail. `--replace` moves the case that is there aside under `runtime/demo_live/`; it does not delete it. Run the restore command in step 3 with `--replace` to go back.
 
 To run the update yourself you need live calls (step 6): restore the first case, open **Files**, scan the "Late update" folder, then open **What changed**.
+
+### Sign in, and give the checker a paper to review
+
+The app opens on a sign-in page. The demo accounts are in [config/demo_users.yaml](config/demo_users.yaml): `demo.analyst` (maker) and `demo.head` (checker). They are made-up accounts; the prototype is not connected to a staff directory. After sign-in the maker sees the papers list and can open a paper or start a new one; the checker sees the papers waiting for review.
+
+Both demo papers start in drafting, so the checker's list is empty. To start with the Keppel REIT paper already submitted for review:
+
+```bash
+scripts/demo/serve.sh --keppel --submitted
+```
+
+This confirms every section as the maker and submits the paper. It stays submitted on later starts; run the restore command in step 3 with `--replace` to go back to the drafting state.
 
 ### 5. Start from an empty case (mock provider, no key)
 

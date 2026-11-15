@@ -72,7 +72,7 @@ export default function PapersScreen({ papers, current, role, choose, create, bu
             <small>{paper.drafted} of {paper.sections} drafted · {paper.confirmed} confirmed</small></span>
           <span className="chips">{attention.length ? attention.map(([text, kind]) => <i key={text} className={`chip ${kind}`}>{text}</i>) : <small>Nothing outstanding</small>}</span>
           <span><small>{day(paper.last_activity)}{paper.last_event ? ` · ${paper.last_event.action} by ${paper.last_event.actor}` : ''}</small></span>
-          <span><button className={`btn small${paper.id === current ? '' : ' primary'}`} onClick={() => choose(paper.id)}>{paper.id === current ? 'Current' : 'Open'}</button></span>
+          <span><button className={`btn small${paper.id === current ? '' : ' primary'}`} onClick={() => choose(paper.id)}>{paper.id === current ? 'Continue' : 'Open'}</button></span>
         </div>
       })}
       {!shown.length && <p className="empty">{filter !== 'mine' ? 'No papers in this view.' : maker ? 'No paper is waiting for you.' : 'No paper is waiting for your review. Papers appear here once a credit analyst submits them.'}</p>}
