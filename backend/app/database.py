@@ -31,6 +31,8 @@ def create_database(path: Path | str):
         case_columns = {row[1] for row in connection.exec_driver_sql('PRAGMA table_info("case")')}
         if 'default_model_id' not in case_columns:
             connection.exec_driver_sql("ALTER TABLE \"case\" ADD COLUMN default_model_id TEXT NOT NULL DEFAULT 'mock-v1'")
+        if 'lending_type' not in case_columns:  # papers saved before lending types keep none
+            connection.exec_driver_sql('ALTER TABLE "case" ADD COLUMN lending_type TEXT')
         check_columns = {row[1] for row in connection.exec_driver_sql('PRAGMA table_info(submission_check)')}
         if 'report' not in check_columns:
             connection.exec_driver_sql("ALTER TABLE submission_check ADD COLUMN report JSON NOT NULL DEFAULT '{}'")

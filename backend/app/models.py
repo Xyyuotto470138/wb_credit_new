@@ -58,6 +58,7 @@ class Case(Base):
     has_information_memorandum = mapped_column(Boolean, nullable=False)
     public_entity = mapped_column(Boolean, nullable=False)
     ca_position = mapped_column(Text, nullable=True)
+    lending_type = mapped_column(Text, nullable=True)
     default_model_id = mapped_column(Text, nullable=False, default='mock-v1', server_default='mock-v1')
     workflow_state = mapped_column(Text, nullable=False)
     active_es_version_id = mapped_column(Text, ForeignKey("e_s_version.id"), nullable=True)

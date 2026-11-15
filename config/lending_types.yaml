@@ -1,0 +1,59 @@
+# Lending types offered when a paper is started, and what the drafting model is told to emphasise for each.
+# "focus" is given to the model with every section it drafts. It sets emphasis only: it does not change the ES
+# template, the calculated tables or the document checklist. To add a type, copy an entry and give it a new id.
+version: 1
+types:
+- id: property_ipre
+  label: Property / IPRE financing
+  focus: >-
+    Lending is primarily supported by the property's sustainable rental cash flow and asset value, with repayment
+    ultimately coming from operating cash flow, refinancing or disposal. The ES analysis therefore focuses heavily on
+    occupancy, rents, tenants, IPRE cash flow and rating, valuation, LTV and refinancing or exit risk.
+- id: data_centre
+  label: Data centre financing
+  focus: >-
+    Similar to property financing, but often includes a construction phase before the asset reaches stabilised
+    operations and cash flow. The ES focuses on construction and completion risk, customers and offtakers, stabilised
+    cash flow, IPRE assessment, asset value and refinancing.
+- id: subscription_line
+  label: Subscription line financing
+  focus: >-
+    Lending is primarily supported by the fund's uncalled capital commitments, so repayment depends on the ability to
+    call capital from eligible LPs. The ES therefore focuses on fund and GP quality, LP credit quality, uncalled
+    capital, borrowing base, investor concentration and enforceability of capital calls.
+- id: nav_fund_level
+  label: NAV / fund-level financing
+  focus: >-
+    Lending is supported by the value and performance of the fund's underlying investment portfolio rather than
+    primarily by uncalled investor commitments. The ES focuses on NAV, portfolio quality and concentration, fund
+    leverage, liquidity, valuation downside and the ability to realise investments for repayment.
+- id: infrastructure_project
+  label: Infrastructure / utilities / project financing
+  focus: >-
+    Repayment principally depends on the project's or operating asset's ability to generate sustainable contractual or
+    operating cash flow. The ES focuses on project economics, contracts and concessions, counterparties, operating
+    performance, debt-service ability and project and completion risks.
+- id: general_corporate
+  label: General corporate lending
+  focus: >-
+    Lending relies mainly on the operating company's financial strength and ongoing business cash generation. The ES
+    therefore emphasises business and industry outlook, management, revenue and profitability, leverage, working
+    capital, operating cash flow and debt-servicing capacity.
+- id: working_capital
+  label: Working capital financing
+  focus: >-
+    Lending supports the company's normal operating or asset-conversion cycle, with repayment expected from business
+    cash flows and conversion of working capital assets. The ES focuses on facility purpose, operating cycle,
+    suppliers and customers, working capital requirements, liquidity and repayment capacity.
+- id: contract_project
+  label: Contract / project-related financing
+  focus: >-
+    Repayment is substantially linked to successful delivery and collection from specific contracts or projects. The
+    ES therefore focuses on order book and contracts, project progress, counterparties, remaining costs, margins,
+    collection terms, cash-flow timing and completion and performance risks.
+- id: corporate_card_programme
+  label: Corporate card / programme lending
+  focus: >-
+    Lending is more standardised and driven by predefined product or programme eligibility rather than a fully bespoke
+    credit structure. The analysis focuses on eligibility, requested limits, programme criteria, customer standing and
+    exceptions.

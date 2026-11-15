@@ -1,4 +1,4 @@
-"""Start a new paper from a borrower name and a paper type."""
+"""Start a new paper from a borrower name, a paper type and a lending type."""
 from pathlib import Path
 from typing import Literal
 
@@ -6,6 +6,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from .. import schemas as s
+from ..es2.spec import lending_type, lending_types
 from ..repository import Repository
 from ..services.templates import TemplateRegistry
 from ..team_config import load_team
@@ -18,6 +19,7 @@ class NewPaper(BaseModel):
     model_config = ConfigDict(extra='forbid', str_strip_whitespace=True)
     borrower_name: str = Field(min_length=1, max_length=200)
     case_type: Literal['new', 'renewal']  # shown as "New to bank" and "Annual review"
+    lending_type: str = Field(min_length=1, max_length=100)  # an id from config/lending_types.yaml
 
 
 # The form asks only for the borrower and the paper type. The other case facts take the values of a typical FIG REIT
@@ -30,10 +32,16 @@ STANDARD_FACTS = dict(borrower_type='reit', facility_types=['term', 'revolving']
 def papers_router(sessions=None, template_storage_root=None):
     router = APIRouter(tags=['papers'])
 
+    @router.get('/lending-types')
+    def types():
+        return [dict(id=t['id'], label=t['label'], focus=' '.join(t['focus'].split())) for t in lending_types()]
+
     @router.post('/papers', status_code=201)
     def create(body: NewPaper):
         if sessions is None:
             raise HTTPException(503, 'Case persistence is not configured')
+        if not lending_type(body.lending_type):
+            raise HTTPException(422, 'Choose a lending type from the list.')
         config = load_team(NEW_PAPER_TEAM)
         try:
             case = s.Case(team_id=NEW_PAPER_TEAM, config_version=config.template.version, config_hash=config.content_hash,
@@ -47,6 +55,6 @@ def papers_router(sessions=None, template_storage_root=None):
             if template_storage_root is not None:  # the paper needs its team's Word template; a no-op when already loaded
                 TemplateRegistry(repo, template_storage_root).seed_owner_templates(NEW_PAPER_TEAM, ROOT)
             session.commit()
-            return dict(id=saved.id, borrower_name=saved.borrower_name, case_type=saved.case_type, team_id=saved.team_id)
+            return dict(id=saved.id, borrower_name=saved.borrower_name, case_type=saved.case_type, team_id=saved.team_id, lending_type=saved.lending_type)
 
     return router

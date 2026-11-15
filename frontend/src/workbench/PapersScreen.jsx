@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { request } from '../api/client'
 import { PAPER_TYPE, ROLES, stage } from './status'
 
 const day = iso => new Date(iso).toLocaleString('en-SG', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
@@ -7,15 +8,27 @@ const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`
 function NewPaper({ create, cancel, busy }) {
   const [name, setName] = useState('')
   const [type, setType] = useState('new')
-  const submit = event => { event.preventDefault(); create({ borrower_name: name.trim(), case_type: type }) }
+  // Lending types come from config/lending_types.yaml. Each one tells the drafting model what to emphasise.
+  const [lending, setLending] = useState('')
+  const [types, setTypes] = useState([])
+  useEffect(() => {
+    let active = true
+    request('/lending-types').then(list => { if (active) setTypes(list) }).catch(() => {})
+    return () => { active = false }
+  }, [])
+  const chosen = types.find(t => t.id === lending)
+  const submit = event => { event.preventDefault(); create({ borrower_name: name.trim(), case_type: type, lending_type: lending }) }
   return <form className="card newpaper" onSubmit={submit} aria-label="New paper">
     <h2>New paper</h2>
     <div className="fields">
       <label>Borrower name<input autoFocus required maxLength="200" value={name} onChange={e => setName(e.target.value)} /></label>
       <label>Type<select value={type} onChange={e => setType(e.target.value)}>{Object.entries(PAPER_TYPE).map(([key, label]) => <option key={key} value={key}>{label}</option>)}</select></label>
+      <label>Lending type<select required value={lending} onChange={e => setLending(e.target.value)}>
+        <option value="" disabled>Select a lending type</option>{types.map(t => <option key={t.id} value={t.id}>{t.label}</option>)}</select></label>
     </div>
+    {chosen && <p className="focus"><b>What the draft will focus on.</b> {chosen.focus}</p>}
     <p className="sub">The paper uses the FIG Executive Summary template. An annual review also asks for the documents of an existing client, such as the prior ES and the account conduct report.</p>
-    <div className="actions"><button className="btn primary" type="submit" disabled={busy || !name.trim()}>Create paper</button>
+    <div className="actions"><button className="btn primary" type="submit" disabled={busy || !name.trim() || !lending}>Create paper</button>
       <button className="btn" type="button" disabled={busy} onClick={cancel}>Cancel</button></div>
   </form>
 }
@@ -45,7 +58,7 @@ export default function PapersScreen({ papers, current, role, choose, create, bu
         const attention = [paper.returned_sections.length && [plural(paper.returned_sections.length, 'section') + ' open for changes', 'amber'], paper.update_required && [plural(paper.update_required, 'section') + ' to update', 'amber'],
           paper.inputs_outstanding && [plural(paper.inputs_outstanding, 'input') + ' outstanding', 'grey'], paper.suggested_checks && [plural(paper.suggested_checks, 'suggested check'), 'amber']].filter(Boolean)
         return <div key={paper.id} className={`row${paper.id === current ? ' current' : ''}`}>
-          <span><b>{paper.borrower_name}</b><small>{PAPER_TYPE[paper.case_type]} · {paper.team_id.split('_')[0].toUpperCase()}{paper.synthetic_demo ? ' · SYNTHETIC DEMO DATA' : ''}</small></span>
+          <span><b>{paper.borrower_name}</b><small>{PAPER_TYPE[paper.case_type]} · {paper.team_id.split('_')[0].toUpperCase()}{paper.lending_type ? ` · ${paper.lending_type}` : ''}{paper.synthetic_demo ? ' · SYNTHETIC DEMO DATA' : ''}</small></span>
           <span><i className={`chip ${tone}`}>{label}</i></span>
           <span className={paper.waiting_for === me ? 'me' : ''}>{paper.waiting_for ? (paper.waiting_for === me ? 'You' : paper.waiting_for) : 'Closed'}</span>
           <span><div className="bar"><i style={{ width: `${100 * paper.drafted / paper.sections}%` }} /><i className="ok" style={{ width: `${100 * paper.confirmed / paper.sections}%` }} /></div>

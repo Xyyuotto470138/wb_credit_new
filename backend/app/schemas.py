@@ -52,6 +52,7 @@ class Case(Record):
     has_information_memorandum: bool = False
     public_entity: bool = False
     ca_position: str | None = None
+    lending_type: str | None = None  # an id from config/lending_types.yaml; papers started before it existed have none
     default_model_id: str = 'mock-v1'
     workflow_state: WorkflowState = 'Draft'
     active_es_version_id: str | None = None
