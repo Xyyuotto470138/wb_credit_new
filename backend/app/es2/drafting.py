@@ -17,7 +17,7 @@ from ..services.gaps import current_documents
 from ..services.readiness import content_hash
 from . import compute
 from .numbers import SCALES, canon, evaluate, figure_in, fmt, parse_printed, squash, unsupported_figures
-from .spec import applies, column_names, column_spec, section_parts
+from .spec import applies, column_names, column_spec, lending_note, section_parts
 
 LABEL = 'AI DRAFT. Live model output checked against cited sources. For credit analyst review.'
 VERSION = 'es2-drafting-v1'
@@ -463,7 +463,7 @@ def generate(service, case, config, spec, states, state, section_id, request, mo
                                + f"\n{page['text'][:PAGE_CHARS]}" for i, page in enumerate(pages, 1))
         facts = dict(borrower=case.borrower_name, case_type=case.case_type, new_to_bank=bool(case.new_to_bank),
                      existing_client=bool(case.existing_client), section=f'{section_id}. {title}')
-        user = ('Case\n' + json.dumps(facts) + '\n\nParts to draft\n' + json.dumps([part_brief(p, case) for p in chunk], ensure_ascii=False)
+        user = ('Case\n' + json.dumps(facts) + lending_note(case) + '\n\nParts to draft\n' + json.dumps([part_brief(p, case) for p in chunk], ensure_ascii=False)
                 + (f'\n\nCredit analyst\'s stated position (word this; do not change its substance)\n{position}' if position else '')
                 + ''.join(f'\n\nPrior section S{n} (current draft)\n{text[:30000]}' for n, text in prior.items())
                 + (f'\n\nTables computed by the system for this section (cite as "C")\n{computed_text}' if computed_text else '')

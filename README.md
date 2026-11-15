@@ -145,6 +145,7 @@ npm --prefix frontend test
 - **Back end:** Python, FastAPI, SQLite ([backend/app](backend/app)). `es2/` is the specification driven ES engine: drafting, calculations, figure checks, analyst content, sense check, updates and Word export.
 - **Front end:** React and Vite ([frontend/src/workbench](frontend/src/workbench)).
 - **ES specification:** one file, [config/teams/fig_re/es_spec.yaml](config/teams/fig_re/es_spec.yaml), defines every section and part: who fills it (model, Python, case input, analyst), its columns and its guidance. The Word template, the prompts, the screen layout and the export all read it.
+- **Lending types:** [config/lending_types.yaml](config/lending_types.yaml) lists the lending types offered when a paper is started and what the drafting model is told to emphasise for each. It sets emphasis only; the template, the calculated tables and the document checklist stay those of the FIG specification.
 - **Model:** Claude, called directly at Anthropic. Routes and prices are in [config/models.yaml](config/models.yaml).
 
 Rules the build follows:

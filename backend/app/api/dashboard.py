@@ -47,6 +47,7 @@ def dashboard_router(sessions=None, storage_root=None, *, folders=None, intake_p
         """Every paper in the store with where it stands, for the papers list. Read from the same services as the workbench."""
         require_sessions()
         from ..es2 import sense
+        from ..es2.spec import lending_type
         from ..services.locks import returned_scope
         with sessions() as session:
             session.connection().exec_driver_sql('BEGIN IMMEDIATE')
@@ -60,6 +61,7 @@ def dashboard_router(sessions=None, storage_root=None, *, folders=None, intake_p
                 events = sorted(repo.list_for_case(s.WorkflowEvent, case.id), key=lambda e: (e.created_at, e.id))
                 returned = returned_scope(repo, case.id) if case.workflow_state == 'Returned to CA' else []
                 result.append(dict(id=case.id, borrower_name=case.borrower_name, case_type=case.case_type, team_id=case.team_id,
+                    lending_type=(lending_type(case.lending_type) or {}).get('label'),
                     synthetic_demo=case.id in demo_case_ids, workflow_state=case.workflow_state, waiting_for=WITH.get(case.workflow_state),
                     sections=len(applicable), drafted=sum(bool(section.current_draft_id) for section in applicable),
                     confirmed=sum(section.readiness == 'CA confirmed' for section in applicable),
