@@ -13,6 +13,7 @@ from ..team_config import load_team
 
 ROOT = Path(__file__).resolve().parents[3]
 NEW_PAPER_TEAM = 'fig_re'  # the only team set up in this build: the FIG Executive Summary specification
+NEW_PAPER_MODEL = 'fable-5-2-direct'  # the drafting model of that specification (config/models.yaml); the mock model cannot draft it
 
 
 class NewPaper(BaseModel):
@@ -50,7 +51,7 @@ def papers_router(sessions=None, template_storage_root=None, demo_case_ids=()):
         config = load_team(NEW_PAPER_TEAM)
         try:
             case = s.Case(team_id=NEW_PAPER_TEAM, config_version=config.template.version, config_hash=config.content_hash,
-                existing_client=body.case_type == 'renewal', new_to_bank=body.case_type == 'new', **STANDARD_FACTS, **body.model_dump())
+                existing_client=body.case_type == 'renewal', new_to_bank=body.case_type == 'new', default_model_id=NEW_PAPER_MODEL, **STANDARD_FACTS, **body.model_dump())
         except ValidationError as error:
             raise HTTPException(422, '; '.join(e['msg'].removeprefix('Value error, ') for e in error.errors()))
         with sessions() as session:
