@@ -1,41 +1,21 @@
 import { useState } from 'react'
-import { ROLES, stage } from './status'
+import { PAPER_TYPE, ROLES, stage } from './status'
 
 const day = iso => new Date(iso).toLocaleString('en-SG', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
 const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`
 
-// The facts asked for a new paper. They decide which documents and sections apply to it.
-const FACTS = [['property_or_asset_security', 'Secured on property or other assets'], ['insured_security_or_assets', 'The security or assets are insured'],
-  ['new_money', 'New money'], ['property_income_repayment', 'Repaid from property income'], ['covenants', 'Existing facilities with covenants'],
-  ['financial_covenants', 'Existing facilities with financial covenants'], ['bureau_covered', 'Borrower or guarantor covered by a credit bureau'],
-  ['has_information_memorandum', 'The deal has an information memorandum']]
-const FACILITIES = [['term', 'Term loan'], ['revolving', 'Revolving credit'], ['acquisition', 'Acquisition financing']]
-
 function NewPaper({ create, cancel, busy }) {
-  const [facts, setFacts] = useState({ borrower_name: '', case_type: 'new', existing_client: false, borrower_type: 'reit', facility_types: [] })
-  const set = (key, value) => setFacts(now => ({ ...now, [key]: value }))
-  const renewal = facts.case_type === 'renewal'
-  const submit = event => {
-    event.preventDefault()
-    create({ ...facts, borrower_name: facts.borrower_name.trim(), existing_client: renewal || facts.existing_client })
-  }
+  const [name, setName] = useState('')
+  const [type, setType] = useState('new')
+  const submit = event => { event.preventDefault(); create({ borrower_name: name.trim(), case_type: type }) }
   return <form className="card newpaper" onSubmit={submit} aria-label="New paper">
     <h2>New paper</h2>
-    <p className="sub">These answers decide which documents the checklist asks for and which sections apply. The paper uses the FIG Executive Summary template.</p>
     <div className="fields">
-      <label>Borrower name<input autoFocus required maxLength="200" value={facts.borrower_name} onChange={e => set('borrower_name', e.target.value)} /></label>
-      <label>Paper type<select value={facts.case_type} onChange={e => set('case_type', e.target.value)}><option value="new">New</option><option value="renewal">Renewal</option></select></label>
-      <label>Borrower type<select value={facts.borrower_type} onChange={e => set('borrower_type', e.target.value)}>
-        <option value="reit">REIT</option><option value="fund">Fund</option><option value="bank">Bank</option><option value="other">Other</option></select></label>
+      <label>Borrower name<input autoFocus required maxLength="200" value={name} onChange={e => setName(e.target.value)} /></label>
+      <label>Type<select value={type} onChange={e => setType(e.target.value)}>{Object.entries(PAPER_TYPE).map(([key, label]) => <option key={key} value={key}>{label}</option>)}</select></label>
     </div>
-    <fieldset><legend>Facilities</legend>
-      {FACILITIES.map(([key, label]) => <label className="tick" key={key}><input type="checkbox" checked={facts.facility_types.includes(key)}
-        onChange={e => set('facility_types', e.target.checked ? [...facts.facility_types, key] : facts.facility_types.filter(f => f !== key))} />{label}</label>)}</fieldset>
-    <fieldset><legend>About the case</legend>
-      <label className="tick"><input type="checkbox" checked={renewal || facts.existing_client} disabled={renewal} onChange={e => set('existing_client', e.target.checked)} />
-        Existing client{renewal ? ' (a renewal always is)' : ''}</label>
-      {FACTS.map(([key, label]) => <label className="tick" key={key}><input type="checkbox" checked={!!facts[key]} onChange={e => set(key, e.target.checked)} />{label}</label>)}</fieldset>
-    <div className="actions"><button className="btn primary" type="submit" disabled={busy || !facts.borrower_name.trim()}>Create paper</button>
+    <p className="sub">The paper uses the FIG Executive Summary template. An annual review also asks for the documents of an existing client, such as the prior ES and the account conduct report.</p>
+    <div className="actions"><button className="btn primary" type="submit" disabled={busy || !name.trim()}>Create paper</button>
       <button className="btn" type="button" disabled={busy} onClick={cancel}>Cancel</button></div>
   </form>
 }
@@ -65,7 +45,7 @@ export default function PapersScreen({ papers, current, role, choose, create, bu
         const attention = [paper.returned_sections.length && [plural(paper.returned_sections.length, 'section') + ' open for changes', 'amber'], paper.update_required && [plural(paper.update_required, 'section') + ' to update', 'amber'],
           paper.inputs_outstanding && [plural(paper.inputs_outstanding, 'input') + ' outstanding', 'grey'], paper.suggested_checks && [plural(paper.suggested_checks, 'suggested check'), 'amber']].filter(Boolean)
         return <div key={paper.id} className={`row${paper.id === current ? ' current' : ''}`}>
-          <span><b>{paper.borrower_name}</b><small>{paper.case_type === 'renewal' ? 'Renewal' : 'New'} · {paper.team_id.split('_')[0].toUpperCase()}{paper.synthetic_demo ? ' · SYNTHETIC DEMO DATA' : ''}</small></span>
+          <span><b>{paper.borrower_name}</b><small>{PAPER_TYPE[paper.case_type]} · {paper.team_id.split('_')[0].toUpperCase()}{paper.synthetic_demo ? ' · SYNTHETIC DEMO DATA' : ''}</small></span>
           <span><i className={`chip ${tone}`}>{label}</i></span>
           <span className={paper.waiting_for === me ? 'me' : ''}>{paper.waiting_for ? (paper.waiting_for === me ? 'You' : paper.waiting_for) : 'Closed'}</span>
           <span><div className="bar"><i style={{ width: `${100 * paper.drafted / paper.sections}%` }} /><i className="ok" style={{ width: `${100 * paper.confirmed / paper.sections}%` }} /></div>
