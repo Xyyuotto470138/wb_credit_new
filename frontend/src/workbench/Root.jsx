@@ -25,7 +25,9 @@ export default function Root({ user, signOut }) {
   const keep = (key, value) => { try { window.localStorage.setItem(key, value) } catch { /* private mode: not kept */ } }
   const [papers, setPapers] = useState([])
   const paper = useRef(stored('wb.paper'))
-  const [role, setRole] = useState(() => ROLES[stored('wb.role')] ? stored('wb.role') : 'CA')
+  // A signed-in person works in their own role only. Without sign-in the role is a demo switch.
+  const [picked, setRole] = useState(() => ROLES[stored('wb.role')] ? stored('wb.role') : 'CA')
+  const role = user ? user.role : picked
   const actor = ROLES[role].actor
   useEffect(() => {
     const changed = () => {
@@ -68,7 +70,7 @@ export default function Root({ user, signOut }) {
   if (where.view === 'classic') return <Suspense fallback={<p>Loading…</p>}><p className="classic-back"><a href="#/inputs">← Back to Inputs</a></p><ClassicApp /></Suspense>
   return <div className="wb">
     <TopBar data={data} spec={spec} view={where.view} assistantOpen={assistantOpen} toggleAssistant={() => setAssistantOpen(open => !open)}
-      papers={papers} choose={choose} role={role} changeRole={changeRole} />
+      papers={papers} choose={choose} role={role} changeRole={user ? null : changeRole} />
     {busy && <div className="wb-busy" role="status">{busy}…</div>}
     {error && <div className="wb-error" role="alert">{error} <button className="btn small" onClick={() => setError('')}>Dismiss</button></div>}
     {!data && !error && <p className="wb-loading">Loading case…</p>}

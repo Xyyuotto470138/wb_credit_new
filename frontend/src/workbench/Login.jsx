@@ -18,7 +18,6 @@ export default function Gate() {
   const signIn = next => {
     try {
       window.sessionStorage.setItem(KEY, JSON.stringify(next))
-      window.localStorage.setItem('wb.role', next.role) // the workbench opens in this person's role
     } catch { /* private mode: signed in until the page is reloaded */ }
     setUser(next)
   }

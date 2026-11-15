@@ -14,7 +14,8 @@ export default function TopBar({ data, spec, view, assistantOpen, toggleAssistan
       : <span className="case">{data.case.borrower_name} · {data.case.case_type === 'renewal' ? 'Renewal' : 'New'} · {spec?.team_label || data.case.team_id.toUpperCase()}</span>)}
     {status && view !== 'papers' && <span className="status"><b><span className="wide">ES STATUS: </span>{status.state.toUpperCase()}</b><span className="wide"> · open {status.days} day{status.days === 1 ? '' : 's'}</span> · {status.pending} input{status.pending === 1 ? '' : 's'} pending</span>}
     <span className="spacer" />
-    {role && <label className="role"><span className="wide">Viewing as </span><select aria-label="Role" value={role} onChange={e => changeRole(e.target.value)}>
+    {role && !changeRole && <span className="role">{ROLES[role].label} ({ROLES[role].short.toLowerCase()})</span>}
+    {role && changeRole && <label className="role"><span className="wide">Viewing as </span><select aria-label="Role" value={role} onChange={e => changeRole(e.target.value)}>
       {Object.entries(ROLES).map(([key, r]) => <option key={key} value={key}>{r.label} ({r.short.toLowerCase()})</option>)}</select></label>}
     {view === 'papers' ? data && <a className="btn primary" href="#/workbench/full">Back to {data.case.borrower_name}</a> : view === 'inputs' ? <a className="btn primary" href="#/workbench">Open ES workbench →</a> : <>
       <a className="btn" href="#/inputs">← Inputs</a>
