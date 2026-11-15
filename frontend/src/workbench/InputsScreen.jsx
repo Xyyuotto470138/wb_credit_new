@@ -3,7 +3,7 @@ import FileUpload from '../components/FileUpload'
 import { casePath, contentUrl, demoMetadata, post, requestListUrl, upload } from '../api/client'
 import { canStart, DOC_STATUS, DOC_TONE, DRAFT_ORDER, sectionStatus, shortGap } from './status'
 
-const OWNERS = [['RM', 'Ask the RM'], ['client', 'Ask the client'], ['internal team', 'Ask internal teams']]
+const OWNER = { RM: 'Ask the RM', client: 'Ask the client', 'internal team': 'Ask internal teams' }
 const Chip = ({ tone, children }) => <span className={`chip ${tone}`}>{children}</span>
 
 function Item({ item, data, children }) {
@@ -31,6 +31,8 @@ export default function InputsScreen({ data, spec, actor, busy, run }) {
   const folder = data.intake.folders.find(f => f.id === folderId)
   const applicable = data.expected_documents.filter(e => e.applicable)
   const held = applicable.filter(e => ['Provided', 'Found publicly'].includes(e.status))
+  const received = held.filter(e => e.status === 'Provided')
+  const found = held.filter(e => e.status === 'Found publicly')
   const required = applicable.filter(e => e.status !== 'Suggested')
   const missing = applicable.filter(e => e.status === 'Missing')
   const generate = applicable.filter(e => e.status === 'Can generate')
@@ -84,6 +86,7 @@ export default function InputsScreen({ data, spec, actor, busy, run }) {
     <div className="upload">
       <FileUpload onFiles={filesSelected} busy={busy} />
       <div className="card scan"><b>Or scan a folder</b>
+        <small>Reads every file in a prepared folder in one go, in place of uploading them one by one. In this demo the folders hold the sample deal papers that come with the project.</small>
         <div className="row"><select aria-label="Folder to scan" value={folderId} disabled={busy} onChange={e => setFolderId(e.target.value)}>
           {data.intake.folders.map(f => <option key={f.id} value={f.id}>{f.label}</option>)}</select>
           <button className="btn" disabled={busy || !folder} onClick={scan}>Scan folder</button></div>
@@ -103,38 +106,34 @@ export default function InputsScreen({ data, spec, actor, busy, run }) {
       <a className="btn small" href={contentUrl(caseId, doc.id)} target="_blank" rel="noreferrer">View file</a>
     </div>)}
 
-    <div className="step"><span className="n">2</span><h2>Checklist</h2><span className="sub">What you have, what is missing, and which sections can start.</span></div>
+    <div className="step"><span className="n">2</span><h2>Checklist</h2><span className="sub">Every document for this paper and where it stands, and which sections can start.</span></div>
     <div className="grid">
-      <section className="card col" aria-label="Uploaded">
-        <h3>Uploaded <span className="count">{held.length} of {required.length} expected</span></h3>
-        {!held.length && <p className="empty">Nothing yet. Add files or scan a folder above.</p>}
-        {held.some(e => e.status === 'Provided') && <div className="group">From your files</div>}
-        {held.filter(e => e.status === 'Provided').map(item => <Item key={item.id} item={item} data={data} />)}
-        {held.some(e => e.status === 'Found publicly') && <div className="group">Found for you <span>
-          {unreviewed.length > 0 && <button className="btn small" disabled={busy} onClick={confirmPublic}>Mark {unreviewed.length} public file{unreviewed.length === 1 ? '' : 's'} as reviewed</button>}</span></div>}
-        {held.filter(e => e.status === 'Found publicly').map(item => <Item key={item.id} item={item} data={data} />)}
-        <div className="foot"><span>{data.documents.length} file{data.documents.length === 1 ? '' : 's'} in total</span><a href="#/classic">See all files and versions</a></div>
-      </section>
-
-      <section className="card col" aria-label="Still missing">
-        <h3>Still missing <span className="count">{missing.length} pending</span></h3>
-        {!missing.length && !generate.length && <p className="empty">No outstanding inputs.</p>}
-        {OWNERS.map(([owner, label]) => missing.some(e => e.usual_owner === owner) && <div key={owner}>
-          <div className="group">{label}</div>
-          {missing.filter(e => e.usual_owner === owner).map(item => <Item key={item.id} item={item} data={data}>
-            {item.search_outcome === 'not run' ? '' : ' Not found in public sources.'}</Item>)}
-        </div>)}
-        {missing.some(e => !OWNERS.some(([owner]) => owner === e.usual_owner)) && <><div className="group">Other</div>
-          {missing.filter(e => !OWNERS.some(([owner]) => owner === e.usual_owner)).map(item => <Item key={item.id} item={item} data={data} />)}</>}
-        {generate.length > 0 && <><div className="group">The system can prepare these</div>
+      <section className="card col" aria-label="Documents">
+        <h3>Documents <span className="count">{held.length} of {required.length} required received</span></h3>
+        <div className="group">Required, still outstanding <span>{missing.length}</span></div>
+        {!missing.length && <p className="empty">Nothing outstanding. Every required document is received, found publicly or can be generated.</p>}
+        {missing.map(item => <Item key={item.id} item={item} data={data}>
+          {OWNER[item.usual_owner] ? ` ${OWNER[item.usual_owner]}.` : ''}{item.search_outcome === 'not run' ? '' : ' Not found in public sources.'}</Item>)}
+        <div className="group">Received <span>{received.length}</span></div>
+        {!received.length && <p className="empty">Nothing yet. Add files or scan a folder above.</p>}
+        {received.map(item => <Item key={item.id} item={item} data={data} />)}
+        {generate.length > 0 && <><div className="group">Can be generated <span>{generate.length}</span></div>
           {generate.map(item => <Item key={item.id} item={item} data={data}>
             {spreadOffer?.expected_id === item.id && data.demo_spread_available
               ? <button className="btn small" disabled={busy} onClick={spread}>Generate now</button> : ' For you to confirm. Not available in this build yet.'}</Item>)}</>}
-        {suggested.length > 0 && <><div className="group">Suggested, not required</div>
+        {suggested.length > 0 && <><div className="group">Suggested, not required <span>{suggested.length}</span></div>
           {suggested.map(item => <Item key={item.id} item={item} data={data} />)}</>}
-        {(notApplicable.length > 0 || waived.length > 0) && <><div className="group">Does not apply to this case</div>
-          <div className="item"><span className="name light">{[...notApplicable, ...waived].map(e => e.name).join(', ')}</span><Chip tone="grey">Not applicable</Chip></div></>}
-        <div className="foot"><button className="btn small" disabled={busy} onClick={search}>Search public sources</button>
+        {(notApplicable.length > 0 || waived.length > 0) && <><div className="group">Does not apply to this case <span>{notApplicable.length + waived.length}</span></div>
+          {notApplicable.map(item => <div className="item" key={item.id}><span className="name light">{item.name}</span><Chip tone="grey">Not applicable</Chip>
+            <span className="meta">{item.reason.replace(/^Case does not meet rule: /, 'Only needed for: ')}</span></div>)}
+          {waived.map(item => <div className="item" key={item.id}><span className="name light">{item.name}</span><Chip tone="grey">Waived</Chip>
+            <span className="meta">Waived by {item.confirmed_by}: {item.dismiss_reason}</span></div>)}</>}
+        <div className="group">Public sources <span>
+          {unreviewed.length > 0 && <button className="btn small" disabled={busy} onClick={confirmPublic}>Mark {unreviewed.length} public file{unreviewed.length === 1 ? '' : 's'} as reviewed</button>}
+          {' '}<button className="btn small" disabled={busy} onClick={search}>Search public sources</button></span></div>
+        {!found.length && <p className="empty">No required document has been filled from public sources yet.</p>}
+        {found.map(item => <Item key={item.id} item={item} data={data} />)}
+        <div className="foot"><span>{data.documents.length} file{data.documents.length === 1 ? '' : 's'} in total · <a href="#/classic">See all files and versions</a></span>
           <a className="btn small" href={requestListUrl(caseId)}>Export request list</a></div>
       </section>
 

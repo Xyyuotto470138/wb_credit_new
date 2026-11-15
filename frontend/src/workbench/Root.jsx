@@ -4,7 +4,7 @@ import TopBar from './TopBar'
 import InputsScreen from './InputsScreen'
 import Workbench from './Workbench'
 import PapersScreen from './PapersScreen'
-import { ROLES } from './status'
+import { BUSINESS_UNITS, ROLES, unitOf } from './status'
 
 const ClassicApp = lazy(() => import('../ClassicApp'))
 const route = () => {
@@ -25,6 +25,10 @@ export default function Root({ user, signOut }) {
   const keep = (key, value) => { try { window.localStorage.setItem(key, value) } catch { /* private mode: not kept */ } }
   const [papers, setPapers] = useState([])
   const paper = useRef(stored('wb.paper'))
+  // The business unit being shown. Papers of other units are not listed.
+  const [unit, setUnit] = useState(() => BUSINESS_UNITS.includes(stored('wb.unit')) ? stored('wb.unit') : BUSINESS_UNITS[0])
+  const unitNow = useRef(unit)
+  const [empty, setEmpty] = useState(false)
   // A signed-in person works in their own role only. Without sign-in the role is a demo switch.
   const [picked, setRole] = useState(() => ROLES[stored('wb.role')] ? stored('wb.role') : 'CA')
   const role = user ? user.role : picked
@@ -39,9 +43,11 @@ export default function Root({ user, signOut }) {
     return () => window.removeEventListener('hashchange', changed)
   }, [where.view])
   const refresh = useCallback(async () => {
-    const list = await request('/papers')
-    if (!list.length) throw new Error('No case found. Start the local demo back end first.')
-    setPapers(list)
+    const all = await request('/papers')
+    if (!all.length) throw new Error('No case found. Start the local demo back end first.')
+    const list = all.filter(p => unitOf(p) === unitNow.current)
+    setPapers(list); setEmpty(!list.length)
+    if (!list.length) { setData(null); setSpec(null); return null }
     const id = list.some(p => p.id === paper.current) ? paper.current : list[0].id
     paper.current = id
     const next = await dashboard(id)
@@ -51,7 +57,11 @@ export default function Root({ user, signOut }) {
   }, [])
   const choose = id => {
     paper.current = id; keep('wb.paper', id); setData(null); setSpec(null)
-    refresh().then(next => { window.location.hash = next.sections.some(s => s.current_draft_id) ? '#/workbench/full' : '#/inputs' }).catch(e => setError(e.message))
+    refresh().then(next => { if (next) window.location.hash = next.sections.some(s => s.current_draft_id) ? '#/workbench/full' : '#/inputs' }).catch(e => setError(e.message))
+  }
+  const changeUnit = next => {
+    keep('wb.unit', next); unitNow.current = next; setUnit(next); setData(null); setSpec(null); setError('')
+    refresh().then(() => { window.location.hash = '#/papers' }).catch(e => setError(e.message))
   }
   const changeRole = next => { keep('wb.role', next); setRole(next) }
   useEffect(() => { refresh().catch(e => setError(e.message)) }, [refresh])
@@ -70,10 +80,12 @@ export default function Root({ user, signOut }) {
   if (where.view === 'classic') return <Suspense fallback={<p>Loading…</p>}><p className="classic-back"><a href="#/inputs">← Back to Inputs</a></p><ClassicApp /></Suspense>
   return <div className="wb">
     <TopBar data={data} spec={spec} view={where.view} assistantOpen={assistantOpen} toggleAssistant={() => setAssistantOpen(open => !open)}
-      papers={papers} choose={choose} role={role} changeRole={user ? null : changeRole} />
+      papers={papers} choose={choose} role={role} changeRole={user ? null : changeRole} unit={unit} changeUnit={changeUnit} />
     {busy && <div className="wb-busy" role="status">{busy}…</div>}
     {error && <div className="wb-error" role="alert">{error} <button className="btn small" onClick={() => setError('')}>Dismiss</button></div>}
-    {!data && !error && <p className="wb-loading">Loading case…</p>}
+    {!data && !error && !empty && <p className="wb-loading">Loading case…</p>}
+    {empty && <main className="papers"><div className="head"><h1>Papers</h1></div>
+      <div className="card table"><p className="empty">No {unit} papers yet. The {unit} template and document checklist are not set up in this prototype; only FIG is.</p></div></main>}
     {where.view === 'papers' && papers.length > 0 && <PapersScreen papers={papers} current={data?.case.id} role={role} choose={choose} />}
     {data && where.view === 'inputs' && <InputsScreen key={data.case.id} data={data} spec={spec} actor={actor} busy={!!busy} run={run} />}
     {data && where.view === 'workbench' && <Workbench key={data.case.id} data={data} spec={spec} actor={actor} role={role} busy={!!busy} run={run} tab={where.tab}

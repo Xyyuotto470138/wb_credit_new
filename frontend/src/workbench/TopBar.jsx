@@ -1,12 +1,14 @@
 import logo from '../../../templates/UOB_logo.png'
-import { ROLES, esStatus, sectionStatus } from './status'
+import { BUSINESS_UNITS, ROLES, esStatus, sectionStatus } from './status'
 
-export default function TopBar({ data, spec, view, assistantOpen, toggleAssistant, papers = [], choose, role, changeRole }) {
+export default function TopBar({ data, spec, view, assistantOpen, toggleAssistant, papers = [], choose, role, changeRole, unit, changeUnit }) {
   const status = data && esStatus(data)
   const confirmed = data ? data.sections.filter(s => ['Confirmed', 'Not applicable'].includes(sectionStatus(s))).length : 0
   return <header className="topbar">
     <img className="logo" src={logo} alt="UOB" />
     <span className="product">WB Credit</span>
+    {unit && <label className="pick unit"><select aria-label="Business unit" value={unit} onChange={e => changeUnit(e.target.value)}>
+      {BUSINESS_UNITS.map(u => <option key={u} value={u}>{u}</option>)}</select></label>}
     <a className={`nav${view === 'papers' ? ' on' : ''}`} href="#/papers">Papers{papers.length > 1 ? ` (${papers.length})` : ''}</a>
     {data && view !== 'papers' && (papers.length > 1
       ? <label className="pick"><select aria-label="Switch paper" value={data.case.id} onChange={e => choose(e.target.value)}>
