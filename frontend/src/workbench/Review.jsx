@@ -81,6 +81,7 @@ function Maker({ data, review, actor, busy, run, reload, checks }) {
   return <div className="card act"><h3>{returned ? 'Returned by the reviewer' : 'Submit for review'}</h3>
     {returned && <div className="banner amber"><b>{returned.actor} returned section{returned.returned_sections.length > 1 ? 's' : ''} {returned.returned_sections.join(', ')}.</b> {returned.payload?.comment}
       <div className="links">{review.sections.filter(s => s.editable).map(s => <a key={s.section_id} href={`#/workbench/${s.section_id}`}>{s.section_id}. {s.name}{s.returned ? '' : ' (depends on a returned section)'}</a>)}</div></div>}
+    <p className="prev"><a className="btn small" href="#/workbench/preview">Preview the full ES</a> Read the whole paper as it stands before you submit.</p>
     <h4>Before you submit</h4>
     <div className={`check ${open.length ? 'no' : 'yes'}`}><b>{report.sections.length - open.length} of {report.sections.length} sections confirmed or not applicable.</b>
       {open.map(s => <a key={s.section_id} href={`#/workbench/${s.section_id}`}>{s.section_id}. {s.name}: {s.issues[0] || 'needs confirmation'}</a>)}</div>
