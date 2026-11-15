@@ -5,7 +5,7 @@ scripts set it; tests and the mock demo never do), the registry entry is enabled
 key is present in the environment or the project's .env. Keys are never logged or returned.
 
 The project owner's decisions on live models (11 Nov 2026): Claude models go
-direct to Anthropic; every live call is recorded with model, route, case, section, purpose,
+direct to Anthropic, GPT models direct to OpenAI, other models through OpenRouter; every live call is recorded with model, route, case, section, purpose,
 tokens and cost; prices come from the provider's published rates held in config/models.yaml.
 """
 from datetime import datetime, timezone
@@ -129,3 +129,74 @@ class AnthropicLive:
         if message.stop_reason == 'max_tokens':
             raise LiveCallError('The model response was cut off at the output limit')
         return ''.join(block.text for block in message.content if block.type == 'text'), entry
+
+
+class OpenAICompatibleLive:
+    """Chat-completions route: GPT direct at OpenAI, or another model through an OpenAI-compatible endpoint
+    (OpenRouter). Same request and result as the Anthropic route: one system text, one user text, JSON in the reply."""
+
+    def __init__(self, entry, client=None):
+        if not live_enabled():
+            raise LiveCallError('Live calls are off for this process')
+        if entry.provider_type != 'openai_compatible' or entry.route not in ('direct', 'openrouter') or not entry.enabled:
+            raise LiveCallError('Only an enabled direct or OpenRouter route can be called in this build')
+        key = api_key(entry.api_key_env or '')
+        if not key and client is None:
+            raise LiveCallError(f'{entry.api_key_env} is not set')
+        if client is None:
+            try:
+                import openai
+            except ImportError as error:
+                raise LiveCallError('The openai package is not installed; run pip install -r backend/requirements.txt') from error
+            client = openai.OpenAI(api_key=key, base_url=entry.base_url, max_retries=2, timeout=900)
+        self.entry, self.client = entry, client
+
+    def get_provider_info(self):
+        return dict(provider='openai_compatible', model=self.entry.model_id, registry_id=self.entry.id, route=self.entry.route)
+
+    def complete(self, system, user, *, case_id, section_id, purpose, max_tokens=None):
+        """Return (text, call record). Raises LiveCallError when the model declines or the output is cut off.
+
+        No output cap is sent: providers name that setting differently, and without one the model's own limit applies."""
+        started = datetime.now(timezone.utc)
+        options = dict(model=self.entry.model_id, messages=[{'role': 'system', 'content': system}, {'role': 'user', 'content': user}])
+        if self.entry.capabilities.json_mode:
+            options['response_format'] = {'type': 'json_object'}
+        try:
+            response = self.client.chat.completions.create(**options)
+        except Exception as error:  # the provider's own error (bad key, unknown model, rate limit); nothing was produced
+            raise LiveCallError(f'{type(error).__name__}: {str(error)[:300]}') from error
+        choice = response.choices[0] if response.choices else None
+        reported = response.usage
+        details = getattr(reported, 'prompt_tokens_details', None)
+        cached = (getattr(details, 'cached_tokens', 0) or 0) if details else 0
+        prompt = (getattr(reported, 'prompt_tokens', 0) or 0) if reported else 0
+        usage = dict(input_tokens=prompt - cached, output_tokens=(getattr(reported, 'completion_tokens', 0) or 0) if reported else 0,
+                     cache_creation_input_tokens=0, cache_read_input_tokens=cached)
+        served_by = getattr(response, 'model', None) or self.entry.model_id
+        # A provider may answer with a dated snapshot of the requested model (same rates). A different model is unpriced.
+        cost = cost_usd(self.entry, usage) if reported and served_by.startswith(self.entry.model_id.split('/')[-1]) else None
+        stop = choice.finish_reason if choice else 'no_choice'
+        entry = dict(at=started.isoformat(), seconds=round((datetime.now(timezone.utc) - started).total_seconds(), 1),
+                     model=served_by, requested_model=self.entry.model_id, registry_id=self.entry.id, route=self.entry.route,
+                     case_id=case_id, section_id=section_id, purpose=purpose, stop_reason=stop,
+                     input_tokens=prompt, output_tokens=usage['output_tokens'], usage=usage, cost_usd=None if cost is None else str(cost),
+                     price_basis=None if cost is None else f'{self.entry.price_source}, {self.entry.price_date}')
+        record(entry)
+        if choice is None or stop == 'content_filter' or getattr(choice.message, 'refusal', None):
+            raise LiveCallError('The model declined this request')
+        if stop == 'length':
+            raise LiveCallError('The model response was cut off at the output limit')
+        if not choice.message.content:
+            raise LiveCallError('The model returned no text')
+        return choice.message.content, entry
+
+
+def provider(entry, client=None):
+    """The live route for a registry entry: Anthropic's own API, or a chat-completions endpoint."""
+    return AnthropicLive(entry, client=client) if entry.provider_type == 'anthropic' else OpenAICompatibleLive(entry, client=client)
+
+
+def model_override():
+    """WB_CREDIT_MODEL (environment or .env) names the registry model that live calls use in place of a paper's own."""
+    return api_key('WB_CREDIT_MODEL') if live_enabled() else None

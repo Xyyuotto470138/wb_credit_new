@@ -18,7 +18,7 @@ from ..analytics import AnalyticsRequest, AnalyticsService
 from ..analytics.engine import VERSION as ANALYTICS_VERSION, display
 from ..llm import client as llm_client
 from ..llm.client import LiveProviderDisabled, clean_json_response
-from ..llm.registry import load_registry, fixture_provider
+from ..llm.registry import load_registry, fixture_provider, paper_model
 from ..es2.spec import load_spec
 from ..retrieval import EvidenceService
 from ..retrieval.service import identity, ContentIntegrityError
@@ -371,7 +371,7 @@ class DraftingService:
         case = self.repo.get(s.Case, case_id)
         require_working(self.repo, case_id, section_id)
         registry = load_registry()
-        model = registry.get(request.model_id or case.default_model_id).require_runnable()
+        model = paper_model(registry, case.default_model_id, request.model_id).require_runnable()
         config = TeamConfig.model_validate(case.config_snapshot)
         _, states = ReadinessService(self.repo).refresh(case_id)
         state = next(st for st in states if st.section_id == section_id)

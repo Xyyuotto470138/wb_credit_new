@@ -15,7 +15,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from .. import schemas as s
 from ..llm import live
 from ..llm.client import clean_json_response
-from ..llm.registry import load_registry
+from ..llm.registry import load_registry, paper_model
 from ..team_config import TeamConfig
 from .numbers import squash
 from .spec import load_spec, section_parts
@@ -143,7 +143,7 @@ def run(service, case_id, section_id, request, client=None):
     draft = service.repo.get(s.DraftVersion, state.current_draft_id)
     envelope = draft.claim_spans[0] if draft.claim_spans else {}
     tables = unchecked_tables(spec, section_id, envelope)
-    model = load_registry().get(case.default_model_id)
+    model = paper_model(load_registry(), case.default_model_id)
     if not tables:
         return service.repo.save(s.SenseCheck(case_id=case_id, section_id=section_id, draft_id=draft.id, model='none', checked_by=request.actor))
     model.require_runnable()
@@ -155,7 +155,7 @@ def run(service, case_id, section_id, request, client=None):
                           + '\n'.join(f'r{i}: {row}' for i, row in enumerate(t['rows'], 1)) + (f"\ntotal: {t['total']}" if t['total'] else '') for t in tables)
             + '\n\nReference tables computed by the system (take these as given)\n\n' + (reference_tables(service, case, spec, states) or 'None.'))
     try:
-        text, call = live.AnthropicLive(model, client=client).complete(SYSTEM, user, case_id=case_id, section_id=section_id, purpose='sense_check', max_tokens=16000)
+        text, call = live.provider(model, client=client).complete(SYSTEM, user, case_id=case_id, section_id=section_id, purpose='sense_check', max_tokens=16000)
     except live.LiveCallError as error:
         raise ValueError(f'The sense check did not run: {error}.') from error
     try:
