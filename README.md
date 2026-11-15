@@ -179,6 +179,7 @@ Rules the build follows:
 
 | Read this | For |
 |---|---|
+| [CHANGELOG.md](CHANGELOG.md) | What changed after the first commit, newest first |
 | [WB_Credit_PROJECT.md](WB_Credit_PROJECT.md) | Requirements |
 | [docs/es_spec.md](docs/es_spec.md) | How the ES engine works, part by part, and its limits |
 | [docs/new_information_spec.md](docs/new_information_spec.md) | The update after new documents |
