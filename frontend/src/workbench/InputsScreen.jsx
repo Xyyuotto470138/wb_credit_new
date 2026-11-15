@@ -21,6 +21,48 @@ function Item({ item, data, children }) {
   </div>
 }
 
+// Why a file was held, in plain words. The code before the colon comes from the intake service.
+const WHY = {
+  unknown_type: () => 'The app could not tell what kind of document this is from its title or file name.',
+  type_mismatch: () => 'Its title suggests a different document type.',
+  rating_scope: () => 'Its title does not say that it is the bank\'s internal rating.',
+  unknown_entity: (doc, borrower) => `It does not name ${borrower} near the top.`,
+  wrong_entity: (doc, borrower) => `It names ${doc.entity}, not ${borrower}.`,
+  entity_mismatch: () => 'The borrower named in it differs from the one supplied.',
+  unknown_period: () => 'No document date was found in it.',
+  period_mismatch: () => 'The date in it differs from the date supplied.',
+  older_period: () => 'A newer version of this document is already held, so this one does not replace it.',
+  same_period_changed: () => 'A different file of this type with the same date is already held. Give this one a later date if it is the newer version.',
+  no_text: () => 'No text could be read from it. It may be a scan; a readable copy is needed.',
+  unsupported_format: () => 'This file format cannot be read. A PDF, Word, Excel, email, CSV or text file is needed.',
+  unreadable: () => 'The file could not be opened safely.',
+}
+const isoDay = value => /^\d{4}-\d{2}-\d{2}$/.test(value || '') ? value : ''
+
+function HeldFile({ doc, data, busy, classify, setAside }) {
+  const borrower = data.case.borrower_name
+  const types = data.expected_documents.filter(e => e.applicable && e.status !== 'Not applicable')
+  const guess = doc.catalogue_id ?? doc.intake?.observed?.type_candidates?.[0]
+  const [type, setType] = useState(() => { const found = types.find(e => e.catalogue_id != null && e.catalogue_id === guess); return found ? found.id : '' })
+  const [day, setDay] = useState(() => isoDay(doc.period) || isoDay(doc.intake?.observed?.period) || new Date().toISOString().slice(0, 10))
+  const chosen = types.find(e => e.id === type)
+  const reasons = (doc.intake?.issues || []).map(issue => { const code = issue.split(':')[0]; return WHY[code] ? WHY[code](doc, borrower) : issue.slice(issue.indexOf(':') + 1).trim() })
+  const save = event => {
+    event.preventDefault()
+    classify(chosen.catalogue_id != null ? { catalogue_id: chosen.catalogue_id, period: day } : { suggestion_id: chosen.suggestion_id, period: day })
+  }
+  return <form className="heldfile" onSubmit={save}>
+    <div className="what"><a href={contentUrl(data.case.id, doc.id)} target="_blank" rel="noreferrer">{doc.original_filename}</a>
+      <ul>{reasons.map((text, i) => <li key={i}>{text}</li>)}</ul></div>
+    <label>Document type<select required value={type} disabled={busy} onChange={e => setType(e.target.value)}>
+      <option value="" disabled>Select what this file is</option>{types.map(e => <option key={e.id} value={e.id}>{e.name}</option>)}</select></label>
+    <label>Document date<input type="date" required value={day} disabled={busy} onChange={e => setDay(e.target.value)} /></label>
+    <div className="acts"><button className="btn small primary" type="submit" disabled={busy || !chosen || !day}>Save</button>
+      <button className="btn small" type="button" disabled={busy} onClick={setAside}>Not for this paper</button></div>
+    <small>Saving records that you checked this file and that it belongs to {borrower}. A later date than the file already held makes this the current version.</small>
+  </form>
+}
+
 export default function InputsScreen({ data, spec, actor, busy, run }) {
   const [folderId, setFolderId] = useState(data.intake.folders[0]?.id || '')
   const [results, setResults] = useState(null)
@@ -47,10 +89,12 @@ export default function InputsScreen({ data, spec, actor, busy, run }) {
   const suggested = applicable.filter(e => e.status === 'Suggested')
   const notApplicable = data.expected_documents.filter(e => !e.applicable || e.status === 'Not applicable')
   const waived = applicable.filter(e => e.status === 'Dismissed')
-  const flagged = data.documents.filter(d => d.current !== false && (d.conflict_status === 'pending' || (d.entity && d.entity !== borrower)))
+  // Files the app could not place by itself. They are used nowhere until the analyst says what they are.
+  const flagged = data.documents.filter(d => d.conflict_status === 'pending')
   const unreviewed = data.documents.filter(d => d.origin === 'public' && d.current && !d.confirmed_by)
   const startable = DRAFT_ORDER.map(id => data.sections.find(s => s.section_id === id)).filter(s => s && canStart(s))
   const drafted = data.sections.filter(s => s.current_draft_id).length
+  const stale = data.sections.filter(s => sectionStatus(s) === 'Update required').length
   const spreadOffer = data.generation_offers.find(o => o.kind === 'spread')
 
   const record = list => setResults({ at: new Date(), list })
@@ -105,14 +149,17 @@ export default function InputsScreen({ data, spec, actor, busy, run }) {
       <span><b>{results.list.length}</b>files read</span>
       <span><b>{results.list.filter(r => r.document && r.document.entity === borrower && r.document.conflict_status !== 'pending').length}</b>matched to {borrower}</span>
       <span><b>{count('duplicate')}</b>duplicate{count('duplicate') === 1 ? '' : 's'} skipped</span>
-      <span><b className={flagged.length ? 'bad' : ''}>{results.list.filter(r => r.outcome === 'rejected' || r.document?.conflict_status === 'pending').length}</b>flagged</span>
+      <span><b className={flagged.length ? 'bad' : ''}>{results.list.filter(r => r.outcome === 'rejected' || r.document?.conflict_status === 'pending').length}</b>need your input</span>
     </div>}
-    {flagged.map(doc => <div className="flag" key={doc.id} role="alert">
-      <div className="txt"><b>This file may not belong to this borrower.</b> <code>{doc.original_filename}</code> {doc.entity && doc.entity !== borrower
-        ? <>names <b className="plain">{doc.entity}</b>. The target borrower is {borrower}.</> : 'needs your review.'} It is not used in any draft until it is reviewed.
-        {(doc.intake.issues || []).map((issue, i) => <small key={i}>{issue}</small>)}</div>
-      <a className="btn small" href={contentUrl(caseId, doc.id)} target="_blank" rel="noreferrer">View file</a>
-    </div>)}
+    {flagged.length > 0 && <section className="card held" aria-label="Files that need your input">
+      <h3>{flagged.length} file{flagged.length === 1 ? '' : 's'} need{flagged.length === 1 ? 's' : ''} your input <span className="count">Not used in the checklist or any draft until you say what {flagged.length === 1 ? 'it is' : 'they are'}</span></h3>
+      {flagged.map(doc => <HeldFile key={doc.id} doc={doc} data={data} busy={busy}
+        classify={body => run('Saving the document type', () => post(`${casePath(caseId)}/documents/${encodeURIComponent(doc.id)}/classify`, { actor, ...body }))}
+        setAside={() => run('Setting the file aside', () => post(`${casePath(caseId)}/documents/${encodeURIComponent(doc.id)}/set-aside`, { actor }))} />)}
+    </section>}
+
+    {stale > 0 && <div className="card result" role="status"><span><b>{stale}</b>drafted section{stale === 1 ? '' : 's'} affected by a newer document</span>
+      <a className="btn small primary" href="#/workbench/updates">See what changed</a></div>}
 
     <div className="step"><span className="n">2</span><h2>Checklist</h2><span className="sub">Every document for this paper and where it stands, and which sections can start.</span></div>
     <div className="grid">
@@ -154,7 +201,7 @@ export default function InputsScreen({ data, spec, actor, busy, run }) {
         <h3>Sections that can start <span className="count">{data.sections.filter(s => s.current_draft_id || canStart(s)).length} of {data.sections.length}</span></h3>
         {data.sections.map(section => {
           const status = sectionStatus(section)
-          const [tone, label] = section.current_draft_id ? ['blue', status === 'Confirmed' ? 'Confirmed' : 'Drafted']
+          const [tone, label] = status === 'Update required' ? ['amber', 'Update required'] : section.current_draft_id ? ['blue', status === 'Confirmed' ? 'Confirmed' : 'Drafted']
             : status === 'Not applicable' ? ['grey', 'Not applicable']
             : section.readiness === 'Can draft (full)' ? ['green', 'Ready']
             : section.readiness === 'Can draft (partial)' ? ['blue', 'Ready, with gaps'] : ['amber', 'Waiting']
