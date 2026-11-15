@@ -12,7 +12,7 @@ const route = () => {
   return { view: ['inputs', 'workbench', 'classic', 'papers'].includes(view) ? view : 'inputs', tab: tab || '' }
 }
 
-export default function Root() {
+export default function Root({ user, signOut }) {
   const [where, setWhere] = useState(route)
   const [data, setData] = useState(null)
   const [spec, setSpec] = useState(null)
@@ -76,6 +76,6 @@ export default function Root() {
     {data && where.view === 'inputs' && <InputsScreen key={data.case.id} data={data} spec={spec} actor={actor} busy={!!busy} run={run} />}
     {data && where.view === 'workbench' && <Workbench key={data.case.id} data={data} spec={spec} actor={actor} role={role} busy={!!busy} run={run} tab={where.tab}
       assistantOpen={assistantOpen} closeAssistant={() => setAssistantOpen(false)} />}
-    <footer className="wb-foot">{data?.synthetic_demo && 'SYNTHETIC DEMO DATA · '}{spec ? 'AI drafts are checked against cited sources' : 'Mock mode, no live model calls'} · Drafts are for analyst review. Credit decisions are made by the approving officers.</footer>
+    <footer className="wb-foot">{data?.synthetic_demo && 'SYNTHETIC DEMO DATA · '}{spec ? 'AI drafts are checked against cited sources' : 'Mock mode, no live model calls'} · Drafts are for analyst review. Credit decisions are made by the approving officers.{user && <span className="who"> · Signed in as {user.name} <button onClick={signOut}>Sign out</button></span>}</footer>
   </div>
 }

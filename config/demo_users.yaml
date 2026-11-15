@@ -1,0 +1,13 @@
+# Demo sign-in accounts for the WB Credit prototype.
+# DEMO ONLY. These are made-up accounts kept in plain text. Never put a real UOB username or password in this file.
+# This prototype is not connected to the bank's staff directory; a production build would check the bank's single sign-on.
+# role must be "CA" (credit analyst, maker) or "Credit Head" (checker). To add a person, copy an entry and change it.
+users:
+- username: demo.analyst
+  password: Analyst#2026
+  name: Demo Credit Analyst
+  role: CA
+- username: demo.head
+  password: Head#2026
+  name: Demo Credit Head
+  role: Credit Head
