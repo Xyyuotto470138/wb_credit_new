@@ -32,6 +32,14 @@ Ranks 1 to 5 are built, tested and committed. Details, limits and screens are in
 
 Rank 6 was built on 13 Nov (afternoon) as a first working version on the scenario Sheryl chose: an updated CAS and a revised valuation on the Keppel REIT case. Specification: `docs/new_information_spec.md`. Ranks 7 to 10 are not started.
 
+## Status, 15 Nov
+
+Rank 7, first part: review threads are built. Any signed-in role opens a thread on a section (optionally about one part, with the words referred to), replies, resolves it with a conclusion and reopens it. Threads change nothing in the ES and are open at every stage. Not built: comments anchored to an exact sentence or cell in the text, the RM role, and "Resolve with conclusion" asking the assistant for a tracked change (that needs the live Credit Assistant). Code: `backend/app/services/threads.py`, `backend/app/api/threads.py`, `frontend/src/workbench/Comments.jsx`.
+
+Rank 8, first version: the offline round trip is built for wording. The export marks every drafted paragraph with a Word bookmark (`wbp_<draft id>_<paragraph number>`). "Upload edited Word ES" on the Full ES page compares an edited copy with the sections as they stand, shows each changed paragraph as tracked changes, and saves the wording the analyst ticks as a new version of its section through the existing edit rules. A paragraph whose figures changed is shown and never taken. Comments left in Word can be brought in as review threads. A section that changed in the app after the export is not compared. Not built: reading tables back, turning new tables and images into free blocks, and showing edited computed figures cell by cell (table edits made in Word are ignored, and the screen says so). Code: `backend/app/es2/roundtrip.py`, `backend/app/api/roundtrip.py`, `frontend/src/workbench/Roundtrip.jsx`.
+
+Ranks 9 and 10 are not started.
+
 ## Overnight build, 13 Nov
 
 Ranks 1 to 5, in that order. They are chosen because the behaviour is already agreed, they can be proven by tests and screenshots, and none needs a product decision. If time runs out, the build stops at the end of a finished rank; nothing is left half done on `main`.

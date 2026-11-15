@@ -19,6 +19,8 @@ Everything below works in the app now and can be seen on the saved demo paper wi
 | Several papers | A papers list with stage, whose turn it is and attention items, and a paper switcher. | [enh_06](docs/screens/enh_06_papers_list.png) |
 | Maker and checker | The maker submits. The checker marks sections reviewed or raises a query and returns them. The maker changes only what was returned and resubmits. Each step is recorded in a review trail. | [enh_12](docs/screens/enh_12_checker_review_with_query.png) |
 | New information update | When a revised document replaces an earlier one, a "What changed" page lists the affected sections. For each, the system proposes an update: figures before and after, wording as tracked changes. The maker accepts or keeps each part and applies it. | [enh_20](docs/screens/enh_20_what_changed.png), [enh_21](docs/screens/enh_21_proposal_figures.png) |
+| Comments between roles | Either role opens a comment thread on a section or one part of it, replies, and resolves it with a conclusion. Comments never change the ES. | |
+| Edit in Word and bring it back | Export the ES, edit the wording in Word, upload it. Changed paragraphs are shown as tracked changes and the analyst chooses which to take. Changed figures are never taken. Word comments can become comment threads. | |
 | Word export | The ES is written into the Word template with tables, images, citations and a list of open items. | [ES as drafted](docs/demo/Keppel_REIT_ES_live.pdf), [ES after the update](docs/demo/Keppel_REIT_ES_after_update.pdf) |
 
 ## What it does not do
@@ -29,7 +31,7 @@ Everything below works in the app now and can be seen on the saved demo paper wi
 - **Live drafting needs your own key and costs money.** Without a key you can open, edit, confirm, review and export the saved paper, but not draft new wording.
 - **The Credit Assistant panel is a mock** on both papers. It takes typed notes, not open questions.
 - **Tracked changes are on screen only.** The Word export holds the applied text.
-- **Not built yet:** comment threads between roles, upload of an ES edited offline, calculated tables defined in configuration, template upload. See [docs/enhancement_plan.md](docs/enhancement_plan.md).
+- **Not built yet:** comments anchored to an exact sentence or cell, reading tables back from an ES edited offline, calculated tables defined in configuration, template upload. See [docs/enhancement_plan.md](docs/enhancement_plan.md).
 
 ## Run it
 
