@@ -56,7 +56,7 @@ export default function PapersScreen({ papers, current, role, choose, create, re
       {shown.map(paper => {
         const [label, tone] = stage(paper.workflow_state)
         const attention = [paper.returned_sections.length && [plural(paper.returned_sections.length, 'section') + ' open for changes', 'amber'], paper.update_required && [plural(paper.update_required, 'section') + ' to update', 'amber'],
-          paper.inputs_outstanding && [plural(paper.inputs_outstanding, 'input') + ' outstanding', 'grey'], paper.suggested_checks && [plural(paper.suggested_checks, 'suggested check'), 'amber']].filter(Boolean)
+          paper.inputs_outstanding && [plural(paper.inputs_outstanding, 'input') + ' outstanding', 'grey'], paper.suggested_checks && [plural(paper.suggested_checks, 'suggested check'), 'amber'], paper.open_comments && [plural(paper.open_comments, 'open comment'), 'amber']].filter(Boolean)
         return <div key={paper.id} className={`row${paper.id === current ? ' current' : ''}`}>
           <span><b>{paper.borrower_name}</b><small>{PAPER_TYPE[paper.case_type]} · {paper.team_id.split('_')[0].toUpperCase()}{paper.lending_type ? ` · ${paper.lending_type}` : ''}{paper.synthetic_demo ? ' · SYNTHETIC DEMO DATA' : ''}</small></span>
           <span><i className={`chip ${tone}`}>{label}</i></span>

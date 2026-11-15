@@ -458,6 +458,26 @@ class ReviewMark(Base):
 MODEL_BY_NAME['ReviewMark'] = ReviewMark
 
 
+class CommentThread(Base):
+    __tablename__ = 'comment_thread'
+    id = mapped_column(Text, primary_key=True)
+    created_at = mapped_column(UTCDateTime, nullable=False)
+    case_id = mapped_column(Text, ForeignKey('case.id'), nullable=False)
+    section_id = mapped_column(Integer, nullable=False)
+    part_key = mapped_column(Text, nullable=True)
+    part_title = mapped_column(Text, nullable=True)
+    quote = mapped_column(Text, nullable=True)
+    comments = mapped_column(JSON, nullable=False)
+    status = mapped_column(Text, nullable=False)
+    conclusion = mapped_column(Text, nullable=True)
+    resolved_by = mapped_column(Text, nullable=True)
+    resolved_role = mapped_column(Text, nullable=True)
+    resolved_at = mapped_column(UTCDateTime, nullable=True)
+
+
+MODEL_BY_NAME['CommentThread'] = CommentThread
+
+
 class UpdateProposal(Base):
     __tablename__ = 'update_proposal'
     id = mapped_column(Text, primary_key=True)

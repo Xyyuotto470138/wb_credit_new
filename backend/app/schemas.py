@@ -405,6 +405,26 @@ class SenseCheck(Owned):
     resolutions: dict[str, dict] = Field(default_factory=dict)
 
 
+class CommentThread(Owned):
+    """A discussion between the roles about one section, or one part of it. Comments never change the ES itself."""
+    section_id: int
+    part_key: str | None = None
+    part_title: str | None = None
+    quote: str | None = Field(default=None, max_length=2000)
+    comments: list[dict] = Field(min_length=1)  # each: author, role, text, at
+    status: Literal['open', 'resolved'] = 'open'
+    conclusion: str | None = None
+    resolved_by: str | None = None
+    resolved_role: str | None = None
+    resolved_at: datetime | None = None
+
+    @model_validator(mode='after')
+    def resolution(self):
+        if (self.status == 'resolved') != bool(self.conclusion and self.resolved_by and self.resolved_at):
+            raise ValueError('A resolved thread records its conclusion, who resolved it and when; an open one records none')
+        return self
+
+
 class ReviewMark(Owned):
     """A checker's mark on one section of a submitted ES: reviewed, or a query for the maker. Append-only; the latest counts."""
     section_id: int

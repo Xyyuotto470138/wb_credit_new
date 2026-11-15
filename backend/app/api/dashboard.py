@@ -48,6 +48,7 @@ def dashboard_router(sessions=None, storage_root=None, *, folders=None, intake_p
         require_sessions()
         from ..es2 import sense
         from ..es2.spec import lending_type
+        from ..services import threads
         from ..services.locks import returned_scope
         with sessions() as session:
             session.connection().exec_driver_sql('BEGIN IMMEDIATE')
@@ -68,6 +69,7 @@ def dashboard_router(sessions=None, storage_root=None, *, folders=None, intake_p
                     update_required=sum(section.readiness == 'Stale' for section in applicable), returned_sections=returned,
                     inputs_outstanding=sum(e.applicable and e.status == 'Missing' for e in snapshot.expected),
                     suggested_checks=sum(check['open'] for check in sense.listing(repo, case.id) if check['current']),
+                    open_comments=threads.open_count(repo, case.id),
                     last_event=dict(action=events[-1].action, actor=events[-1].actor, role=events[-1].role, at=events[-1].created_at.isoformat()) if events else None,
                     opened_at=(case.first_upload_at or case.created_at).isoformat(),
                     last_activity=max(drafts + [e.created_at for e in events] + [case.created_at]).isoformat()))

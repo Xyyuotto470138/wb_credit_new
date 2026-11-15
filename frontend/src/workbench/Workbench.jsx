@@ -2,6 +2,7 @@ import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react
 import { casePath, post, request } from '../api/client'
 import { changedClaims, sourcePageLabel, versionToken } from '../sectionModel'
 import AssistantPanel from './AssistantPanel'
+import Comments from './Comments'
 import SectionView, { SectionBody } from './SectionView'
 import { buildBlocks } from './sectionContent'
 import { trackedChanges } from './diff'
@@ -15,6 +16,7 @@ const uniqueGaps = (section, draft) => [...new Set([...(section.gaps || []), ...
 const currentDraft = history => history?.versions.find(d => d.id === history.section.current_draft_id)
 const fetchSection = path => Promise.all([request(`${path}/history`), request(`${path}/chat`).catch(() => ({ messages: [], proposals: [] }))])
 const fetchUpdates = caseId => request(`${casePath(caseId)}/sections/updates`).catch(() => null)
+const fetchThreads = caseId => request(`${casePath(caseId)}/threads`).catch(() => [])
 const fetchSense = caseId => request(`${casePath(caseId)}/sense-checks`).catch(() => [])
 // The mock assistant takes wording and facts only. Figures must reach the ES through a source file, so the system computes them.
 const propose = (path, body) => post(path, body).catch(error => {
@@ -73,7 +75,7 @@ function Panel({ tab, setTab, close, children, sources }) {
   </aside>
 }
 
-function SectionTab({ data, spec, sectionId, actor, role, review, reloadReview, updates, busy, run, assistantOpen, closeAssistant }) {
+function SectionTab({ data, spec, sectionId, actor, role, review, reloadReview, updates, threads, reloadThreads, busy, run, assistantOpen, closeAssistant }) {
   const [history, setHistory] = useState(null)
   const [chat, setChat] = useState(null)
   const [editing, setEditing] = useState(false)
@@ -183,6 +185,8 @@ function SectionTab({ data, spec, sectionId, actor, role, review, reloadReview, 
         {draft && sectionId === 14 && status === 'Update required' && !locked && <label className="start">Your position for the updated draft
           <textarea rows={3} value={position} placeholder={data.case.ca_position || ''} maxLength={10000} onChange={e => setPosition(e.target.value)} /></label>}
       </SectionView>}
+      <Comments caseId={caseId} sectionId={sectionId} parts={spec?.sections.find(s => s.id === sectionId)?.parts} threads={threads}
+        actor={actor} role={role} busy={busy} run={run} reload={reloadThreads} />
     </main>
     {assistantOpen && <Panel tab={panelTab} setTab={setPanelTab} close={closeAssistant}
       sources={draft ? <Sources draft={draft} selected={sourceId} caseId={caseId} /> : <p className="empty">No draft yet.</p>}>
@@ -247,6 +251,9 @@ export default function Workbench({ tab, ...props }) {
   const caseId = data.case.id
   const [review, setReview] = useState(null)
   const [checks, setChecks] = useState([])
+  // Review threads: comments between the roles. They are loaded with the paper and after every comment.
+  const [threads, setThreads] = useState([])
+  const reloadThreads = async () => { setThreads(await fetchThreads(caseId)) }
   const reloadReview = async () => { setReview(await request(`${casePath(caseId)}/review`)) }
   // New information: documents that replaced earlier ones, and the sections they affect.
   const [updates, setUpdates] = useState(null)
@@ -263,10 +270,11 @@ export default function Workbench({ tab, ...props }) {
     let active = true
     request(`${casePath(caseId)}/review`).then(next => { if (active) setReview(next) }).catch(() => {})
     fetchSense(caseId).then(list => { if (active) setChecks(list) })
+    fetchThreads(caseId).then(list => { if (active) setThreads(list) })
     return () => { active = false }
   }, [caseId, stamp])
   const sectionId = Number(tab)
-  const shared = { ...props, review, reloadReview, updates }
+  const shared = { ...props, review, reloadReview, updates, threads, reloadThreads }
   if (tab === 'review') return <ReviewTab data={data} role={role} actor={props.actor} review={review} reload={reloadReview} busy={props.busy} run={props.run} checks={checks}
     rail={<Rail data={data} tab="review" review={review} role={role} updates={updates} />} />
   if (tab === 'updates') return <UpdatesTab data={data} role={role} actor={props.actor} busy={props.busy} run={props.run} updates={updates} reload={reloadUpdates}
