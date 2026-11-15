@@ -1,12 +1,14 @@
 import logo from '../../../templates/UOB_logo.png'
-import { ROLES, esStatus, sectionStatus } from './status'
+import { BUSINESS_UNITS, ROLES, esStatus, sectionStatus } from './status'
 
-export default function TopBar({ data, spec, view, assistantOpen, toggleAssistant, papers = [], choose, role, changeRole }) {
+export default function TopBar({ data, spec, view, assistantOpen, toggleAssistant, papers = [], choose, role, changeRole, unit, changeUnit }) {
   const status = data && esStatus(data)
   const confirmed = data ? data.sections.filter(s => ['Confirmed', 'Not applicable'].includes(sectionStatus(s))).length : 0
   return <header className="topbar">
     <img className="logo" src={logo} alt="UOB" />
     <span className="product">WB Credit</span>
+    {unit && <label className="pick unit"><select aria-label="Business unit" value={unit} onChange={e => changeUnit(e.target.value)}>
+      {BUSINESS_UNITS.map(u => <option key={u} value={u}>{u}</option>)}</select></label>}
     <a className={`nav${view === 'papers' ? ' on' : ''}`} href="#/papers">Papers{papers.length > 1 ? ` (${papers.length})` : ''}</a>
     {data && view !== 'papers' && (papers.length > 1
       ? <label className="pick"><select aria-label="Switch paper" value={data.case.id} onChange={e => choose(e.target.value)}>
@@ -14,7 +16,8 @@ export default function TopBar({ data, spec, view, assistantOpen, toggleAssistan
       : <span className="case">{data.case.borrower_name} · {data.case.case_type === 'renewal' ? 'Renewal' : 'New'} · {spec?.team_label || data.case.team_id.toUpperCase()}</span>)}
     {status && view !== 'papers' && <span className="status"><b><span className="wide">ES STATUS: </span>{status.state.toUpperCase()}</b><span className="wide"> · open {status.days} day{status.days === 1 ? '' : 's'}</span> · {status.pending} input{status.pending === 1 ? '' : 's'} pending</span>}
     <span className="spacer" />
-    {role && <label className="role"><span className="wide">Viewing as </span><select aria-label="Role" value={role} onChange={e => changeRole(e.target.value)}>
+    {role && !changeRole && <span className="role">{ROLES[role].label} ({ROLES[role].short.toLowerCase()})</span>}
+    {role && changeRole && <label className="role"><span className="wide">Viewing as </span><select aria-label="Role" value={role} onChange={e => changeRole(e.target.value)}>
       {Object.entries(ROLES).map(([key, r]) => <option key={key} value={key}>{r.label} ({r.short.toLowerCase()})</option>)}</select></label>}
     {view === 'papers' ? data && <a className="btn primary" href="#/workbench/full">Back to {data.case.borrower_name}</a> : view === 'inputs' ? <a className="btn primary" href="#/workbench">Open ES workbench →</a> : <>
       <a className="btn" href="#/inputs">← Inputs</a>

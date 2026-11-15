@@ -35,3 +35,7 @@ export const ROLES = { CA: { label: 'Credit analyst', short: 'Maker', actor: 'de
 const STAGE = { Draft: ['Drafting', 'blue'], 'Submitted to Credit Head': ['Submitted for review', 'amber'], 'Returned to CA': ['Returned to analyst', 'amber'], Supported: ['Supported', 'green'],
   'With Credit Approver': ['With Credit Approver', 'blue'], 'Question to CA': ['Question to analyst', 'amber'], Approved: ['Approved', 'green'], 'Approved with conditions': ['Approved with conditions', 'green'], Declined: ['Declined', 'grey'] }
 export const stage = state => STAGE[state] || [state, 'grey']
+
+// Business units. A paper's unit is the first part of its team id (fig, fig_re -> FIG). Only FIG is set up in this build.
+export const BUSINESS_UNITS = ['FIG', 'CBK', 'CMB']
+export const unitOf = paper => paper.team_id.split('_')[0].toUpperCase()
