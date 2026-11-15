@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FileUpload from '../components/FileUpload'
-import { casePath, contentUrl, demoMetadata, post, requestListUrl, upload } from '../api/client'
+import { casePath, contentUrl, demoMetadata, post, request, requestListUrl, upload } from '../api/client'
 import { canStart, DOC_STATUS, DOC_TONE, DRAFT_ORDER, sectionStatus, shortGap } from './status'
 
 const OWNER = { RM: 'Ask the RM', client: 'Ask the client', 'internal team': 'Ask internal teams' }
@@ -27,6 +27,14 @@ export default function InputsScreen({ data, spec, actor, busy, run }) {
   const [unsecured, setUnsecured] = useState(false)
   const [progress, setProgress] = useState('')
   const caseId = data.case.id
+  // The Word template this paper's ES is written into: the one in force for the paper's team.
+  const [template, setTemplate] = useState(undefined)
+  const team = data.case.team_id
+  useEffect(() => {
+    let active = true
+    request(`/templates/${encodeURIComponent(team)}/active`).then(next => { if (active) setTemplate(next) }).catch(() => { if (active) setTemplate(null) })
+    return () => { active = false }
+  }, [team])
   const borrower = data.case.borrower_name
   const folder = data.intake.folders.find(f => f.id === folderId)
   const applicable = data.expected_documents.filter(e => e.applicable)
@@ -110,6 +118,11 @@ export default function InputsScreen({ data, spec, actor, busy, run }) {
     <div className="grid">
       <section className="card col" aria-label="Documents">
         <h3>Documents <span className="count">{held.length} of {required.length} required received</span></h3>
+        <div className="group">Executive summary template</div>
+        <div className="item"><span className="name">{spec?.team_label || team.split('_')[0].toUpperCase()} Executive Summary template</span>
+          {template ? <Chip tone="green">In use</Chip> : template === null ? <Chip tone="amber">Not loaded</Chip> : <Chip tone="grey">Checking</Chip>}
+          <span className="meta">{template ? <><a href={`/api/templates/${encodeURIComponent(team)}/${encodeURIComponent(template.id)}/source`}>Download the Word template</a> · version {template.display_version.replace(/^v/, '')} · </> : ''}
+            The ES is written into this template when you export. It is set for the business unit; you do not upload it for each paper.</span></div>
         <div className="group">Required, still outstanding <span>{missing.length}</span></div>
         {!missing.length && <p className="empty">Nothing outstanding. Every required document is received, found publicly or can be generated.</p>}
         {missing.map(item => <Item key={item.id} item={item} data={data}>

@@ -1,5 +1,5 @@
 import logo from '../../../templates/UOB_logo.png'
-import { BUSINESS_UNITS, ROLES, esStatus, sectionStatus } from './status'
+import { BUSINESS_UNITS, PAPER_TYPE, ROLES, esStatus, sectionStatus } from './status'
 
 export default function TopBar({ data, spec, view, assistantOpen, toggleAssistant, papers = [], choose, role, changeRole, unit, changeUnit }) {
   const status = data && esStatus(data)
@@ -12,8 +12,8 @@ export default function TopBar({ data, spec, view, assistantOpen, toggleAssistan
     <a className={`nav${view === 'papers' ? ' on' : ''}`} href="#/papers">Papers{papers.length > 1 ? ` (${papers.length})` : ''}</a>
     {data && view !== 'papers' && (papers.length > 1
       ? <label className="pick"><select aria-label="Switch paper" value={data.case.id} onChange={e => choose(e.target.value)}>
-        {papers.map(p => <option key={p.id} value={p.id}>{p.borrower_name} · {p.case_type === 'renewal' ? 'Renewal' : 'New'}</option>)}</select></label>
-      : <span className="case">{data.case.borrower_name} · {data.case.case_type === 'renewal' ? 'Renewal' : 'New'} · {spec?.team_label || data.case.team_id.toUpperCase()}</span>)}
+        {papers.map(p => <option key={p.id} value={p.id}>{p.borrower_name} · {PAPER_TYPE[p.case_type]}</option>)}</select></label>
+      : <span className="case">{data.case.borrower_name} · {PAPER_TYPE[data.case.case_type]} · {spec?.team_label || data.case.team_id.toUpperCase()}</span>)}
     {status && view !== 'papers' && <span className="status"><b><span className="wide">ES STATUS: </span>{status.state.toUpperCase()}</b><span className="wide"> · open {status.days} day{status.days === 1 ? '' : 's'}</span> · {status.pending} input{status.pending === 1 ? '' : 's'} pending</span>}
     <span className="spacer" />
     {role && !changeRole && <span className="role">{ROLES[role].label} ({ROLES[role].short.toLowerCase()})</span>}

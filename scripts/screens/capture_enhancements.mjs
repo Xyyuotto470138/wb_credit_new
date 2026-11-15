@@ -83,7 +83,7 @@ if (only.includes('papers')) {
   await page.locator('.papers .row:has-text("ESR-REIT") .btn').click()
   await page.waitForSelector('.paper'); await page.waitForTimeout(900)
   await shot('07_second_paper_open')
-  await page.selectOption('.topbar select[aria-label="Switch paper"]', { label: 'Keppel REIT · New' })
+  await page.selectOption('.topbar select[aria-label="Switch paper"]', { label: 'Keppel REIT · New to bank' })
   await page.waitForSelector('.paper'); await page.waitForTimeout(900)
   await shot('08_switched_back')
 }

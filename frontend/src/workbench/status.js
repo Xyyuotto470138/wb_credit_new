@@ -39,3 +39,5 @@ export const stage = state => STAGE[state] || [state, 'grey']
 // Business units. A paper's unit is the first part of its team id (fig, fig_re -> FIG). Only FIG is set up in this build.
 export const BUSINESS_UNITS = ['FIG', 'CBK', 'CMB']
 export const unitOf = paper => paper.team_id.split('_')[0].toUpperCase()
+// How the two paper types read on the screens.
+export const PAPER_TYPE = { new: 'New to bank', renewal: 'Annual review' }
