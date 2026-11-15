@@ -2,6 +2,9 @@ import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react
 import { casePath, post, request } from '../api/client'
 import { changedClaims, sourcePageLabel, versionToken } from '../sectionModel'
 import AssistantPanel from './AssistantPanel'
+import Comments from './Comments'
+import Roundtrip from './Roundtrip'
+import Preview from './Preview'
 import SectionView, { SectionBody } from './SectionView'
 import { buildBlocks } from './sectionContent'
 import { trackedChanges } from './diff'
@@ -15,6 +18,7 @@ const uniqueGaps = (section, draft) => [...new Set([...(section.gaps || []), ...
 const currentDraft = history => history?.versions.find(d => d.id === history.section.current_draft_id)
 const fetchSection = path => Promise.all([request(`${path}/history`), request(`${path}/chat`).catch(() => ({ messages: [], proposals: [] }))])
 const fetchUpdates = caseId => request(`${casePath(caseId)}/sections/updates`).catch(() => null)
+const fetchThreads = caseId => request(`${casePath(caseId)}/threads`).catch(() => [])
 const fetchSense = caseId => request(`${casePath(caseId)}/sense-checks`).catch(() => [])
 // The mock assistant takes wording and facts only. Figures must reach the ES through a source file, so the system computes them.
 const propose = (path, body) => post(path, body).catch(error => {
@@ -73,7 +77,7 @@ function Panel({ tab, setTab, close, children, sources }) {
   </aside>
 }
 
-function SectionTab({ data, spec, sectionId, actor, role, review, reloadReview, updates, busy, run, assistantOpen, closeAssistant }) {
+function SectionTab({ data, spec, sectionId, actor, role, review, reloadReview, updates, threads, reloadThreads, busy, run, assistantOpen, closeAssistant, openAssistant }) {
   const [history, setHistory] = useState(null)
   const [chat, setChat] = useState(null)
   const [editing, setEditing] = useState(false)
@@ -183,7 +187,10 @@ function SectionTab({ data, spec, sectionId, actor, role, review, reloadReview, 
         {draft && sectionId === 14 && status === 'Update required' && !locked && <label className="start">Your position for the updated draft
           <textarea rows={3} value={position} placeholder={data.case.ca_position || ''} maxLength={10000} onChange={e => setPosition(e.target.value)} /></label>}
       </SectionView>}
+      <Comments caseId={caseId} sectionId={sectionId} parts={spec?.sections.find(s => s.id === sectionId)?.parts} threads={threads}
+        actor={actor} role={role} busy={busy} run={run} reload={reloadThreads} />
     </main>
+    {!assistantOpen && <button className="reopen" onClick={openAssistant} aria-label="Open the Credit Assistant panel">Credit Assistant</button>}
     {assistantOpen && <Panel tab={panelTab} setTab={setPanelTab} close={closeAssistant}
       sources={draft ? <Sources draft={draft} selected={sourceId} caseId={caseId} /> : <p className="empty">No draft yet.</p>}>
       <AssistantPanel chat={chat} busy={busy} disabledReason={blockedReason} onSend={send}
@@ -192,7 +199,7 @@ function SectionTab({ data, spec, sectionId, actor, role, review, reloadReview, 
   </div>
 }
 
-function FullEs({ data, spec, actor, role, review, updates, busy, run, assistantOpen, closeAssistant }) {
+function FullEs({ data, spec, actor, role, review, updates, reloadThreads, busy, run, assistantOpen, closeAssistant, openAssistant }) {
   const [histories, setHistories] = useState(null)
   const [artifact, setArtifact] = useState(null)
   const [target, setTarget] = useState('')
@@ -224,6 +231,8 @@ function FullEs({ data, spec, actor, role, review, updates, busy, run, assistant
     <main className="centre">
       <div className="secbar"><span className="meta">{drafted.length} of {data.sections.length} sections drafted · {data.sections.filter(s => sectionStatus(s) === 'Confirmed').length} confirmed</span><span className="spacer" />
         {artifact && <a className="btn" href={`/api${artifact.path}/${encodeURIComponent(artifact.id)}/document.docx`}>Download Word ES</a>}
+        {drafted.length > 0 && <a className="btn" href="#/workbench/preview">Preview</a>}
+        {role === 'CA' && data.case.workflow_state === 'Draft' && spec && drafted.length > 0 && <Roundtrip caseId={caseId} actor={actor} busy={busy} run={run} onDone={reloadThreads} />}
         <button className="btn primary" disabled={busy || !drafted.length || role !== 'CA' || data.case.workflow_state !== 'Draft'} onClick={exportEs}>Export ES to Word</button></div>
       {artifact && <p className="banner green">Draft ES created in the bank's Word template (template {(artifact.template || artifact.manifest?.template)?.display_version}). It is a draft for review, not a submission.</p>}
       {!histories ? <p className="wb-loading">Loading the ES…</p> : data.sections.map((section, i) => {
@@ -235,6 +244,7 @@ function FullEs({ data, spec, actor, role, review, updates, busy, run, assistant
         </div>
       })}
     </main>
+    {!assistantOpen && <button className="reopen" onClick={openAssistant} aria-label="Open the Credit Assistant panel">Credit Assistant</button>}
     {assistantOpen && <Panel tab={panelTab} setTab={setPanelTab} close={closeAssistant} sources={<p className="empty">Open a section to see its sources.</p>}>
       <AssistantPanel chat={null} busy={busy || !histories} onSend={send} disabledReason={role !== 'CA' ? 'Read only for reviewers.' : data.case.workflow_state !== 'Draft' ? 'Open a returned section to change it.' : ''} sections={drafted.filter(s => sectionStatus(s) !== 'Update required')} target={target} setTarget={setTarget}
         scope={<><b>Whole ES.</b> Tell me which section a change is for. I will show the suggested change in that section for you to accept.</>} />
@@ -247,6 +257,9 @@ export default function Workbench({ tab, ...props }) {
   const caseId = data.case.id
   const [review, setReview] = useState(null)
   const [checks, setChecks] = useState([])
+  // Review threads: comments between the roles. They are loaded with the paper and after every comment.
+  const [threads, setThreads] = useState([])
+  const reloadThreads = async () => { setThreads(await fetchThreads(caseId)) }
   const reloadReview = async () => { setReview(await request(`${casePath(caseId)}/review`)) }
   // New information: documents that replaced earlier ones, and the sections they affect.
   const [updates, setUpdates] = useState(null)
@@ -263,10 +276,12 @@ export default function Workbench({ tab, ...props }) {
     let active = true
     request(`${casePath(caseId)}/review`).then(next => { if (active) setReview(next) }).catch(() => {})
     fetchSense(caseId).then(list => { if (active) setChecks(list) })
+    fetchThreads(caseId).then(list => { if (active) setThreads(list) })
     return () => { active = false }
   }, [caseId, stamp])
   const sectionId = Number(tab)
-  const shared = { ...props, review, reloadReview, updates }
+  const shared = { ...props, review, reloadReview, updates, threads, reloadThreads }
+  if (tab === 'preview') return <Preview data={data} spec={props.spec} />
   if (tab === 'review') return <ReviewTab data={data} role={role} actor={props.actor} review={review} reload={reloadReview} busy={props.busy} run={props.run} checks={checks}
     rail={<Rail data={data} tab="review" review={review} role={role} updates={updates} />} />
   if (tab === 'updates') return <UpdatesTab data={data} role={role} actor={props.actor} busy={props.busy} run={props.run} updates={updates} reload={reloadUpdates}
