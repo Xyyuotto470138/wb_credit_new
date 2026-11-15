@@ -63,6 +63,10 @@ class IntakeResult(BaseModel):
     explanations: list[str] = Field(default_factory=list)
 
 
+# Questions about a file that the credit analyst's own review answers.
+ANALYST_SETTLES = {'unknown_type', 'type_mismatch', 'rating_scope', 'unknown_entity', 'wrong_entity', 'entity_mismatch', 'unknown_period', 'period_mismatch'}
+
+
 def normalize(value):
     return ' '.join(re.findall(r'[a-z0-9]+', value.casefold()))
 
@@ -221,7 +225,7 @@ class IntakeService:
         self.folders = {key: Path(value).absolute() for key, value in (folders or {}).items()}
         self.max_bytes = max_bytes
 
-    def ingest(self, case_id, filename, content, *, origin='upload', metadata=None):
+    def ingest(self, case_id, filename, content, *, origin='upload', metadata=None, reviewed_by=None, held_id=None):
         require_working(self.repository, case_id, intake=True)
         safe_filename(filename)
         if origin not in {'upload', 'folder'}:
@@ -237,7 +241,8 @@ class IntakeService:
             raise IntakeError('Unknown configured suggestion')
         digest = sha256(content).hexdigest()
         documents = self.repository.list_for_case(schemas.Document, case_id)
-        duplicate = next((d for d in documents if d.content_hash == digest), None)
+        # A file the analyst set aside, or classified again, no longer stands in for its content.
+        duplicate = next((d for d in documents if d.content_hash == digest and d.conflict_status != 'rejected'), None)
         if duplicate:
             # Do not let a new name, route or hints mutate historical provenance.
             stored = Path(duplicate.storage_path)
@@ -260,6 +265,13 @@ class IntakeService:
                 extraction_issues.append(f'unreadable: {reason}; manual review required.')
         catalogue_id, suggestion_id, entity, period, issues, observed = classify(text, filename, case, config, metadata)
         issues = extraction_issues + issues
+        overridden = []
+        if reviewed_by:
+            # The credit analyst has looked at the file and stated its type, date and that it is this borrower's.
+            # That review settles the questions the classifier could not; unreadable files and date clashes still hold.
+            catalogue_id, suggestion_id, entity, period = metadata.catalogue_id, metadata.suggestion_id, case.borrower_name, metadata.period
+            overridden = [i for i in issues if i.split(':')[0] in ANALYST_SETTLES]
+            issues = [i for i in issues if i not in overridden]
         stream = [d for d in documents if (d.catalogue_id, d.suggestion_id, normalize(d.entity), d.intake.get('scope', 'default')) ==
                   (catalogue_id, suggestion_id, normalize(entity), metadata.scope)]
         accepted = [d for d in stream if d.conflict_status in {'none', 'accepted'} and period_key(d.period)]
@@ -290,13 +302,48 @@ class IntakeService:
             intake={'classifier': 'deterministic-v1', 'scope': metadata.scope,
                     'status': 'manual_review' if issues else 'classified', 'issues': issues,
                     'supplied': metadata.model_dump(mode='json'), 'observed': observed,
-                    'compared_document_id': previous.id if previous else None},
+                    'compared_document_id': previous.id if previous else None,
+                    **({'review': {'by': reviewed_by, 'settled': overridden, 'held_document_id': held_id}} if reviewed_by else {})},
         ))
         if case.first_upload_at is None:
             self.repository.save(case.model_copy(update={'first_upload_at': document.created_at}))
         self._refresh(case_id)
         return IntakeResult(outcome='created', filename=filename, document=document,
                             explanations=issues or ['New immutable document version stored; classification is not CA confirmation.'])
+
+    def _held(self, case_id, document_id):
+        require_working(self.repository, case_id, intake=True)
+        try:
+            document = self.repository.get(schemas.Document, document_id)
+        except ValueError:
+            raise IntakeError('Document not found')
+        if document.case_id != case_id:
+            raise IntakeError('Document not found')
+        if document.conflict_status != 'pending':
+            raise IntakeError('This file is not waiting for review')
+        return document
+
+    def classify_held(self, case_id, document_id, *, actor, period, catalogue_id=None, suggestion_id=None):
+        """The analyst states what a held file is. The held record is closed and the file is stored again under that
+        classification, so the original observation is kept as it was."""
+        document = self._held(case_id, document_id)
+        if not actor.strip() or (catalogue_id is None) == (suggestion_id is None) or not period:
+            raise IntakeError('Give your name, one document type and the document date')
+        stored = Path(document.storage_path)
+        if not stored.is_file() or stored.is_symlink() or sha256(stored.read_bytes()).hexdigest() != document.content_hash:
+            raise IntakeError('Stored content failed integrity validation; upload the file again')
+        case = self.repository.get(schemas.Case, case_id)
+        metadata = Metadata(catalogue_id=catalogue_id, suggestion_id=suggestion_id, entity=case.borrower_name, period=period,
+                            synthetic=document.synthetic, scope=document.intake.get('scope', 'default'))
+        self.repository.save(document.model_copy(update={'conflict_status': 'rejected'}))
+        return self.ingest(case_id, document.original_filename, stored.read_bytes(),
+                           origin=document.origin if document.origin in {'upload', 'folder'} else 'upload', metadata=metadata, reviewed_by=actor.strip(), held_id=document.id)
+
+    def set_aside(self, case_id, document_id):
+        """The analyst decides a held file is not for this paper. It is kept in the store and used nowhere."""
+        document = self.repository.save(self._held(case_id, document_id).model_copy(update={'conflict_status': 'rejected'}))
+        self._refresh(case_id)
+        return document
 
     def _refresh(self, case_id):
         # Lazy import avoids a cycle: readiness shares the intake identity normalizer.

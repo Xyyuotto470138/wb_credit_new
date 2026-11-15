@@ -17,6 +17,19 @@ class ScanRequest(BaseModel):
     metadata_by_path: dict[str, Metadata] = Field(default_factory=dict)
 
 
+class ClassifyRequest(BaseModel):
+    model_config = ConfigDict(extra='forbid', str_strip_whitespace=True)
+    actor: str = Field(min_length=1, max_length=200)
+    catalogue_id: int | None = Field(default=None, ge=1)
+    suggestion_id: str | None = Field(default=None, min_length=1, max_length=200)
+    period: str = Field(min_length=1, max_length=100)
+
+
+class SetAsideRequest(BaseModel):
+    model_config = ConfigDict(extra='forbid', str_strip_whitespace=True)
+    actor: str = Field(min_length=1, max_length=200)
+
+
 def documents_router(sessions=None, storage_root=None, folders=None):
     router = APIRouter(prefix='/cases/{case_id}/documents', tags=['documents'])
 
@@ -61,6 +74,17 @@ def documents_router(sessions=None, storage_root=None, folders=None):
     @router.get('')
     def documents(case_id: str):
         return run(case_id, lambda service: service.repository.list_for_case(schemas.Document, case_id))
+
+    @router.post('/{document_id}/classify')
+    def classify(case_id: str, document_id: str, request: ClassifyRequest):
+        """The analyst states the type and date of a file the app held for review."""
+        return run(case_id, lambda service: service.classify_held(case_id, document_id, actor=request.actor, period=request.period,
+                   catalogue_id=request.catalogue_id, suggestion_id=request.suggestion_id), write=True)
+
+    @router.post('/{document_id}/set-aside')
+    def set_aside(case_id: str, document_id: str, request: SetAsideRequest):
+        """The analyst decides a held file is not for this paper."""
+        return run(case_id, lambda service: service.set_aside(case_id, document_id), write=True)
 
     @router.post('/scan')
     def scan(case_id: str, request: ScanRequest):
