@@ -36,6 +36,11 @@ def test_a_new_paper_keeps_its_lending_type_and_an_older_store_gains_the_column(
         assert [t['id'] for t in api.get('/lending-types').json()][:2] == ['property_ipre', 'data_centre']
         made = api.post('/papers', json=dict(borrower_name='Sample Fund', case_type='new', lending_type='nav_fund_level'))
         assert made.status_code == 201 and made.json()['lending_type'] == 'nav_fund_level'
+        # A new paper drafts with the live drafting model of the FIG specification, as the saved demo paper does.
+        from backend.app.llm.registry import load_registry
+        model = api.get(f"/cases/{made.json()['id']}/dashboard").json()['case']['default_model_id']
+        entry = load_registry().get(model)
+        assert entry.provider_type == 'anthropic' and entry.route == 'direct' and entry.enabled
         listed = next(p for p in api.get('/papers').json() if p['id'] == made.json()['id'])
         assert listed['lending_type'] == 'NAV / fund-level financing'
         assert api.post('/papers', json=dict(borrower_name='X', case_type='new', lending_type='made-up')).status_code == 422

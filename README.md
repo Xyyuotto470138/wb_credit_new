@@ -146,7 +146,7 @@ npm --prefix frontend test
 - **Front end:** React and Vite ([frontend/src/workbench](frontend/src/workbench)).
 - **ES specification:** one file, [config/teams/fig_re/es_spec.yaml](config/teams/fig_re/es_spec.yaml), defines every section and part: who fills it (model, Python, case input, analyst), its columns and its guidance. The Word template, the prompts, the screen layout and the export all read it.
 - **Lending types:** [config/lending_types.yaml](config/lending_types.yaml) lists the lending types offered when a paper is started and what the drafting model is told to emphasise for each. It sets emphasis only; the template, the calculated tables and the document checklist stay those of the FIG specification.
-- **Model:** Claude, called directly at Anthropic. Routes and prices are in [config/models.yaml](config/models.yaml).
+- **Model:** Claude, called directly at Anthropic, by default. A GPT model direct at OpenAI, or another model through OpenRouter, can be used instead: enable its entry in [config/models.yaml](config/models.yaml) and set its key and `WB_CREDIT_MODEL` in `.env` ([.env.example](.env.example) has the steps). The prompts and checks were tuned on Claude; other models are connected, not tuned.
 
 Rules the build follows:
 

@@ -13,7 +13,7 @@ import json
 from pydantic import Field
 
 from .. import schemas as s
-from ..llm.registry import load_registry
+from ..llm.registry import load_registry, paper_model
 from ..services.drafting import DraftRequest
 from ..services.gaps import current_documents
 from ..services.locks import RevisionConflict
@@ -133,7 +133,7 @@ def overview(service, case_id):
     case = repo.get(s.Case, case_id)
     spec = load_spec(case.team_id)
     config = TeamConfig.model_validate(case.config_snapshot)
-    model = load_registry().get(case.default_model_id)
+    model = paper_model(load_registry(), case.default_model_id)
     base = dict(available=bool(spec), live=bool(spec) and model.route != 'mock' and model.runnable, note=NOTE, documents=[], sections=[])
     if not spec:
         return base

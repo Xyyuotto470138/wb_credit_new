@@ -468,7 +468,7 @@ def generate(service, case, config, spec, states, state, section_id, request, mo
                 + ''.join(f'\n\nPrior section S{n} (current draft)\n{text[:30000]}' for n, text in prior.items())
                 + (f'\n\nTables computed by the system for this section (cite as "C")\n{computed_text}' if computed_text else '')
                 + '\n\nEvidence pages\n' + evidence)
-        provider = live.AnthropicLive(model, client=client)
+        provider = live.provider(model, client=client)
         info = provider.get_provider_info()
         prompt_hash = identity(prompt_hash, user)
         try:

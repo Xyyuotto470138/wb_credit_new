@@ -54,8 +54,9 @@ class ModelEntry(BaseModel):
     def live(self):
         """A live route is callable only in a process started for a live run, with its key present."""
         from . import live
-        return (self.enabled and self.route == 'direct' and self.provider_type == 'anthropic'
-                and live.live_enabled() and bool(live.api_key(self.api_key_env or '')))
+        # Claude direct at Anthropic; GPT direct at OpenAI; other models through OpenRouter.
+        routed = self.route == 'direct' or (self.route == 'openrouter' and self.provider_type == 'openai_compatible')
+        return self.enabled and routed and live.live_enabled() and bool(live.api_key(self.api_key_env or ''))
 
     @property
     def runnable(self):
@@ -93,6 +94,17 @@ class Registry(BaseModel):
         if found is None:
             raise ValueError('Unknown registered model')
         return found
+
+
+def paper_model(registry, default_id, requested=None):
+    """The model a live call for a paper uses: the one asked for, else WB_CREDIT_MODEL when set, else the paper's own.
+    A paper on the mock provider stays on it, so the offline demo and the tests are not redirected."""
+    entry = registry.get(requested or default_id)
+    from . import live
+    override = live.model_override()
+    if not requested and override and entry.route != 'mock':
+        entry = registry.get(override)
+    return entry
 
 
 def load_registry(path=None):
