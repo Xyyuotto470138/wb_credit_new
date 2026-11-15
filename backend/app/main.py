@@ -23,6 +23,7 @@ from .api.submission_checks import submission_checks_router
 from .api.auth import auth_router
 from .api.papers import papers_router
 from .api.threads import threads_router
+from .api.roundtrip import roundtrip_router
 
 
 def create_app(team_id='fig', provider: Provider | None = None, *, sessions=None, storage_root=None, intake_folders=None, search_provider=None, dashboard_folders=None, intake_presets=None, demo_case_ids=(), template_storage_root=None, drafting_provider=None, export_storage_root=None, chat_provider=None, demo_spread_available=False):
@@ -33,6 +34,7 @@ def create_app(team_id='fig', provider: Provider | None = None, *, sessions=None
     app.include_router(auth_router())
     app.include_router(papers_router(sessions, template_storage_root, demo_case_ids))
     app.include_router(threads_router(sessions))
+    app.include_router(roundtrip_router(sessions, storage_root, template_storage_root))
     app.include_router(workflow_router(sessions, storage_root, template_storage_root))
     app.include_router(review_router(sessions))
     app.include_router(documents_router(sessions, storage_root, intake_folders))

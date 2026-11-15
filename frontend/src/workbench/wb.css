@@ -472,3 +472,21 @@ details.more summary { cursor: pointer; color: var(--blue-dark); font-size: 13px
 .thread .said.note p { color: var(--muted); }
 .thread .said.conclusion { background: var(--green-tint); border-radius: 6px; padding: 8px 10px; }
 @media (max-width: 1000px) { .comments .row { flex-wrap: wrap; } .comments .row textarea { flex-basis: 100%; } }
+/* Offline round trip */
+.roundtrip { margin: 0 0 16px; flex: 0 0 100%; order: 5; }
+.secbar:has(.roundtrip), .secbar:has(.roundtrip-note) { flex-wrap: wrap; }
+.roundtrip h3 { margin: 0; font-size: 15px; padding: 12px 16px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 12px; overflow-wrap: anywhere; }
+.roundtrip .sub { margin: 0; padding: 10px 16px 0; color: var(--muted); }
+.roundtrip .banner { margin: 10px 16px 0; }
+.roundtrip .empty { padding: 12px 16px; }
+.rt-section h4 { margin: 0; padding: 12px 16px 4px; font-size: 14px; color: var(--navy); }
+.rt-change { display: grid; grid-template-columns: auto 1fr; gap: 10px; padding: 8px 16px; border-bottom: 1px solid #EAEDF1; align-items: start; }
+.rt-change > span { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.rt-change .diff { overflow-wrap: anywhere; }
+.rt-change ins { background: var(--green-tint); text-decoration: none; }
+.rt-change del { color: var(--red); }
+.rt-change small { color: var(--amber); }
+.rt-change.figures, .rt-change.protected, .rt-change.removed { background: #FFFBF2; }
+.rt-actions { padding: 12px 16px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.rt-actions small { color: var(--muted); }
+.roundtrip-note { margin: 0 0 12px; flex: 0 0 100%; order: 5; }

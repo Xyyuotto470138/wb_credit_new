@@ -25,6 +25,9 @@ NOT_PROVIDED = 'Not provided'
 NUMERIC = __import__('re').compile(r'^\(?-?[\d,]+(\.\d+)?\)?\s?(%|x|pp)?$')
 
 
+MARKER = 'wbp_'  # bookmark prefix on every drafted paragraph: wbp_<draft id>_<paragraph number>
+
+
 def placeholder(part):
     text = part.get('guidance') or (part.get('title') if part['type'] == 'narrative' else None)
     return f'[{text}]' if text else None
@@ -48,6 +51,7 @@ class Filler:
         self.copy, self.manifest, self.case, self.spec, self.storage_root = copy, manifest, case, spec, storage_root
         self.numbers = {ref: i for i, ref in enumerate(manifest['sources'], 1)}
         self.media, self.open_items, self.ca_notes = [], [], []
+        self.draft_id, self.marker = None, 90000  # the draft being written, and the next bookmark id
         self.tails = {}  # the source line under a table, so added content is placed below it
         manifest['source_markers'] = {str(i): ref for ref, i in self.numbers.items()}
         manifest['filled_targets'] = {}
@@ -109,7 +113,8 @@ class Filler:
 
     # ---- part fillers
     def narrative(self, fill, part, body, claims, fallback):
-        paragraphs = [(c['text'] + ' ' + self.marks(c.get('evidence_ids', []), c.get('section_refs', []))).strip() for c in claims if c.get('part') == part['key']]
+        mine = [(i, c) for i, c in enumerate(claims) if c.get('part') == part['key']]
+        paragraphs = [(c['text'] + ' ' + self.marks(c.get('evidence_ids', []), c.get('section_refs', []))).strip() for _, c in mine]
         if not paragraphs:
             paragraphs = [body.get('note') if body.get('status') == 'na' else fallback]
         self.copy.narrative(fill['id'], paragraphs)
@@ -127,6 +132,18 @@ class Filler:
             mark = paragraph.find(W + 'pPr/' + W + 'rPr')
             if mark is not None:
                 paragraph.find(W + 'pPr').remove(mark)
+        # Each drafted paragraph carries a marker naming its draft and its place in it, so a copy edited in Word
+        # can be matched back paragraph by paragraph (es2/roundtrip.py).
+        if mine and self.draft_id:
+            for (position, _), paragraph in zip(mine, list(parent)[index:index + len(paragraphs)]):
+                self.bookmark(paragraph, f"{MARKER}{self.draft_id.replace('-', '')}_{position}")
+
+    def bookmark(self, paragraph, name):
+        if len(name) > 40:  # Word's limit for a bookmark name
+            return
+        self.marker += 1
+        paragraph.insert(1 if paragraph.find(W + 'pPr') is not None else 0, ET.Element(W + 'bookmarkStart', {W + 'id': str(self.marker), W + 'name': name}))
+        paragraph.append(ET.Element(W + 'bookmarkEnd', {W + 'id': str(self.marker)}))
 
     def note_row(self, table, note, total=False):
         """Replace the detail rows with one row that carries a note across the full table width."""
@@ -414,6 +431,7 @@ class Filler:
             draft = drafts.get(sid)
             envelope = (draft['claim_spans'][0] if draft else {})
             content, claims = envelope.get('parts', {}), (draft['claim_spans'][1:] if draft else [])
+            self.draft_id = draft['id'] if draft else None
             fills = self.fills(sid)
             fallback = 'Not provided: no supported wording is available from the evidence held.' if draft else 'Not drafted.'
             ends = {}  # where each part starts and ends in the document, for placing analyst added content

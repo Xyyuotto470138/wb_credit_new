@@ -3,6 +3,7 @@ import { casePath, post, request } from '../api/client'
 import { changedClaims, sourcePageLabel, versionToken } from '../sectionModel'
 import AssistantPanel from './AssistantPanel'
 import Comments from './Comments'
+import Roundtrip from './Roundtrip'
 import SectionView, { SectionBody } from './SectionView'
 import { buildBlocks } from './sectionContent'
 import { trackedChanges } from './diff'
@@ -196,7 +197,7 @@ function SectionTab({ data, spec, sectionId, actor, role, review, reloadReview, 
   </div>
 }
 
-function FullEs({ data, spec, actor, role, review, updates, busy, run, assistantOpen, closeAssistant }) {
+function FullEs({ data, spec, actor, role, review, updates, reloadThreads, busy, run, assistantOpen, closeAssistant }) {
   const [histories, setHistories] = useState(null)
   const [artifact, setArtifact] = useState(null)
   const [target, setTarget] = useState('')
@@ -228,6 +229,7 @@ function FullEs({ data, spec, actor, role, review, updates, busy, run, assistant
     <main className="centre">
       <div className="secbar"><span className="meta">{drafted.length} of {data.sections.length} sections drafted · {data.sections.filter(s => sectionStatus(s) === 'Confirmed').length} confirmed</span><span className="spacer" />
         {artifact && <a className="btn" href={`/api${artifact.path}/${encodeURIComponent(artifact.id)}/document.docx`}>Download Word ES</a>}
+        {role === 'CA' && data.case.workflow_state === 'Draft' && spec && drafted.length > 0 && <Roundtrip caseId={caseId} actor={actor} busy={busy} run={run} onDone={reloadThreads} />}
         <button className="btn primary" disabled={busy || !drafted.length || role !== 'CA' || data.case.workflow_state !== 'Draft'} onClick={exportEs}>Export ES to Word</button></div>
       {artifact && <p className="banner green">Draft ES created in the bank's Word template (template {(artifact.template || artifact.manifest?.template)?.display_version}). It is a draft for review, not a submission.</p>}
       {!histories ? <p className="wb-loading">Loading the ES…</p> : data.sections.map((section, i) => {
