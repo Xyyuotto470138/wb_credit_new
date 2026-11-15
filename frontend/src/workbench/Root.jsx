@@ -82,6 +82,14 @@ export default function Root({ user, signOut }) {
     paper.current = made.id; keep('wb.paper', made.id)
     return made
   }).then(made => { if (made) window.location.hash = '#/inputs' })
+  const remove = target => {
+    const drafted = target.drafted ? ` Its ${target.drafted} drafted section${target.drafted === 1 ? '' : 's'} will go with it.` : ''
+    if (!window.confirm(`Delete the paper for ${target.borrower_name}?${drafted} It will be removed from every list and cannot be brought back from the screens.`)) return
+    run('Deleting the paper', async () => {
+      await post(`/papers/${encodeURIComponent(target.id)}/delete`, { actor })
+      if (paper.current === target.id) { paper.current = null; keep('wb.paper', '') }
+    })
+  }
   if (where.view === 'classic') return <Suspense fallback={<p>Loading…</p>}><p className="classic-back"><a href="#/inputs">← Back to Inputs</a></p><ClassicApp /></Suspense>
   return <div className="wb">
     <TopBar data={data} spec={spec} view={where.view} assistantOpen={assistantOpen} toggleAssistant={() => setAssistantOpen(open => !open)}
@@ -91,7 +99,7 @@ export default function Root({ user, signOut }) {
     {!data && !error && !empty && <p className="wb-loading">Loading case…</p>}
     {empty && <main className="papers"><div className="head"><h1>Papers</h1></div>
       <div className="card table"><p className="empty">No {unit} papers yet. The {unit} template and document checklist are not set up in this prototype; only FIG is.</p></div></main>}
-    {where.view === 'papers' && papers.length > 0 && <PapersScreen papers={papers} current={data?.case.id} role={role} choose={choose} create={create} busy={!!busy} />}
+    {where.view === 'papers' && papers.length > 0 && <PapersScreen papers={papers} current={data?.case.id} role={role} choose={choose} create={create} remove={remove} busy={!!busy} />}
     {data && where.view === 'inputs' && <InputsScreen key={data.case.id} data={data} spec={spec} actor={actor} busy={!!busy} run={run} />}
     {data && where.view === 'workbench' && <Workbench key={data.case.id} data={data} spec={spec} actor={actor} role={role} busy={!!busy} run={run} tab={where.tab}
       assistantOpen={assistantOpen} closeAssistant={() => setAssistantOpen(false)} />}

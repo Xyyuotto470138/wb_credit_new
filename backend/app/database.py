@@ -33,6 +33,9 @@ def create_database(path: Path | str):
             connection.exec_driver_sql("ALTER TABLE \"case\" ADD COLUMN default_model_id TEXT NOT NULL DEFAULT 'mock-v1'")
         if 'lending_type' not in case_columns:  # papers saved before lending types keep none
             connection.exec_driver_sql('ALTER TABLE "case" ADD COLUMN lending_type TEXT')
+        for column, kind in (('deleted_at', 'DATETIME'), ('deleted_by', 'TEXT')):  # papers saved before deletion existed are not deleted
+            if column not in case_columns:
+                connection.exec_driver_sql(f'ALTER TABLE "case" ADD COLUMN {column} {kind}')
         check_columns = {row[1] for row in connection.exec_driver_sql('PRAGMA table_info(submission_check)')}
         if 'report' not in check_columns:
             connection.exec_driver_sql("ALTER TABLE submission_check ADD COLUMN report JSON NOT NULL DEFAULT '{}'")

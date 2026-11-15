@@ -63,6 +63,8 @@ class Case(Base):
     workflow_state = mapped_column(Text, nullable=False)
     active_es_version_id = mapped_column(Text, ForeignKey("e_s_version.id"), nullable=True)
     first_upload_at = mapped_column(UTCDateTime, nullable=True)
+    deleted_at = mapped_column(UTCDateTime, nullable=True)
+    deleted_by = mapped_column(Text, nullable=True)
     __table_args__ = (CheckConstraint("case_type IN ('new', 'renewal')"), CheckConstraint("workflow_state IN ('Draft', 'Submitted to Credit Head', 'Supported', 'With Credit Approver', 'Returned to CA', 'Question to CA', 'Approved', 'Approved with conditions', 'Declined')"), CheckConstraint("existing_client != new_to_bank"), CheckConstraint("case_type != 'renewal' OR existing_client = 1"),)
 
 class Document(Base):

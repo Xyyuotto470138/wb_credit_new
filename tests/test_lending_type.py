@@ -72,3 +72,31 @@ def test_the_drafting_request_carries_the_focus_only_for_a_paper_with_a_lending_
     assert 'Lending type' not in prompts[0]
     assert 'Lending type: Data centre financing' in prompts[1] and 'construction and completion risk' in prompts[1]
     assert prompts[1].index('Lending type') < prompts[1].index('Parts to draft')
+
+
+def test_the_maker_can_delete_a_draft_paper_and_it_leaves_the_lists_but_not_the_store(tmp_path):
+    from fastapi.testclient import TestClient
+    from backend.app.database import create_database
+    from backend.app.main import create_app
+    engine, sessions = create_database(tmp_path / 'store.sqlite')
+    try:
+        new = dict(borrower_name='Sample Fund', case_type='new', lending_type='nav_fund_level')
+        plain = TestClient(create_app(sessions=sessions))
+        kept, gone = plain.post('/papers', json=new).json()['id'], plain.post('/papers', json=new).json()['id']
+        api = TestClient(create_app(sessions=sessions, demo_case_ids=(kept,)))
+        assert api.post(f'/papers/{gone}/delete', json=dict(actor='demo-ca')).json() == dict(id=gone, deleted=True)
+        assert [p['id'] for p in api.get('/papers').json()] == [kept] and [c['id'] for c in api.get('/cases').json()] == [kept]
+        assert api.post(f'/papers/{gone}/delete', json=dict(actor='demo-ca')).status_code == 404  # already deleted
+        assert api.post(f'/papers/{kept}/delete', json=dict(actor='demo-ca')).status_code == 409  # a demo paper stays
+        assert api.post('/papers/unknown/delete', json=dict(actor='demo-ca')).status_code == 404
+        with sessions() as session:  # the record is kept, marked with who deleted it and when
+            row = session.connection().exec_driver_sql('SELECT deleted_by, deleted_at FROM "case" WHERE id = ?', (gone,)).one()
+        assert row[0] == 'demo-ca' and row[1]
+        # A paper that has been submitted is with the reviewer and cannot be deleted.
+        submitted = plain.post('/papers', json=new).json()['id']
+        with sessions() as session:
+            session.connection().exec_driver_sql('UPDATE "case" SET workflow_state = ? WHERE id = ?', ('Submitted to Credit Head', submitted))
+            session.commit()
+        assert api.post(f'/papers/{submitted}/delete', json=dict(actor='demo-ca')).status_code == 409
+    finally:
+        engine.dispose()

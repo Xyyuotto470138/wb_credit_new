@@ -320,7 +320,7 @@ details.more summary { cursor: pointer; color: var(--blue-dark); font-size: 13px
 .papers .filters button:first-child { border-radius: 6px 0 0 6px; } .papers .filters button:last-child { border-radius: 0 6px 6px 0; }
 .papers .filters button + button { border-left: 0; }
 .papers .filters button.on { background: var(--blue-tint); color: var(--blue-dark); }
-.papers .table .row { display: grid; grid-template-columns: 1.5fr 1.1fr .9fr 1.3fr 1.6fr 1.3fr 120px; gap: 14px; align-items: center; padding: 13px 16px; border-top: 1px solid var(--line); }
+.papers .table .row { display: grid; grid-template-columns: 1.5fr 1.1fr .9fr 1.3fr 1.6fr 1.3fr 170px; gap: 14px; align-items: center; padding: 13px 16px; border-top: 1px solid var(--line); }
 .papers .table .row.th { border-top: 0; font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; padding: 10px 16px; }
 .papers .table .row.current { background: #F8FBFF; box-shadow: inset 3px 0 0 var(--blue); }
 .papers .row b { display: block; font-size: 15px; color: var(--navy); }
@@ -434,3 +434,6 @@ details.more summary { cursor: pointer; color: var(--blue-dark); font-size: 13px
 .newpaper input:not([type=checkbox]), .newpaper select { font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: #fff; color: var(--ink); min-width: 0; }
 .newpaper .actions { display: flex; gap: 8px; }
 @media (max-width: 1000px) { .newpaper .fields { grid-template-columns: 1fr; } }
+.papers .row .acts { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
+.btn.danger { color: var(--red); border-color: #E7B5B1; }
+.btn.danger:hover:not([disabled]) { background: var(--red-tint); }
