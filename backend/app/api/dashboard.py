@@ -35,7 +35,7 @@ def dashboard_router(sessions=None, storage_root=None, *, folders=None, intake_p
     def cases():
         require_sessions()
         with sessions() as session:
-            rows = session.scalars(select(models.Case).order_by(models.Case.created_at)).all()
+            rows = session.scalars(select(models.Case).where(models.Case.deleted_at.is_(None)).order_by(models.Case.created_at)).all()
             return [dict(id=c.id, borrower_name=c.borrower_name, case_type=c.case_type,
                          team_id=c.team_id, workflow_state=c.workflow_state) for c in rows]
 
@@ -53,7 +53,7 @@ def dashboard_router(sessions=None, storage_root=None, *, folders=None, intake_p
             session.connection().exec_driver_sql('BEGIN IMMEDIATE')
             repo = Repository(session)
             result = []
-            for row in session.scalars(select(models.Case).order_by(models.Case.created_at)).all():
+            for row in session.scalars(select(models.Case).where(models.Case.deleted_at.is_(None)).order_by(models.Case.created_at)).all():
                 case = repo.get(s.Case, row.id)
                 snapshot, sections = ReadinessService(repo).refresh(case.id)
                 applicable = [section for section in sections if section.applicable]

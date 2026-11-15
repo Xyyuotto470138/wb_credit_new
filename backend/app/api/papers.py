@@ -29,7 +29,12 @@ STANDARD_FACTS = dict(borrower_type='reit', facility_types=['term', 'revolving']
     bureau_covered=False, has_information_memorandum=False)
 
 
-def papers_router(sessions=None, template_storage_root=None):
+class DeletePaper(BaseModel):
+    model_config = ConfigDict(extra='forbid', str_strip_whitespace=True)
+    actor: str = Field(min_length=1, max_length=200)
+
+
+def papers_router(sessions=None, template_storage_root=None, demo_case_ids=()):
     router = APIRouter(tags=['papers'])
 
     @router.get('/lending-types')
@@ -56,5 +61,28 @@ def papers_router(sessions=None, template_storage_root=None):
                 TemplateRegistry(repo, template_storage_root).seed_owner_templates(NEW_PAPER_TEAM, ROOT)
             session.commit()
             return dict(id=saved.id, borrower_name=saved.borrower_name, case_type=saved.case_type, team_id=saved.team_id, lending_type=saved.lending_type)
+
+    @router.post('/papers/{case_id}/delete')
+    def delete(case_id: str, body: DeletePaper):
+        """Take a paper out of every list. Its files, drafts and trail stay in the store; nothing is erased."""
+        if sessions is None:
+            raise HTTPException(503, 'Case persistence is not configured')
+        with sessions() as session:
+            session.connection().exec_driver_sql('BEGIN IMMEDIATE')
+            repo = Repository(session)
+            try:
+                case = repo.get(s.Case, case_id)
+            except ValueError:
+                raise HTTPException(404, 'Paper not found')
+            if case.deleted_at:
+                raise HTTPException(404, 'Paper not found')
+            if case_id in demo_case_ids:
+                raise HTTPException(409, 'The demo papers that come with the project cannot be deleted.')
+            if case.workflow_state != 'Draft':
+                raise HTTPException(409, 'Only a paper that is still being drafted can be deleted. This one has been submitted for review.')
+            case.deleted_at, case.deleted_by = s.utcnow(), body.actor
+            repo.save(case)
+            session.commit()
+            return dict(id=case.id, deleted=True)
 
     return router

@@ -30,7 +30,7 @@ def create_app(team_id='fig', provider: Provider | None = None, *, sessions=None
     app.state.team_config = config
     app.state.provider = provider if provider is not None else create_provider()
     app.include_router(auth_router())
-    app.include_router(papers_router(sessions, template_storage_root))
+    app.include_router(papers_router(sessions, template_storage_root, demo_case_ids))
     app.include_router(workflow_router(sessions, storage_root, template_storage_root))
     app.include_router(review_router(sessions))
     app.include_router(documents_router(sessions, storage_root, intake_folders))

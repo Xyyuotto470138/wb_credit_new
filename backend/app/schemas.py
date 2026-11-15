@@ -57,6 +57,8 @@ class Case(Record):
     workflow_state: WorkflowState = 'Draft'
     active_es_version_id: str | None = None
     first_upload_at: datetime | None = None
+    deleted_at: datetime | None = None  # set when the maker deletes the paper: it leaves every list, its records stay in the store
+    deleted_by: str | None = None
 
     @model_validator(mode='after')
     def client_distinction(self):
