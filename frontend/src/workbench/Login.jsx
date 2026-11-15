@@ -19,6 +19,7 @@ export default function Gate() {
     try {
       window.sessionStorage.setItem(KEY, JSON.stringify(next))
     } catch { /* private mode: signed in until the page is reloaded */ }
+    window.location.hash = '#/papers' // sign-in lands on the papers list: the maker picks or starts a paper, the checker sees what is waiting
     setUser(next)
   }
   const signOut = () => {

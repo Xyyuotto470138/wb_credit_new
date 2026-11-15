@@ -8,10 +8,13 @@
 #                                         with the ESR-REIT renewal (mock drafts) as a second paper.
 #                                         Its drafts were made with the live model; viewing them makes no model calls.
 #   add --live                            with --keppel: allow live model calls from the screens (drafting costs money)
+#   add --submitted                       with --keppel: confirm every section of the Keppel REIT paper and submit it, so the
+#                                         checker has a paper waiting for review. The paper stays submitted on later starts;
+#                                         go back with: .venv/bin/python scripts/demo/saved_case.py restore --replace
 # Stop with Ctrl+C. The back end always listens on 127.0.0.1 only.
 set -e
 cd "$(dirname "$0")/../.."
-HOST=127.0.0.1; PREPARED=; FRESH=; KEPPEL=; LIVE=; MORE=
+HOST=127.0.0.1; PREPARED=; FRESH=; KEPPEL=; LIVE=; MORE=; SUBMITTED=
 for arg in "$@"; do
   case "$arg" in
     --phone) HOST=$(tailscale ip -4 | head -1); [ -n "$HOST" ] || { echo "Tailscale is not connected on this Mac."; exit 1; } ;;
@@ -19,6 +22,7 @@ for arg in "$@"; do
     --fresh) FRESH=1 ;;
     --keppel) KEPPEL=1 ;;
     --live) LIVE=1 ;;
+    --submitted) SUBMITTED=1 ;;
     *) echo "Unknown option: $arg"; exit 1 ;;
   esac
 done
@@ -38,6 +42,7 @@ trap 'kill $API $WEB 2>/dev/null' EXIT INT TERM
 until curl -s -o /dev/null http://127.0.0.1:18200/health; do sleep 0.5; done
 [ -n "$PREPARED" ] && .venv/bin/python scripts/demo/prepare_case.py http://127.0.0.1:18200
 [ -n "$MORE" ] && .venv/bin/python scripts/demo/prepare_case.py http://127.0.0.1:18200 ESR-REIT >/dev/null
+[ -n "$KEPPEL" ] && [ -n "$SUBMITTED" ] && { .venv/bin/python scripts/demo/submit_for_review.py http://127.0.0.1:18200 "Keppel REIT" || true; }
 (cd frontend && exec node node_modules/vite/bin/vite.js preview --config ../scripts/demo/vite.demo.config.mjs) &
 WEB=$!
 echo "WB Credit demo: http://$HOST:15300   (Ctrl+C to stop)"

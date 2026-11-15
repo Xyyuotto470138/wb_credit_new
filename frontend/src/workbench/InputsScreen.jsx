@@ -83,14 +83,14 @@ export default function InputsScreen({ data, spec, actor, busy, run }) {
   const count = outcome => results.list.filter(r => r.outcome === outcome).length
   return <main className="inputs">
     <div className="step"><span className="n">1</span><h2>Add files</h2><span className="sub">Add them as they arrive. Nothing is lost when you add more later.</span></div>
-    <div className="upload">
+    <div className={`upload${data.intake.folders.length ? '' : ' alone'}`}>
       <FileUpload onFiles={filesSelected} busy={busy} />
-      <div className="card scan"><b>Or scan a folder</b>
+      {data.intake.folders.length > 0 && <div className="card scan"><b>Or scan a folder</b>
         <small>Reads every file in a prepared folder in one go, in place of uploading them one by one. In this demo the folders hold the sample deal papers that come with the project.</small>
         <div className="row"><select aria-label="Folder to scan" value={folderId} disabled={busy} onChange={e => setFolderId(e.target.value)}>
           {data.intake.folders.map(f => <option key={f.id} value={f.id}>{f.label}</option>)}</select>
           <button className="btn" disabled={busy || !folder} onClick={scan}>Scan folder</button></div>
-      </div>
+      </div>}
     </div>
     {results && <div className="card result" role="status">
       <span>Last intake, {results.at.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}:</span>
@@ -115,7 +115,7 @@ export default function InputsScreen({ data, spec, actor, busy, run }) {
         {missing.map(item => <Item key={item.id} item={item} data={data}>
           {OWNER[item.usual_owner] ? ` ${OWNER[item.usual_owner]}.` : ''}{item.search_outcome === 'not run' ? '' : ' Not found in public sources.'}</Item>)}
         <div className="group">Received <span>{received.length}</span></div>
-        {!received.length && <p className="empty">Nothing yet. Add files or scan a folder above.</p>}
+        {!received.length && <p className="empty">Nothing yet. Add files above.</p>}
         {received.map(item => <Item key={item.id} item={item} data={data} />)}
         {generate.length > 0 && <><div className="group">Can be generated <span>{generate.length}</span></div>
           {generate.map(item => <Item key={item.id} item={item} data={data}>

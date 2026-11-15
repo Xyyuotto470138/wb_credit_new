@@ -1,5 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
-import { dashboard, request } from '../api/client'
+import { dashboard, post, request } from '../api/client'
 import TopBar from './TopBar'
 import InputsScreen from './InputsScreen'
 import Workbench from './Workbench'
@@ -77,6 +77,11 @@ export default function Root({ user, signOut }) {
       setBusy(''); lock.current = false
     }
   }, [refresh])
+  const create = facts => run('Creating the paper', async () => {
+    const made = await post('/papers', facts)
+    paper.current = made.id; keep('wb.paper', made.id)
+    return made
+  }).then(made => { if (made) window.location.hash = '#/inputs' })
   if (where.view === 'classic') return <Suspense fallback={<p>Loading…</p>}><p className="classic-back"><a href="#/inputs">← Back to Inputs</a></p><ClassicApp /></Suspense>
   return <div className="wb">
     <TopBar data={data} spec={spec} view={where.view} assistantOpen={assistantOpen} toggleAssistant={() => setAssistantOpen(open => !open)}
@@ -86,7 +91,7 @@ export default function Root({ user, signOut }) {
     {!data && !error && !empty && <p className="wb-loading">Loading case…</p>}
     {empty && <main className="papers"><div className="head"><h1>Papers</h1></div>
       <div className="card table"><p className="empty">No {unit} papers yet. The {unit} template and document checklist are not set up in this prototype; only FIG is.</p></div></main>}
-    {where.view === 'papers' && papers.length > 0 && <PapersScreen papers={papers} current={data?.case.id} role={role} choose={choose} />}
+    {where.view === 'papers' && papers.length > 0 && <PapersScreen papers={papers} current={data?.case.id} role={role} choose={choose} create={create} busy={!!busy} />}
     {data && where.view === 'inputs' && <InputsScreen key={data.case.id} data={data} spec={spec} actor={actor} busy={!!busy} run={run} />}
     {data && where.view === 'workbench' && <Workbench key={data.case.id} data={data} spec={spec} actor={actor} role={role} busy={!!busy} run={run} tab={where.tab}
       assistantOpen={assistantOpen} closeAssistant={() => setAssistantOpen(false)} />}

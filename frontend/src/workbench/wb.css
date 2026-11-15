@@ -423,3 +423,16 @@ details.more summary { cursor: pointer; color: var(--blue-dark); font-size: 13px
 .col > p.empty { padding: 10px 16px; margin: 0; color: var(--muted); border-bottom: 1px solid #EAEDF1; }
 .topbar .pick.unit select { font-weight: 700; color: var(--navy); }
 .group { flex-wrap: wrap; }
+.upload.alone { grid-template-columns: 1fr; }
+/* New paper form */
+.newpaper { padding: 18px 20px; margin-bottom: 16px; display: flex; flex-direction: column; gap: 12px; }
+.newpaper h2 { margin: 0; font-size: 17px; color: var(--navy); }
+.newpaper .sub { margin: 0; color: var(--muted); }
+.newpaper .fields { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; }
+.newpaper .fields label { display: flex; flex-direction: column; gap: 5px; font-weight: 600; }
+.newpaper input:not([type=checkbox]), .newpaper select { font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: #fff; color: var(--ink); min-width: 0; }
+.newpaper fieldset { border: 1px solid var(--line); border-radius: 8px; margin: 0; padding: 10px 14px 12px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 8px 16px; }
+.newpaper legend { font-weight: 700; color: var(--navy); padding: 0 6px; font-size: 13px; }
+.newpaper .tick { display: flex; align-items: center; gap: 8px; }
+.newpaper .actions { display: flex; gap: 8px; }
+@media (max-width: 1000px) { .newpaper .fields { grid-template-columns: 1fr; } .newpaper fieldset { grid-template-columns: 1fr; } }
